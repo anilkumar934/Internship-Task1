@@ -2,6 +2,7 @@
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;background-color:rgb(249,246,246);
     padding: 80px;
     padding-top: 20px;
+    padding-bottom: 5px;
 }
 .container{
     display: flex;
@@ -118,7 +119,6 @@
     display: flex;
     height: 500px;
     justify-content: space-around;
-    background-color: aqua;
     align-items: center;
 }
 .easy-01{
@@ -167,7 +167,7 @@
     background-color: white;
     border-radius: 15px;
     position: relative;
-    left: 140px;
+    left: 120px;
     bottom: 150px;
 }
 .easy-4{
