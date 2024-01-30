@@ -494,7 +494,8 @@ progress[value] {
     color: white;
     background-color: #FF8B6B;
     text-decoration: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 12px;
 }
 
 .subscribe-background-image-1 {
@@ -545,11 +546,13 @@ progress[value] {
 .travelpro-text-1 {
     font-size: 43px;
     margin-bottom: 10px;
+    font-weight: 500;
 }
 
 .travelpro-text-2 {
     font-size: 13px;
     color: #55597B;
+    font-weight: 500;
 }
 
 .company-details {
@@ -558,6 +561,7 @@ progress[value] {
     padding: 15px;
     text-align: left;
     padding-left: 0;
+    font-weight: 500;
 }
 
 .sources {
@@ -596,7 +600,7 @@ progress[value] {
 }
 
 .store-image {
-    height: 12px;
+    height: 13px;
     padding: 7px;
     padding-right: 5px;
     padding-left: 10px;
@@ -609,7 +613,7 @@ progress[value] {
 }
 
 .store-text-2 {
-    color: white;
+    color: rgb(246, 243, 243);
     font-size: 7px;
 }
 

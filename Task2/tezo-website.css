@@ -1,0 +1,153 @@
+body {
+    padding-left: 1.04%;
+    padding-top: 0.97%;
+    display: flex;
+    justify-content: space-between;
+}
+.details-left{
+    width: 18.05%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.logo-space{
+    margin-left: 3.8%;
+    margin-top: 1.45%; 
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 32.7%;
+    height: 7.4%;
+}
+
+.tezo-logo{
+    width: 53.8%;
+    height: 3.4%;
+}
+
+.arrow-logo{
+    width: 15.33%;
+    height: 3.88%;
+}
+
+.dis{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.all{
+    padding-left: 3.8%;
+    padding-top:2.9%;
+    color: #CCD1D5;
+    height: 1.49%;
+    width: 12.24%;
+}
+.back{
+    width: 88.4%;
+    height: 9.3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ok{
+    display: flex;
+    gap: 10%;
+    align-items: center;
+}
+.image{
+    height: 25px;
+}
+
+.left{
+    color: #6A6F74;
+    align-content: space-between;
+    
+}
+.line{
+    counter-increment: dot;
+}
+.line::before{
+    content: counter(dot) ".";
+    display: flex;
+    width: 8px;
+    height: 8px;
+    background-color: #6A6F74;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.line:first-child::before{
+    content: "";
+}
+.details-right{
+    width: 81.9%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    padding-left: 3%;
+}
+.right-1{
+    height: 7.5%;
+    width: 94.8%;
+    box-shadow: 0px 0px 4px #a6aaad;
+    border-radius: 6px;
+    align-self: center;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+.space{
+    display: flex;
+    padding-right: 10px;
+}
+.search{
+    padding:1px 15px;
+    height: 20px;
+}
+.text{
+    border:none;
+    color: #B3BBC3;
+}
+.right{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.mage{
+    height: 30px;
+}
+.p{
+    font-size: 10px;
+}
+.employ{
+    display: flex;
+    flex-direction: column;
+}
+.shift{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.button{
+    height: 30px;
+}
+.char{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.char-mage{
+    height: 20px;
+}
+.right-2{
+    display: flex;
+    padding: 1px 10px;
+    align-items: center;
+    gap: 10px;
+}
+.riht-mage{
+    height: 35px;
+    padding: 1px 5px 1px 10px;
+}
