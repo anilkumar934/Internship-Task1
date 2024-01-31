@@ -1,6 +1,6 @@
 body {
-    padding-left: 1.04%;
-    padding-top: 0.97%;
+    padding-left:10px;
+    padding-top: 5px;
     display: flex;
     justify-content: space-between;
     font-family:Arial, Helvetica, sans-serif;
@@ -11,7 +11,6 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    box-shadow:1px 0px 1px #a6aaad;
 }
 
 .logo-space{
@@ -104,21 +103,40 @@ body {
     align-content: space-between;
     
 }
-.line{
-    counter-increment: dot;
+.left-bottom{
+    background-color: #FEF6F6;
+    font-size: 11px;
+    width: 180px;
+    margin-top: 20px;
+    padding-left: 20px;
+    border-radius: 5px;
 }
-.line::before{
-    content: counter(dot) ".";
-    display: flex;
-    width: 8px;
-    height: 8px;
-    background-color: #6A6F74;
-    border-radius: 50%;
-    margin-right: 5px;
+.button-3{
+    background-color: #FDE6E6;
+    border: none;
+    color: #F55B5B;
+    padding: 5px 8px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: 11px;
 }
-.line:first-child::before{
-    content: "";
+.button-4{
+    background-color: #F44848;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    margin-left: 5px;
+    font-size: 11px;
 }
+.col-1{
+    color: #F55B5B;
+}
+.col-2{
+    color: #8b8888;
+}
+
 .details-right{
     width: 81.9%;
     display: flex;
