@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script defer src="./bundle.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body id="wholeBody">
+    <div class="side-bar" id="hideSideBar">
+        <header>
+            <div class="tezo-handle-container">
+                <!-- <img src="./Images/Side-bar/TezoLogo.png" class="tezo-logo" alt="tezo-logo" /> -->
+                <!-- <img src="./Images/Side-bar/handle.png" class="handle-logo" alt="handle-logo" -->
+                    onclick="minimizeMaximizeSideBar()" />
+            </div>
+            <div>
+                <p class="dash-emp-role-manage">ALL</p>
+                <div class="dash-emp-manage" href="../index.html" onclick="showContent('roles')">
+                    <!-- <img src="./Images/Horizontal nav/Dashboard.svg" class="dash-emp-image" alt="Dashboard" /> -->
+                    <!-- <img src="./Images/Side-bar/dashboard.svg" alt="Dashboard" class="dash-emp-image-hover" /> -->
+                    <p>Dashboard</p>
+                </div>
+                <div class="dash-emp-manage" href="../Employee/Employee.html" onclick="showContent('employeeData')">
+                    <!-- <img src="./Images/Side-bar/employee.svg" class="dash-emp-image" alt="Teams-logo" /> -->
+                    <!-- <img src="./Images/Horizontal nav/Employees.svg" class="dash-emp-image-hover" alt="Teams-logo" /> -->
+                    <p>Employees</p>
+                </div>
+                <p class="dash-emp-role-manage">ROLE / USER MANAGEMENT</p>
+                <div class="role-acc-rights" href="../Roles/roles.html" onclick="showContent('roleDescription')">
+                    <div>
+                        <!-- <!-- <img src="./Images/Horizontal nav/Roles.svg" class="role-acc-rights-img" alt="Roles-logo" /> --> -->
+                        <!-- <!-- <img src="./Images/Side-bar/roles.svg" class="role-acc-rights-img-hover" alt="Roles-logo" /> --> -->
+                        <p>Roles</p>
+                    </div>
+                    <div><i class="ph-bold ph-caret-right"></i></div>
+                </div>
+                <div class="role-acc-rights">
+                    <div>
+                        <!-- <!-- <img src="./Images/Horizontal nav/assign user.svg" class="role-acc-rights-img" --> -->
+                            alt="Users-logo" />
+                        <!-- <!-- <img src="./Images/Side-bar/assign user .svg" class="role-acc-rights-img-hover" --> -->
+                            alt="Users-logo" />
+                        <p>Access rights</p>
+                    </div>
+                    <div><i class="ph-bold ph-caret-right"></i></div>
+                </div>
+            </div>
+        </header>
+        <footer>
+            <div class="update-control">
+                <div>
+                    <p class="new-update">Install new update 2.3.1A</p>
+                </div>
+                <div>
+                    <p class="allow-update">Allow to launch the new update for the AD application</p>
+                </div>
+                <div>
+                    <button type="button" class="update-dismiss">Dismiss</button>
+                    <button type="button" class="update-accept">Accept</button>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div id="showSideBar" class="show-side-bar">
+        <div class="tezo-handle-minimize">
+            <!-- <img src="./Images/Side-bar/TezoLogo.svg" alt="tezo-logo" /> -->
+            <!-- <img src="./Images/Side-bar/handle.png" class="adjust-handle" alt="handle-logo" -->
+                onclick="minimizeMaximizeSideBar()" />
+        </div>
+        <div class="adjust-sidebar-icons">
+            <div class="hidden-side-bar" href="../index.html" onclick="showContent('roles')">
+                <!-- <img src="./Images/Horizontal nav/Dashboard.svg" class="dash-emp-image" alt="Dashboard" /> -->
+                <!-- <img src="./Images/Side-bar/dashboard.svg" alt="Dashboard" class="dash-emp-image-hover" /> -->
+            </div>
+            <div class="hidden-side-bar" href="../Employee/Employee.html" onclick="showContent('employeeData')">
+                <!-- <img src="./Images/Side-bar/employee.svg" class="dash-emp-image" alt="Teams-logo" /> -->
+                <!-- <img src="./Images/Horizontal nav/Employees.svg" class="dash-emp-image-hover" alt="Teams-logo" /> -->
+            </div>
+            <div class="hidden-side-bar" href="../Roles/roles.html" onclick="showContent('roleDescription')">
+                <!-- <img src="./Images/Horizontal nav/Roles.svg" class="dash-emp-image" alt="Roles-logo" /> -->
+                <!-- <img src="./Images/Side-bar/roles.svg" class="dash-emp-image-hover" alt="Roles-logo" /> -->
+            </div>
+            <!-- <img src="./Images/Horizontal nav/assign user.svg" alt="Users-logo" /> -->
+        </div>
+    </div>
+    <div class="search-handle-emp-data">
+        <div class="search-profile">
+            <div class="search-box">
+                <!-- <img src="./Images/Search-bar/bx-search.png" onclick="searchEmployeeByText()" class="search-logo" alt="search-logo" /> -->
+                <input class="search-text" type="text" placeholder="Search" id="searchEmployeeWithName" class="search-text">
+            </div>
+            <div class="user-acts">
+                <span class="status-dot"><i class="ph-bold ph-dot"></i></span>
+                <!-- <img src="./Images/Search-bar/IconButton.png" class="user-acts-logo" alt="Language" /> -->
+                <!-- <img src="./Images/Search-bar/icon1.png" class="user-acts-logo" alt="More" /> -->
+                <!-- <img src="./Images/Search-bar/icon2.png" class="user-acts-logo" alt="Mode" /> -->
+                <!-- <img src="./Images/Search-bar/icon3.png" class="user-acts-logo" alt="Notifications"> -->
+                <div class="admin-control">
+                    <!-- <div><img src="./Images/Search-bar/32.png" class="admin-logo" alt="Admin-photo" /></div> -->
+                    <div>
+                        <p class="admin-name">Jhon Abraham</p>
+                        <p class="admin-status">Admin</p>
+                    </div>
+                    <div><i class="ph-bold ph-caret-down admin-caret-down"></i></div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Employee page -->
+        <form id="addEmployeeForm" class="handle-form-data">
+            <h3>Add Employee</h3>
+            <div>
+                <div class="employee-pic-upload">
+                    <div>
+                        <!-- <img src="./Images/Table/download.jpg" class="upload-pic" id="updatePic" alt="Employee-pic" /> -->
+                        <input type="file" id="employPic" accept="image/*" hidden>
+                        <label for="employPic" class="upload-pic-label">Upload Profile Picture</label>
+                    </div>
+                    <div id="addedSuccessfully" class="success-message">
+                        <p>Successfully Added!</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="personal-employee-info">Personal Information</h4>
+                    <div class="inp-field-division">
+                        <div>
+                            <h6 class="label-text">Emp No<span class="input-required-icon"></span></h6>
+                            <input class="input-text-field" type="text" id="empNo" placeholder="Ex : TZ000000"
+                                onfocus="sendInputToValidate('employId')" />
+                            <p id="errorEmpNo"></p>
+                        </div>
+                    </div>
+                    <div class="inp-field-division">
+                        <div>
+                            <h6 class="label-text">First Name<span class="input-required-icon"></span></h6>
+                            <input class="input-text-field" type="text" id="fName" placeholder="Text"
+                                onfocus="sendInputToValidate('firstName')" />
+                            <p id="errorFirstName"></p>
+                        </div>
+                        <div>
+                            <h6 class="label-text">Last Name<span class="input-required-icon"></span></h6>
+                            <input class="input-text-field" type="text" id="lName" placeholder="Text"
+                                onfocus="sendInputToValidate('lastName')" />
+                            <p id="errorLastName"></p>
+                        </div>
+                        <div>
+                            <h6 class="label-text">Date oF Birth</h6>
+                            <input class="dummy-text" type="text" placeholder="Select" id="changeDob" disabled />
+                            <input class="date-input" type="date" id="dob" min="1990-01-01" max="2004-12-31"
+                                onchange="setDobPlaceholder()" />
+                            <!-- <img src="./Images/Table/calendar-blank-light.svg" class="calender-icon" -->
+                                alt="Calender-icon" />
+                        </div>
+                    </div>
+                    <div class="inp-field-division">
+                        <div>
+                            <h6 class="label-text">Email Id<span class="input-required-icon"></span></h6>
+                            <input class="input-text-field" type="email" id="email" placeholder="Joe.i@technovert.com"
+                                onfocus="sendInputToValidate('email')" />
+                            <p id="errorEmail"></p>
+                        </div>
+                        <div>
+                            <h6 class="label-text">Mobile Number<span class="input-required-icon"></span></h6>
+                            <input class="input-text-field no-spin-buttons" type="number" id="mobileNo"
+                                placeholder="0000000000" onfocus="sendInputToValidate('mobileNo')" />
+                            <p id="errorMobileNo"></p>
+                        </div>
+                    </div>
+                    <h4 class="personal-employee-info">Employment Information</h4>
+                    <div class="inp-field-division">
+                        <div>
+                            <h6 class="label-text">Joining Date<span class="input-required-icon"></span></h6>
+                            <input class="input-joinDate" type="text" id="joinDate" onfocus="sendInputToValidate('joinDate')"/>
+                            <p id="errorJoinDate"></p>
+                        </div>
+                        <div>
+                            <h6 class="label-text">Location</h6>
+                            <select id="loc" class="input-select">
+                                <option>Hyderabad</option>
+                                <option>Banglore</option>
+                                <option>Guntur</option>
+                            </select>
+                            <!-- <img src="./Images/Table/caret-down-bold.svg" class='caret-down' alt="caret-down" /> -->
+                        </div>
+                    </div>
+                    <div class="inp-field-division">
+                        <div>
+                            <h6 class="label-text">Job Title</h6>
+                            <select id="jobTitle" class="input-select">
+                                <option>UX Designer</option>
+                                <option>Mobile App Developer</option>
+                                <option>Full-Stack Developer</option>
+                            </select>
+                            <!-- <img src="./Images/Table/caret-down-bold.svg" class='caret-down' alt="caret-down" /> -->
+                        </div>
+                        <div>
+                            <h6 class="label-text">Department</h6>
+                            <select id="dep" class="input-select">
+                                <option>UI/UX</option>
+                                <option>Product Engg.</option>
+                                <option>QA</option>
+                            </select>
+                            <!-- <img src="./Images/Table/caret-down-bold.svg" class='caret-down' alt="caret-down" /> -->
+                        </div>
+                    </div>
+                    <div class="inp-field-division">
+                        <div>
+                            <h6 class="label-text">Assign Manager</h6>
+                            <select class="input-select manager-proj-input-text" disabled>
+                                <option selected hidden>Search</option>
+                                <option>UI/UX</option>
+                                <option>Product Engg.</option>
+                                <option>QA</option>
+                            </select>
+                            <!-- <img src="./Images/Table/caret-down-bold.svg" class='caret-down' alt="caret-down" /> -->
+                        </div>
+                        <div>
+                            <h6 class="label-text">Assign Project</h6>
+                            <select class="input-select manager-proj-input-text" disabled>
+                                <option selected hidden>Search</option>
+                                <option>UI/UX</option>
+                                <option>Product Engg.</option>
+                                <option>QA</option>
+                            </select>
+                            <!-- <img src="./Images/Table/caret-down-bold.svg" class='caret-down' alt="caret-down" /> -->
+                        </div>
+                    </div>
+                    <div class="place-content-at-right">
+                        <button class="cncl-add-employee-btn" id="cancelDataSubmit">Cancel</button>
+                        <button type="submit" id="formSubmit" class="add-employee-btn">Add Employee</button>
+                        <button id="closeViewedEmpolyee" class="close-view-btn">close</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- Employee Table page -->
+        <div class="overflow-data" id="employeeData">
+            <div class="add-employ-info">
+                <div class="employ-data">
+                    <div href="Employee.html" onclick="showContent('employeeData')">Employees</div>
+                    <p>Find all of your company's employee accounts and their associated roles</p>
+                </div>
+                <div class="addEmployee-export-container">
+                    <div class="adjust-export-container">
+                        <button class="export-btn" id="exportOptionsButton">
+                            <!-- <img src="./Images/Table/Masked Icon.png" class="export-logo" alt="marked-icon" /> -->
+                            <p>EXPORT</p>
+                        </button>
+                        <div class="hide-export-options" id="exportData">
+                            <button onclick="exportDataToexcel()" id="excelFile">Excel</button>
+                            <button onclick="exportDataToCSV()" id="excelFile">CSV</button>
+                        </div>
+                    </div>
+                    <div class="add-employ-btn" onclick="showContent('addEmployeeForm')">
+                        <span class="plus-logo">
+                            <i class="ph-bold ph-plus"></i>
+                        </span>
+                        ADD EMPLOYEE
+                    </div>
+                </div>
+            </div>
+            <div class="employ-list" id="chars">
+            </div>
+            <div class="filter">
+                <div class="filter-search">
+                    <p>Filter</p>
+                    <i class="ph ph-funnel-simple filter-icon"></i>
+                    <div class="show-hidden-filters">
+                        <!-- <button class="filter-status" id="selectStatus">Status<img src="./Images/Table/caret-down-bold.svg" class="caret-down-filter"></button> -->
+                        <div class="adjust-filters" id="statusDisplay">
+                            <input type="checkbox" id="active" value="Active" class="status">
+                            <label for="active">Active</label><br/>
+                            <input type="checkbox" id="inActive" value="In Active" class="status">
+                            <label for="inActive">In Active</label>
+                        </div>
+                    </div>
+                    <div class="show-hidden-filters">
+                        <!-- <button class="filter-loc" id="selectLocation">Location<img src="./Images/Table/caret-down-bold.svg" class="caret-down-filter"></button> -->
+                        <div class="adjust-filters" id="locationDisplay">
+                            <input type="checkbox" id="hyderabad" value="Hyderabad" class="location">
+                            <label for="hyderabad">Hyderabad</label><br/>
+                            <input type="checkbox" id="banglore" value="Banglore" class="location">
+                            <label for="banglore">Banglore</label><br/>
+                            <input type="checkbox" id="guntur" value="Guntur" class="location">
+                            <label for="guntur">Guntur</label>
+                        </div>
+                    </div>
+                    <div class="show-hidden-filters">
+                        <!-- <button class="filter-dep" id="selectDepartment">Department<img src="./Images/Table/caret-down-bold.svg" class="caret-down-filter"></button> -->
+                        <div class="adjust-filters" id="departmentDisplay">
+                            <input type="checkbox" id="ProductEngg" value="Product Engg." class="department">
+                            <label for="ProductEngg">Product Engg.</label><br/>
+                            <input type="checkbox" id="QA" value="QA" class="department">
+                            <label for="QA">QA</label><br/>
+                            <input type="checkbox" id="uiux" value="UI/UX" class="department">
+                            <label for="uiux">UI/UX</label>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </div>
+                <div id="resetApplyContainer" class="reset-apply-filter-container">
+                    <button onclick="resetFilter()" class="filter-reset">Reset</button>
+                    <button onclick="applyAllFilters()" class="filter-apply">Apply</button>
+                </div>
+            </div>
+            <div class="emp-delete">
+                <div>
+                    <div class="delete">
+                        <!-- <!-- <img src="./Images/Table/arrow-turn left -down.png" class="del-tbl-add-img" --> -->
+                            alt="delete-logo" />
+                        <button onclick="deleteEmployee()" id="deleteButton" class="del-btn">Delete</button>
+                    </div>
+                </div>
+                <!-- <!-- <div><img src="./Images/Table/table-add.png" class="del-tbl-add-img" alt="add-table"></div> --> -->
+            </div>
+            <table class="table" id="employeeInformation" cellspacing="0">
+                <thead>
+                    <tr class="table-head">
+                        <td><input type="checkbox" id="checkAllEmployees" onclick="selectAllEmployees()"></td>
+                        <td>
+                            <div onclick="sortTable('user')" class="table-th">
+                                <p>USER</p>
+                                <!-- <img src="./Images/Table/caret-up-down-bold.svg" alt="up-down-icon" /> -->
+                            </div>
+                        </td>
+                        <td>
+                            <div onclick="sortTable('loc')" class="table-th">
+                                <p>LOCATION</p>
+                                <!-- <img src="./Images/Table/caret-up-down-bold.svg" alt="up-down-icon" /> -->
+                            </div>
+                        </td>
+                        <td>
+                            <div onclick="sortTable('dep')" class="table-th">
+                                <p>DEPARTMENT</p>
+                                <!-- <img src="./Images/Table/caret-up-down-bold.svg" alt="up-down-icon" /> -->
+                            </div>
+                        </td>
+                        <td>
+                            <div onclick="sortTable('role')" class="table-th">
+                                <p>ROLE</p>
+                                <!-- <img src="./Images/Table/caret-up-down-bold.svg" alt="up-down-icon" /> -->
+                            </div>
+                        </td>
+                        <td>
+                            <div onclick="sortTable('emp_no')" class="table-th">
+                                <p>EMP NO</p>
+                                <!-- <img src="./Images/Table/caret-up-down-bold.svg" alt="up-down-icon" /> -->
+                            </div>
+                        </td>
+                        <td>
+                            <div onclick="sortTable('status')" class="table-th">
+                                <p>STATUS</p>
+                                <!-- <img src="./Images/Table/caret-up-down-bold.svg" alt="up-down-icon" /> -->
+                            </div>
+                        </td>
+                        <td>
+                            <div onclick="sortTable('join_dt')" class="table-th">
+                                <p>JOIN DT</p>
+                                <!-- <img src="./Images/Table/caret-up-down-bold.svg" alt="up-down-icon" /> -->
+                            </div>
+                        </td>
+                        <!-- <td><img src="./Images/Table/dots-three-bold.svg" class="ellipse" alt="ellipse"/></td> -->
+                    </tr>
+                </thead>
+                <tbody id="rowData">
+                </tbody>
+            </table>
+        </div>
+        <!-- Roles Description -->
+        <div id="roleDescription" class="role-description">
+            <div class="role-manage">
+                <div class="role-data">
+                    <div class="employ-text">
+                        <div>
+                            <p>Roles</p>
+                        </div>
+                        <div><i class="ph-bold ph-caret-right"></i></div>
+                        <div onclick="showContent('employeeData')" class="employ-link" target="_self">Employees</div>
+                    </div>
+                    <p>All the roles are configures here</p>
+                </div>
+                <div>
+                    <div type="button" class="add-employ" onclick="showContent('addEmployeeForm')">
+                        <span class="plus-logo"><i class="ph-bold ph-plus"></i></span>
+                        ADD EMPLOYEE
+                    </div>
+                </div>
+            </div>
+            <div>
+                <P class="role">Role Description</P>
+                <p class="role-desc">Configure the providers that are available to users when they sign in.
+                    Configure the providers that are available to users when they sign in.
+                    Configure the providers that are available to users when they sign in.
+                    Configure the providers that are available to users when they sign in.</p>
+            </div>
+            <div class="role-emp">
+                <div class="role-details">
+                    <div class="emp-detail">
+                        <!-- <div><img src="./Images/Search-bar/32.png" class="employ-image" alt="employ-image" /></div> -->
+                        <div>
+                            <p class="emp-name">Robert Forx</p>
+                            <p class="emp-role">Head Of Product Design</p>
+                        </div>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Side-bar/Vector (1).svg" alt="vector-logo" /> -->
+                        <p>INF122</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Table/email-1_svgrepo.com.svg" alt="email-logo" /> -->
+                        <p>adamk@yahoo.com</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Table/team_svgrepo.com.svg" alt="teams-logo" /> -->
+                        <p>Technology</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Side-bar/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" /> -->
+                        <p>Stockton, New Hampshire</p>
+                    </div>
+                    <div class="all-emp">
+                        <p>View</p>
+                        <!-- <img src="./Images/Side-bar/Vector.svg" alt="vector-image" /> -->
+                    </div>
+                </div>
+                <div class="role-details">
+                    <div class="emp-detail">
+                        <!-- <div><img src="./Images/Search-bar/32.png" class="employ-image" alt="employ-image" /></div> -->
+                        <div>
+                            <p class="emp-name">Marvin McKinney</p>
+                            <p class="emp-role">Head Of Engineering</p>
+                        </div>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Side-bar/Vector (1).svg" alt="vector-logo" /> -->
+                        <p>INF150</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Table/email-1_svgrepo.com.svg" alt="email-logo" /> -->
+                        <p>sravani@yahoo.com</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Table/team_svgrepo.com.svg" alt="teams-logo" /> -->
+                        <p>Admin</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Side-bar/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" /> -->
+                        <p>Syracuse, Connecticut</p>
+                    </div>
+                    <div class="all-emp">
+                        <p>View</p>
+                        <!-- <img src="./Images/Side-bar/Vector.svg" alt="vector-image" /> -->
+                    </div>
+                </div>
+                <div class="role-details">
+                    <div class="emp-detail">
+                        <!-- <div><img src="./Images/Search-bar/32.png" class="employ-image" alt="employ-image" /></div> -->
+                        <div>
+                            <p class="emp-name">Eleanor Pena</p>
+                            <p class="emp-role">Senior Interaction Designer</p>
+                        </div>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Side-bar/Vector (1).svg" alt="vector-logo" /> -->
+                        <p>INF240
+                        <p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Table/email-1_svgrepo.com.svg" alt="email-logo" /> -->
+                        <p>grolschie@mac.com</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Table/team_svgrepo.com.svg" alt="teams-logo" /> -->
+                        <p>Customer Executive</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Side-bar/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" /> -->
+                        <p>Portland, Illinois</p>
+                    </div>
+                    <div class="all-emp">
+                        <p>View</p>
+                        <!-- <img src="./Images/Side-bar/Vector.svg" alt="vector-image" /> -->
+                    </div>
+                </div>
+                <div class="role-details">
+                    <div class="emp-detail">
+                        <!-- <div><img src="./Images/Search-bar/32.png" class="employ-image" alt="employ-image" /></div> -->
+                        <div>
+                            <p class="emp-name">Jane Cooper</p>
+                            <p class="emp-role">Product Analyst</p>
+                        </div>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Side-bar/Vector (1).svg" alt="vector-logo" /> -->
+                        <p>INF389</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Table/email-1_svgrepo.com.svg" alt="email-logo" /> -->
+                        <p>chronos@aol.com</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Table/team_svgrepo.com.svg" alt="teams-logo" /> -->
+                        <p>Product</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Side-bar/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" /> -->
+                        <p>Coppell, Virginia</p>
+                    </div>
+                    <div class="all-emp">
+                        <p>View</p>
+                        <!-- <img src="./Images/Side-bar/Vector.svg" alt="vector-image" /> -->
+                    </div>
+                </div>
+                <div class="role-details">
+                    <div class="emp-detail">
+                        <!-- <div><img src="./Images/Search-bar/32.png" class="employ-image" alt="employ-image" /></div> -->
+                        <div>
+                            <p class="emp-name">Floyd Miles</p>
+                            <p class="emp-role">Visual Designer</p>
+                        </div>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Side-bar/Vector (1).svg" alt="vector-logo" /> -->
+                        <p>INF209</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Table/email-1_svgrepo.com.svg" alt="email-logo" /> -->
+                        <p>dgatwood@msn.com</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Table/team_svgrepo.com.svg" alt="teams-logo" /> -->
+                        <p>Customer Executive</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Side-bar/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" /> -->
+                        <p>Lansing, Illinois</p>
+                    </div>
+                    <div class="all-emp">
+                        <p>View</p>
+                        <!-- <img src="./Images/Side-bar/Vector.svg" alt="vector-image" /> -->
+                    </div>
+                </div>
+                <div class="role-details">
+                    <div class="emp-detail">
+                        <!-- <div><img src="./Images/Search-bar/32.png" class="employ-image" alt="employ-image" /></div> -->
+                        <div>
+                            <p class="emp-name">Dianne Russell</p>
+                            <p class="emp-role">Full Stack Software Engineer</p>
+                        </div>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Side-bar/Vector (1).svg" alt="vector-logo" /> -->
+                        <p>INF922</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Table/email-1_svgrepo.com.svg" alt="email-logo" /> -->
+                        <p>kspiteri@live.com</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Table/team_svgrepo.com.svg" alt="teams-logo" /> -->
+                        <p>Human Research</p>
+                    </div>
+                    <div class="role-info">
+                        <!-- <img src="./Images/Side-bar/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" /> -->
+                        <p>Corona, Michigan</p>
+                    </div>
+                    <div class="all-emp">
+                        <p>View</p>
+                        <!-- <img src="./Images/Side-bar/Vector.svg" alt="vector-image" /> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Roles page  -->
+        <div id="roles" class="roles">
+            <div class="role-manage">
+                <div class="role-data">
+                    <div onclick="showContent('employeeData')">Employees</div>
+                    <p>Find all of your company's employee accounts and their associated roles</p>
+                </div>
+                <div>
+                    <div type="button" class="add-role-btn" >
+                        <!-- onclick="showContent('addRole') -->
+                        <i class="ph-bold ph-plus plus-logo"></i>
+                        ADD ROLE
+                    </div>
+                </div>
+            </div>
+            <div class="filter">
+                <div class="filter-search">
+                    <p>Filter</p>
+                    <i class="ph ph-funnel-simple filter-icon"></i>
+                    <select class="filter-dep" id="selectDepartment">
+                        <option value="none" selected hidden>Department</option>
+                        <option>product engg.</option>
+                        <option>IT</option>
+                        <option>UIUX</option>
+                        <option>sales</option>
+                    </select>
+                    <select class="filter-loc" id="selectLocation">
+                        <option value="none" selected hidden>Location</option>
+                        <option>madh</option>
+                        <option>hyd</option>
+                        <option>high_tech</option>
+                        <option>kammam</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button" onclick="filterReset()" class="filter-reset">Reset</button>
+                    <button type="button" onclick="filterApply()" class="filter-apply">Apply</button>
+                </div>
+            </div>
+            <div class="role-emp">
+                <div class="role-details">
+                    <div class="role-edit">
+                        <p>Customer service Manager</p>
+                        <!-- <img src="./Images/Side-bar/edit.svg" alt="Edit button" /> -->
+                    </div>
+                    <div class="role-dep">
+                        <div class="role-align">
+                            <!-- <img src="./Images/Table/team_svgrepo.com.svg" alt="Department-logo" /> -->
+                            <p>Department</p>
+                        </div>
+                        <p>IT</p>
+                    </div>
+                    <div class="role-dep">
+                        <div class="role-align">
+                            <!-- <img src="./Images/Side-bar/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" /> -->
+                            <p>Location</p>
+                        </div>
+                        <p>Hyderabad</p>
+                    </div>
+                    <div class="role-dep">
+                        <p>Total Employees</p>
+                        <!-- <img src="./Images/Table/total-employees.jpg" alt="total-emolyes" class="tot-emp-image" /> -->
+                    </div>
+                    <div class="all-emp">
+                        <a href="./Employee/Employee.html" target="_self">View all Employees</a>
+                        <!-- <img src="./Images/Side-bar/Vector.svg" alt="vector-logo" /> -->
+                    </div>
+                </div>
+                <div class="role-details">
+                    <div class="role-edit">
+                        <p>Ux Designer</p>
+                        <!-- <img src="./Images/Side-bar/edit.svg" alt="Edit button" /> -->
+                    </div>
+                    <div class="role-dep">
+                        <div class="role-align">
+                            <!-- <img src="./Images/Table/team_svgrepo.com.svg" alt="Department-logo" /> -->
+                            <p>Department</p>
+                        </div>
+                        <p>Product Engg.</p>
+                    </div>
+                    <div class="role-dep">
+                        <div class="role-align">
+                            <!-- <img src="./Images/Side-bar/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" /> -->
+                            <p>Location</p>
+                        </div>
+                        <p>Hyderabad</p>
+                    </div>
+                    <div class="role-dep">
+                        <p>Total Employees</p>
+                        <!-- <img src="./Images/Table/total-employees.jpg" alt="total-emolyes" class="tot-emp-image" /> -->
+                    </div>
+                    <div class="all-emp">
+                        <a href="./Employee/Employee.html" target="_self">View all Employees</a>
+                        <!-- <img src="./Images/Side-bar/Vector.svg" alt="vector-logo" /> -->
+                    </div>
+                </div>
+                <div class="role-details">
+                    <div class="role-edit">
+                        <p>Asistant Backend Developer</p>
+                        <!-- <img src="./Images/Side-bar/edit.svg" alt="Edit button" /> -->
+                    </div>
+                    <div class="role-dep">
+                        <div class="role-align">
+                            <!-- <img src="./Images/Table/team_svgrepo.com.svg" alt="Department-logo" /> -->
+                            <p>Department</p>
+                        </div>
+                        <p>UIUX</p>
+                    </div>
+                    <div class="role-dep">
+                        <div class="role-align">
+                            <!-- <img src="./Images/Side-bar/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" /> -->
+                            <p>Location</p>
+                        </div>
+                        <p>Hyderabad</p>
+                    </div>
+                    <div class="role-dep">
+                        <p>Total Employees</p>
+                        <!-- <img src="./Images/Table/total-employees.jpg" alt="total-emolyes" class="tot-emp-image" /> -->
+                    </div>
+                    <div class="all-emp">
+                        <a href="./Employee/Employee.html" target="_self">View all Employees</a>
+                        <!-- <img src="./Images/Side-bar/Vector.svg" alt="vector-logo" /> -->
+                    </div>
+                </div>
+                <div class="role-details">
+                    <div class="role-edit">
+                        <p>Human Resource Manager</p>
+                        <!-- <img src="./Images/Side-bar/edit.svg" alt="Edit button" /> -->
+                    </div>
+                    <div class="role-dep">
+                        <div class="role-align">
+                            <!-- <img src="./Images/Table/team_svgrepo.com.svg" alt="Department-logo" /> -->
+                            <p>Department</p>
+                        </div>
+                        <p>IT</p>
+                    </div>
+                    <div class="role-dep">
+                        <div class="role-align">
+                            <!-- <img src="./Images/Side-bar/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" /> -->
+                            <p>Location</p>
+                        </div>
+                        <p>Hyderabad</p>
+                    </div>
+                    <div class="role-dep">
+                        <p>Total Employees</p>
+                        <!-- <img src="./Images/Table/total-employees.jpg" alt="total-emolyes" class="tot-emp-image" /> -->
+                    </div>
+                    <div class="all-emp">
+                        <a href="./Employee/Employee.html" target="_self">View all Employees</a>
+                        <!-- <img src="./Images/Side-bar/Vector.svg" alt="vector-logo" /> -->
+                    </div>
+                </div>
+                <div class="role-details">
+                    <div class="role-edit">
+                        <p>Front End Developer</p>
+                        <!-- <img src="./Images/Side-bar/edit.svg" alt="Edit button" /> -->
+                    </div>
+                    <div class="role-dep">
+                        <div class="role-align">
+                            <!-- <img src="./Images/Table/team_svgrepo.com.svg" alt="Department-logo" /> -->
+                            <p>Department</p>
+                        </div>
+                        <p>Product Engg.</p>
+                    </div>
+                    <div class="role-dep">
+                        <div class="role-align">
+                            <!-- <img src="./Images/Side-bar/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" /> -->
+                            <p>Location</p>
+                        </div>
+                        <p>Hyderabad</p>
+                    </div>
+                    <div class="role-dep">
+                        <p>Total Employees</p>
+                        <!-- <img src="./Images/Table/total-employees.jpg" alt="total-emolyes" class="tot-emp-image" /> -->
+                    </div>
+                    <div class="all-emp">
+                        <a href="./Employee/Employee.html" target="_self">View all Employees</a>
+                        <!-- <img src="./Images/Side-bar/Vector.svg" alt="vector-logo" /> -->
+                    </div>
+                </div>
+                <div class="role-details">
+                    <div class="role-edit">
+                        <p>Senior Developer</p>
+                        <!-- <img src="./Images/Side-bar/edit.svg" alt="Edit button" /> -->
+                    </div>
+                    <div class="role-dep">
+                        <div class="role-align">
+                            <!-- <img src="./Images/Table/team_svgrepo.com.svg" alt="teams-logo" /> -->
+                            <p>Department</p>
+                        </div>
+                        <p>UIUX</p>
+                    </div>
+                    <div class="role-dep">
+                        <div class="role-align">
+                            <!-- <img src="./Images/Side-bar/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" /> -->
+                            <p>Location</p>
+                        </div>
+                        <p>Hyderabad</p>
+                    </div>
+                    <div class="role-dep">
+                        <p>Total Employees</p>
+                        <!-- <img src="./Images/Table/total-employees.jpg" alt="total-emolyes" class="tot-emp-image" /> -->
+                    </div>
+                    <div class="all-emp">
+                        <a href="./Employee/Employee.html" target="_self">View all Employees</a>
+                        <!-- <img src="./Images/Side-bar/Vector.svg" alt="vector-logo" /> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Role page -->
+        <form id="addRole" class="form-roles">
+            <p>Create New Role</p>
+            <table>
+                <tr class="title-text">
+                    <td>Role Name</td>
+                    <td>Department</td>
+                </tr>
+                <tr>
+                    <td><input type="text" class="role-text" placeholder="New Role"></td>
+                    <td><select class="dep-select">
+                            <option selected hidden>Search</option>
+                            <option>UIUX</option>
+                            <option>Product Engg.</option>
+                            <option>QA</option>
+                        </select></td>
+                </tr>
+                <tr class="title-text">
+                    <td>Description</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><textarea type="text" class="role-descr" placeholder="Text"></textarea></td>
+                </tr>
+            </table>
+            <p class="title-text">Location</p>
+            <select class="role-loc">
+                <option>Hyderabd</option>
+                <option>Banglore</option>
+                <option>Guntur</option>
+            </select>
+            <p class="title-text">Assign employees</p>
+            <select class="role-assign-employ">
+                <option selected hidden>Search for an employee</option>
+            </select>
+            <div class="cncl-sub-btn">
+                <button class="cncl-btn">Cancel</button>
+                <button class="sub-btn">Add Role</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

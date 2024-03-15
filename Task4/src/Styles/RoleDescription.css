@@ -1,0 +1,197 @@
+
+.role-manage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.role-data {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.role-data>div {
+    font-size: 16px;
+    color: #455573;
+    font-weight: 530;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.role-data>p {
+    font-size: 11px;
+    color: #7f8183;
+    line-height: 0;
+}
+
+.add-role-btn {
+    display: flex;
+    height: 33px;
+    width: 120px;
+    font-size: 11px;
+    gap: 10px;
+    align-items: center;
+    background-color: #f09595;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    justify-content: center;
+    /* cursor: pointer; */
+    text-decoration: none;
+}
+
+.plus-logo {
+    padding-top: 2px;
+    font-size: 16px;
+    align-items: center;
+}
+
+
+.filter {
+    display: flex;
+    justify-content: space-between;
+    background-color: #FDF2F2;
+    align-items: center;
+    padding: 5px 15px;
+    text-align: center;
+    color: #F44848;
+    font-size: 11px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 0.001px;
+}
+
+.filter-search {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-dep {
+    height: 23px;
+    width:90px;
+    align-self: center;
+    font-size: 11px;
+    padding-left: 5px;
+    border-color: #F44848;
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+.filter-dep:focus {
+    outline: none;
+}
+
+.filter-loc {
+    height: 23px;
+    width: 80px;
+    align-self: center;
+    font-size: 11px;
+    padding-left: 5px;
+    border-color: #F44848;
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+.filter-loc:focus {
+    outline: none;
+}
+
+.filter-caret-1 {
+    position: relative;
+    right: 26px;
+    color: #6C7A91;
+    align-self: center;
+}
+
+.filter-caret-2 {
+    position: relative;
+    right: 128px;
+    color: #6C7A91;
+    align-self: center;
+}
+
+.filter-icon {
+    align-self: center;
+}
+
+.filter-reset {
+    background-color: white;
+    border-style: solid;
+    color: #F44848;
+    font-size: 10px;
+    border-width: 1px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    border-color: #F44848;
+    cursor: pointer;
+}
+
+.filter-apply {
+    background-color: #F44848;
+    color: white;
+    border: none;
+    padding: 5px 11px;
+    font-size: 10px;
+    border-radius: 3px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.role-edit {
+    display: flex;
+    font-size: 14px;
+    font-weight: 600;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.role-edit>img {
+    height: 20px;
+}
+
+.role-emp {
+    display: flex;
+    padding: 20px 0px 0px 0px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+    gap: 15px;
+}
+
+.role-details {
+    width: 295px;
+    border-width: 1px;
+    box-shadow: 0 0 1px;
+    border-radius: 5px;
+    padding: 20px 12px 10px;
+}
+
+.role-dep {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #6C7990;
+    line-height: 0.2;
+}
+
+.role-align {
+    display: flex;
+    gap: 5px;
+}
+
+.tot-emp-image {
+    height: 30px;
+}
+
+.all-emp {
+    display: flex;
+    gap: 5px;
+    font-size: 10px;
+    color: #545353;
+    justify-content: right;
+}
+.all-emp>a{
+    text-decoration: none;
+    color: #545353;
+}
