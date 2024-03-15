@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="./styles/custom.css">
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    </head>
+</html>
+<body>
+    <div class="side-bar">
+        <header>
+            <div class="tezo-handle-logo">
+                <img src="./Images/TezoLogo.png" class="tezo-logo" alt="tezo-logo"/>
+                <img src="./Images/handle.png" class="handle-logo" alt="handle-logo"/>
+            </div>
+            <div>
+                <p class="dash-emp-role-manage">ALL</p>
+                    <a class="dash-emp-manage" href="./index.html" target="_self">
+                        <img src="./Images/Horizontal nav/Dashboard.svg" class="dash-emp-image" alt="Dashboard" />
+                        <img src="./Images/dashboard.svg" alt="Dashboard" class="dash-emp-image-hover" />
+                        <p >Dashboard</p>
+                    </a>
+                <a class="dash-emp-manage" href="./Employee/Employee.html" target="_self">
+                    <img src="./Images/employee.svg" class="dash-emp-image" alt="Teams-logo" />
+                    <img src="./Images/Horizontal nav/Employees.svg" class="dash-emp-image-hover" alt="Teams-logo" />
+                    <p>Employees</p>
+                </a>
+                <p class="dash-emp-role-manage">ROLE / USER MANAGEMENT</p>
+                <a class="role-acc-rights" href="./Roles/roles.html" target="_self">
+                    <div>
+                        <img src="./Images/Horizontal nav/Roles.svg" class="role-acc-rights-img" alt="Roles-logo" />
+                        <img src="./Images/roles.svg" class="role-acc-rights-img-hover" alt="Roles-logo" />
+                        <p>Roles</p>
+                    </div>
+                    <div><i class="ph-bold ph-caret-right"></i></div>
+                </a>
+                <div class="role-acc-rights">
+                    <div>
+                        <img src="./Images/Horizontal nav/assign user.svg" class="role-acc-rights-img" alt="Users-logo"/>
+                        <img src="./Images/assign user .svg" class="role-acc-rights-img-hover" alt="Users-logo"/>
+                        <p>Access rights</p>
+                    </div>
+                    <div><i class="ph-bold ph-caret-right"></i></div>
+                </div>
+            </div>
+        </header>
+        <footer>
+            <div class="update-control">
+                <div><p class="new-update">Install new update 2.3.1A</p></div>
+                <div><p class="allow-update">Allow to launch the new update for the AD application</p></div>
+                <div>
+                    <button type="button" class="update-dismiss">Dismiss</button>
+                    <button type="button" class="update-accept">Accept</button>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div class="search-handle-emp-data">
+        <div class="search-profile">
+            <div class="search-box">
+                <img src="./Images/bx-search.png" class="search-logo" alt="search-logo" />
+                <input type="text" placeholder="Search" class="search-text">
+            </div>
+            <div class="user-acts">
+                <span class="status-dot"><i class="ph-bold ph-dot"></i></span>
+                <img src="./Images/IconButton.png" class="user-acts-logo" alt="Language" />
+                <img src="./Images/icon1.png" class="user-acts-logo" alt="More" />
+                <img src="./Images/icon2.png" class="user-acts-logo" alt="Mode" />
+                <img src="./Images/icon3.png" class="user-acts-logo" alt="Notifications">
+                <div class="admin-control">
+                    <div><img src="./Images/32.png" class="admin-logo"></div>
+                    <div>
+                        <p class="admin-name">Jhon Abraham</p>
+                        <p class="admin-status">Admin</p>
+                    </div>
+                    <div><i class="ph-bold ph-caret-down admin-caret-down"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="role-manage">
+            <div class="role-data">
+                <a href="../Employee/Employee.html" target="_self">Employees</a>
+                <p>Find all of your company's employee accounts and their associated roles</p>
+            </div>
+            <div>
+                <button type="button" class="add-role-btn">
+                    <i class="ph-bold ph-plus plus-logo"></i>
+                    ADD ROLE
+                </button>
+            </div>
+        </div>
+        <div class="filter">
+            <div class="filter-search">
+                <p>Filter</p>
+                <i class="ph ph-funnel-simple filter-icon"></i>
+                <select class="filter-dep" id="selectDepartment">
+                    <option value="none" selected hidden>Department</option>
+                    <option>product engg.</option>
+                    <option>IT</option>
+                    <option>UIUX</option>
+                    <option>sales</option>
+                </select>
+                <select class="filter-loc" id="selectLocation">
+                    <option value="none" selected hidden>Location</option>
+                    <option>madh</option>
+                    <option>hyd</option>
+                    <option>high_tech</option>
+                    <option>kammam</option>
+                </select>
+            </div>
+            <div>
+                <button type="button" onclick="filterReset()" class="filter-reset">Reset</button>
+                <button type="button" onclick="filterApply()" class="filter-apply">Apply</button>
+            </div>
+        </div>
+        <div class="role-emp">
+            <div class="role-details">
+                <div class="role-edit">
+                    <p>Customer service Manager</p>
+                    <img src="./Images/edit.svg" alt="Edit button"/>
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="./Images/team_svgrepo.com.svg" alt="Department-logo"/>
+                        <p>Department</p>
+                    </div>
+                    <p>IT</p>
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="./Images/location-pin-alt-1_svgrepo.com.svg" alt="location-logo"/>
+                        <p>Location</p>
+                    </div>
+                    <p>Hyderabad</p>
+                </div>
+                <div class="role-dep">
+                    <p>Total Employees</p>
+                    <img src="./Images/total-employees.jpg" alt="total-emolyes" class="tot-emp-image"/>
+                </div>
+                <div class="all-emp">
+                    <a href="./Employee/Employee.html" target="_blank">View all Employees</a>
+                    <img src="./Images/Vector.svg" alt="vector-logo"/>
+                </div>
+            </div>
+            <div class="role-details">
+                <div class="role-edit">
+                    <p>Ux Designer</p>
+                    <img src="./Images/edit.svg" alt="Edit button"/>
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="./Images/team_svgrepo.com.svg" alt="Department-logo"/>
+                        <p>Department</p>
+                    </div>
+                    <p>Product Engg.</p>
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="./Images/location-pin-alt-1_svgrepo.com.svg" alt="location-logo"/>
+                        <p>Location</p>
+                    </div>
+                    <p>Hyderabad</p>
+                </div>
+                <div class="role-dep">
+                    <p>Total Employees</p>
+                    <img src="./Images/total-employees.jpg" alt="total-emolyes" class="tot-emp-image"/>
+                </div>
+                <div class="all-emp">
+                    <a href="./Employee/Employee.html" target="_blank">View all Employees</a>
+                    <img src="./Images/Vector.svg" alt="vector-logo"/>
+                </div>
+            </div>
+            <div class="role-details">
+                <div class="role-edit">
+                    <p>Asistant Backend Developer</p>
+                    <img src="./Images/edit.svg" alt="Edit button"/>
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="./Images/team_svgrepo.com.svg" alt="Department-logo"/>
+                        <p>Department</p>
+                    </div>
+                    <p>UIUX</p>
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="./Images/location-pin-alt-1_svgrepo.com.svg" alt="location-logo"/>
+                        <p>Location</p>
+                    </div>
+                    <p>Hyderabad</p>
+                </div>
+                <div class="role-dep">
+                    <p>Total Employees</p>
+                    <img src="./Images/total-employees.jpg" alt="total-emolyes" class="tot-emp-image"/>
+                </div>
+                <div class="all-emp">
+                    <a href="./Employee/Employee.html" target="_blank">View all Employees</a>
+                    <img src="./Images/Vector.svg" alt="vector-logo"/>
+                </div>
+            </div>
+            <div class="role-details">
+                <div class="role-edit">
+                    <p>Human Resource Manager</p>
+                    <img src="./Images/edit.svg" alt="Edit button"/>
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="./Images/team_svgrepo.com.svg" alt="Department-logo"/>
+                        <p>Department</p>
+                    </div>
+                    <p>IT</p>
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="./Images/location-pin-alt-1_svgrepo.com.svg" alt="location-logo"/>
+                        <p>Location</p>
+                    </div>
+                    <p>Hyderabad</p>
+                </div>
+                <div class="role-dep">
+                    <p>Total Employees</p>
+                    <img src="./Images/total-employees.jpg" alt="total-emolyes" class="tot-emp-image"/>
+                </div>
+                <div class="all-emp">
+                    <a href="./Employee/Employee.html" target="_blank">View all Employees</a>
+                    <img src="./Images/Vector.svg" alt="vector-logo"/>
+                </div>
+            </div>
+            <div class="role-details">
+                <div class="role-edit">
+                    <p>Front End Developer</p>
+                    <img src="./Images/edit.svg" alt="Edit button"/>
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="./Images/team_svgrepo.com.svg" alt="Department-logo"/>
+                        <p>Department</p>
+                    </div>
+                    <p>Product Engg.</p>
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="./Images/location-pin-alt-1_svgrepo.com.svg" alt="location-logo"/>
+                        <p>Location</p>
+                    </div>
+                    <p>Hyderabad</p>
+                </div>
+                <div class="role-dep">
+                    <p>Total Employees</p>
+                    <img src="./Images/total-employees.jpg" alt="total-emolyes" class="tot-emp-image"/>
+                </div>
+                <div class="all-emp">
+                    <a href="./Employee/Employee.html" target="_blank">View all Employees</a>
+                    <img src="./Images/Vector.svg" alt="vector-logo"/>
+                </div>
+            </div>
+            <div class="role-details">
+                <div class="role-edit">
+                    <p>Senior Developer</p>
+                    <img src="./Images/edit.svg" alt="Edit button"/>
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="./Images/team_svgrepo.com.svg" alt="teams-logo"/>
+                        <p>Department</p>
+                    </div>
+                    <p>UIUX</p>
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="./Images/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" />
+                        <p>Location</p>
+                    </div>
+                    <p>Hyderabad</p>
+                </div>
+                <div class="role-dep">
+                    <p>Total Employees</p>
+                    <img src="./Images/total-employees.jpg" alt="total-emolyes" class="tot-emp-image"/>
+                </div>
+                <div class="all-emp">
+                    <a href="./Employee/Employee.html" target="_blank">View all Employees</a>
+                    <img src="./Images/Vector.svg" alt="vector-logo"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

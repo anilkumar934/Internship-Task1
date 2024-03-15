@@ -5,16 +5,16 @@ body {
     justify-content: space-between;
     font-family:Arial, Helvetica, sans-serif;
 }
-.details-left{
-    width: 240px;
+.side-bar{
+    width: 210px;
     height: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    box-shadow: 1px 0px 1px rgb(239, 238, 238);
+    box-shadow: 0.1px 0px 1px rgb(239, 238, 238);
 }
 
-.logo-space{
+.tezo-handle-logo{
     margin-left: 3.8%;
     margin-top: 12px; 
     display: flex;
@@ -28,67 +28,20 @@ body {
     height: 25px;
 }
 
-.arrow-logo{
+.handle-logo{
     height: 28px;
     position: relative;
-    left: 14px;
+    left: 10px;
 }
 
-.dis{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-.all{
+.category{
     padding-top: 8px;
     color: #CCD1D5;
-    font-size: 12px;
+    font-size: 11px;
     margin-left: 12px;
 }
-.all-space{
-    gap: 0px;
-}
-.flow-0{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 32px;
-    margin-right: 8px;
-    padding-right: 7px;
-}
-.flow-0:hover{
-    background-color: #F7F8F9;
-    border-radius: 5px;
-    .three{
-        background-color: #F44747;
-        color: white;
-    }
-}
-.three{
-    color: #F44747;
-    background-color: #FEEEEE;
-    width: 27px;
-    height: 18px;
-    text-align: center;
-    border-radius: 12px;
-    padding-top: 4px;
-    font-size: 12px;
-}
-.flow{
-    display: flex;
-    justify-content: left;
-    align-items:center;
-    color: #A7A9AB;
-    height: 30px;
-}
-.flow-1{
-    font-size: 50px;
-}
-.flow-2{
-    font-size: 13px;
-}
-.back{
-    width: 200px;
+.category-type-1{
+    width: 180px;
     height: 35px;
     display: flex;
     justify-content: space-between;
@@ -98,62 +51,110 @@ body {
     padding: 0px 10px;
     margin-top: 3px;
     padding-right: 8px;
-    margin-right: 7px;
+    margin-right: 15px;
+    cursor: pointer;
 }
-.back:hover{
+.category-type-1:hover{
     background-color: #FDE9E9;
     border-radius: 5px;
+    color: #F44848;
+    .category-type-1 > caret-right{
+        color: #F44848;
+    }
 }
-.ok{
+.category-type-10{
     display: flex;
     gap: 10px;
     align-items: center;
     max-width:max-content;
 }
-.image{
+.category-type-10 > .image{
     height: 20px;
 }
-
-.left{
-    color: #6A6F74;
-    align-content: space-between;
-    
+.employ{
+    display: flex;
+    justify-content: left;
+    align-items:center;
+    color: #A7A9AB;
+    height: 30px;
 }
-.left-bottom{
+.employ > .dot{
+    font-size:52px;
+    position: relative;
+    right: 7px;
+}
+.employ > .text{
+    font-size: 13px;
+    position: relative;
+    right: 8px;
+}
+.category-type-2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 32px;
+    margin-right: 13px;
+    padding-right: 7px;
+}
+.category-type-2:hover{
+    background-color: #F7F8F9;
+    border-radius: 5px;
+    .dep-cnt{
+        background-color: #F44747;
+        color: white;
+    }
+}
+.dep-cnt{
+    color: #F44747;
+    background-color: #FEEEEE;
+    width: 27px;
+    height: 18px;
+    text-align: center;
+    border-radius: 12px;
+    padding-top: 4px;
+    font-size: 12px;
+}
+.update{
     height: 115px;
     background-color: #FEF6F6;
-    font-size: 12.5px;
-    width: 200px;
+    font-size: 12px;
+    width: 180px;
     margin-top: 20px;
     padding-left: 20px;
     border-radius: 5px;
     padding-top: 10px;
 }
-.button-3{
+
+.update-text-1{
+    color: #F55B5B;
+}
+.update-text-2{
+    color: #8b8888;
+}
+.dismiss{
     background-color: #FDE6E6;
     border: none;
     color: #F55B5B;
-    padding: 5px 8px;
+    padding: 7px 10px;
     margin-bottom: 5px;
     border-radius: 5px;
     font-size: 11px;
+    cursor: pointer;
+    font-weight: 600;
 }
-.button-4{
+.accept{
     background-color: #F44848;
     color: white;
     border: none;
-    padding: 5px 8px;
+    padding: 7px 12px;
     margin-bottom: 5px;
     border-radius: 5px;
-    margin-left: 5px;
+    margin-left: 8px;
     font-size: 11px;
+    cursor: pointer;
+    font-weight: 550;
 }
-.col-1{
-    color: #F55B5B;
-}
-.col-2{
-    color: #8b8888;
-}
+
 
 .details-right{
     flex-grow: 1;
@@ -162,8 +163,10 @@ body {
     flex-wrap: wrap;
     height: 100%;
     padding-left: 20px;
+    padding-right: 10px;
 }
-.right-1{
+
+.search-profile{
     height: 7.5%;
     width: 100%;
     box-shadow: 0px 0px 3px #a6aaad;
@@ -172,17 +175,64 @@ body {
     justify-content: space-between;
     align-items: center;
     display: flex;
+    z-index: 0;
 }
-.space{
+
+.search-box{
     display: flex;
     padding-right: 10px;
 }
 .search{
     padding:1px 8px 1px 15px;
-    height: 15px;
+    height: 20px;
 }
+
+.het{
+    height: 3px;
+    width: 3px;
+}
+
+.dis{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+
+
+
+
+
+.left{
+    color: #6A6F74;
+    align-content: space-between;
+    
+}
+
+
+
+.hit{
+    position: relative;
+    font-size: 40px;
+    color: #28C76F;
+    position: relative;
+    left: 180px;
+    top: 15px;
+    z-index: 1;
+    border: 1px;
+    padding: 1px;
+}
+.tip{
+    font-size: 20px;
+    color: black;
+}
+
+
 .text{
     border:none;
+}
+.text:focus{
+    outline: none;
 }
 .right{
     display: flex;
@@ -190,7 +240,13 @@ body {
     gap: 5px;
 }
 .mage{
-    height: 30px;
+    height: 25px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+.pad{
+    font-size: 8px;
+    line-height: 0.4;
 }
 .p{
     font-size: 11px;
@@ -202,11 +258,11 @@ body {
     line-height: 0.5;
 }
 .admin{
-    font-size: 13px;
+    font-size: 10px;
     line-height: 0;
     font-weight: 600;
 }
-.employ{
+.employ-1{
     display: flex;
     flex-direction: column;
     line-height: 0;
@@ -218,8 +274,8 @@ body {
     font-weight: 530;
 }
 .text-employ{
-    font-size: 13px;
-    color: #6A6F74;
+    font-size: 11px;
+    color: #7f8183;
     line-height: 0;
 }
 .shift{
@@ -232,10 +288,12 @@ body {
     background-color: #F89191;
     border: none;
     border-radius: 4px;
-    height: 20px;
+    height: 25px;
     font-size: 10px;
     color: white;
     font-weight:lighter;
+    cursor: pointer;
+    padding: 2px 15px;
 }
 .delete{
     display: flex;
@@ -244,7 +302,8 @@ body {
     
 }
 .del-mage{
-    height: 15px;
+    height: 14px;
+    cursor: pointer;
 }
 .button-1{
     display: flex;
@@ -254,11 +313,13 @@ body {
     align-items: center;
     font-size: 11px;
     background-color: white;
-    border: none;
     border-radius: 3px;
-    box-shadow: 0 0 2px rgb(139, 139, 138);
-    color: #6A6F74;
+    color: #888b8f;
     margin-right: 5px;
+    cursor: pointer;
+    border-style: ridge;
+    border: none;
+    box-shadow: 0 0 1.1px;
 }
 .button-2{
     display: flex;
@@ -272,6 +333,7 @@ body {
     color: white;
     border-radius: 5px;
     justify-content: center;
+    cursor: pointer;
 }
 .c-mage{
     padding-top: 2px;
@@ -285,17 +347,26 @@ body {
     align-items: center;
 }
 .char-mage{
-    height: 16px;
+    height: 18px;
+    cursor: pointer;
+    position: relative;
+    left: 2px;
 }
 .right-2{
     display: flex;
     padding: 5px 10px;
     align-items: center;
     gap: 7px;
+    cursor: pointer;
+}
+.place{
+    position: relative;
+    top: 4px;
 }
 .riht-mage{
-    height: 35px;
+    height: 30px;
     padding: 1px 0px 1px 0px;
+    border-radius: 50px;
 }
 .back-text{
     background-color: #EAEBEE;
@@ -306,6 +377,7 @@ body {
     padding-top: 9px;
     font-size: 11px;
     color: #6A6F74;
+    cursor: pointer;
 }
 .big{
     box-shadow: 0 0 1px rgb(137, 137, 137);
@@ -331,10 +403,11 @@ body {
 }
 .start{
     box-shadow: 0 0 1px rgb(137, 137, 137);
-    font-size: 11px;
+    font-size: 10px;
     height: 40px;
     color: #455573;
     background-color: #FAFAFC;
+    font-weight: 600;
 }
 .green{
     background-color: #E7F4E8;
@@ -360,4 +433,7 @@ tr,td{
 .show{
     height: 2px;
     align-self:center;
+}
+.start > i{
+    cursor: pointer;
 }
