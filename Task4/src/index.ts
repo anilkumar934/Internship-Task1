@@ -27,28 +27,30 @@ class Employee {
     }
 }
 
-function fun(): void {
-    const arr: Employee[] = [];
-    const user: string[] = ['abhi a', 'ajay k', 'akash d', 'ashok n', 'dj l', 'dnil a', 'dkhil u', 'bik s', 'bat v', 'ball w', 'brown b', 'clash d', 'cash f', 'cover h', 'eagle t', 'earth g', 'enjoy j', 'fresh s', 'flower g', 'fever s', 'ground g', 'grand a', 'google w', 'glow y'];
-    const loc: string[] = ['Hyderabad', 'Banglore', 'Guntur'];
-    const dep: string[] = ['Product Engg.', 'UI/UX', 'QA'];
-    const role: string[] = ['UX Designer', 'Mobile App Developer', 'Full-Stack Developer'];
-    const sta: string[] = ['Active', 'In Active'];
-    const pic: string = "../Images/Search-bar/32.png";
-    const mail: string = 'Joe.a@tech.com';
+// function fun(): void {
+//     const arr: Employee[] = [];
+//     const user: string[] = ['abhi a', 'ajay k', 'akash d', 'ashok n', 'dj l', 'dnil a', 'dkhil u', 'bik s', 'bat v', 'ball w', 'brown b', 'clash d', 'cash f', 'cover h', 'eagle t', 'earth g', 'enjoy j', 'fresh s', 'flower g', 'fever s', 'ground g', 'grand a', 'google w', 'glow y'];
+//     const loc: string[] = ['Hyderabad', 'Banglore', 'Guntur'];
+//     const dep: string[] = ['Product Engg.', 'UI/UX', 'QA'];
+//     const role: string[] = ['UX Designer', 'Mobile App Developer', 'Full-Stack Developer'];
+//     const sta: string[] = ['Active', 'In Active'];
+//     const pic: string = "/src/Images/Search-bar/32.png";
+//     const mail: string = 'Joe.a@tech.com';
 
-    for (let i = 0; i < 50; i++) {
-        const user_rand: number = Math.floor(Math.random() * user.length);
-        const loc_rand: number = Math.floor(Math.random() * loc.length);
-        const dep_rand: number = Math.floor(Math.random() * dep.length);
-        const role_rand: number = Math.floor(Math.random() * role.length);
-        const status_rand: number = Math.floor(Math.random() * sta.length);
+//     for (let i = 0; i < 50; i++) {
+//         const user_rand: number = Math.floor(Math.random() * user.length);
+//         const loc_rand: number = Math.floor(Math.random() * loc.length);
+//         const dep_rand: number = Math.floor(Math.random() * dep.length);
+//         const role_rand: number = Math.floor(Math.random() * role.length);
+//         const status_rand: number = Math.floor(Math.random() * sta.length);
 
-        arr[i] = new Employee(pic, user[user_rand], loc[loc_rand], dep[dep_rand], role[role_rand], mail, `TZ00234${i}`, sta[status_rand], `${i + 1}/03/2023`, `58667827${i + 10}`);
-    }
-    localStorage.setItem('arr', JSON.stringify(arr));
-    alert('Data is added');
-}
+//         arr[i] = new Employee(pic, user[user_rand], loc[loc_rand], dep[dep_rand], role[role_rand], mail, `TZ00234${i}`, sta[status_rand], `${i + 1}/03/2023`, `58667827${i + 10}`);
+//     }
+//     localStorage.setItem('arr', JSON.stringify(arr));
+//     alert('Data is added');
+// }
+
+// fun()
 
 let employData: Employee[] = JSON.parse(localStorage.getItem('arr') || "") || [];
 let filteredCharStatus: { [key: string]: boolean } = {};
@@ -64,7 +66,11 @@ let showExportBtn: boolean = false;
 interface ValidationRule {
     [key: string]: [string, string, RegExp, string];
 }
-
+let tempArray = ['active', 'inActive', 'hyderabad', 'banglore', 'guntur', 'ProductEngg', 'QA', 'uiux'];
+let countChecked = 0;
+let contentDisplay: string[] = ['employeeData', 'roles', 'roleDescription', 'addEmployeeForm', 'addRole'];
+let inputValidateArray: string[] = ['employId', 'firstName', 'lastName', 'email', 'mobileNo', 'joinDate']
+let sideBarContent: string[] = ['roles1', 'roles2', 'employeeData1', 'employeeData2', 'roleDescription1', 'roleDescription2', 'employeeData3', 'addEmployeeForm1'];
 let validationSource: ValidationRule = {
     employId: ['empNo', 'errorEmpNo', /^TZ[0-9]{6}$/, "Emp No must be in this type 'TZ000000' ."],
     firstName: ['fName', 'errorFirstName', /^[a-zA-z]{2,9}$/, ' Name must be 2 to 9 alphabets .'],
@@ -83,11 +89,11 @@ const sortedElementStatus: { [key: string]: boolean } = {
     role: true
 };
 
-function showRows(displayArray: Employee[]) : void {
+function showRows(displayArray: Employee[]): void {
     let rowData: string = "";
     for (let ele of displayArray) {
         rowData += `<tr class="table-row" id="${ele.emp_no}">
-        <td><input type="checkbox" class="employ-checkbox" name="all_check"  onclick="selectEmployee('${ele.emp_no}')"></td>
+        <td><input type="checkbox" id="${ele.emp_no}_check" class="employ-checkbox" name="all_check"></td>
         <td>
             <div class="emp-profile">
                 <div><img src="${ele.pic}" class="admin-logo"></div>
@@ -105,7 +111,7 @@ function showRows(displayArray: Employee[]) : void {
         else rowData += `<td><button type="button" class="emp-status-inActive">${ele.status}</button></td>`
         rowData += `<td>${ele.join_dt}</td>
         <td class="ellipse-data">
-            <img src="./Images/Table/dots-three-bold.svg" class="ellipse" onclick="displayEllipseOptions('show${ele.emp_no}')" alt="ellipse"/>
+            <img src="/src/Images/Table/dots-three-bold.svg" class="ellipse" id='show${ele.emp_no}' alt="ellipse"/>
             <div class='ellipse-position' id='show${ele.emp_no}'>
                 <button type='button' class='ellipse-button' onclick='viewDetailsOfEmployee("${ele.emp_no}","Edit")' value='Edit'>Edit</button>
                 <button type='button' class='ellipse-button' onclick='viewDetailsOfEmployee("${ele.emp_no}","View")' value='view Details'>View Details</button>
@@ -117,17 +123,17 @@ function showRows(displayArray: Employee[]) : void {
     document.getElementById('rowData')!.innerHTML = rowData;
 }
 
-function setCharacters() : void {
-    let charData = `<i class="ph ph-funnel char-filter" id="changeCharFilter" onclick="resetCharFilter()"></i>`;
+function setCharacters(): void {
+    let charData = `<i class="ph ph-funnel char-filter" id="changeCharFilter"></i>`;
     for (let character = 65; character <= 90; character++) {
         let requiredCharacter = String.fromCharCode(character);
         let tempChar = 'char_' + requiredCharacter;
-        charData += `<p id="${tempChar}" class="char-filter" onclick="applyAllFilters('${requiredCharacter}')">${requiredCharacter}</p>`;
+        charData += `<p id="${tempChar}" class="char-filter">${requiredCharacter}</p>`;
     }
     document.getElementById('chars')!.innerHTML = charData;
 }
 
-function applyAllFilters(char: string = "") :void {
+function applyAllFilters(char: string = ""): void {
     let arrayForFilters = Array.from(employData);
     if ((selectedCharCount > 0 || char !== "") && arrayForFilters.length > 0) arrayForFilters = selectEmployeeByChar(char, arrayForFilters);
     if (arrayForFilters.length > 0) arrayForFilters = applyFilter(arrayForFilters);
@@ -135,11 +141,11 @@ function applyAllFilters(char: string = "") :void {
     showRows(arrayForSelectedFilters);
 }
 
-function selectedCharactersStatus() : void {
+function selectedCharactersStatus(): void {
     for (let i = 65; i < 91; i++) filteredCharStatus[String.fromCharCode(i)] = false;
 }
 
-function selectEmployeeByChar(c: string, tempArray: Employee[]) : Employee[] {
+function selectEmployeeByChar(c: string, tempArray: Employee[]): Employee[] {
     if (c !== "" && filteredCharStatus[c]) {
         document.getElementById('char_' + c)!.style.backgroundColor = '#EAEBEE';
         document.getElementById('char_' + c)!.style.color = '#6A6F74';
@@ -190,7 +196,7 @@ function applyFilter(tempArray: Employee[]) {
     let loc = document.getElementsByClassName("location") as HTMLCollectionOf<HTMLInputElement>;
     let dep = document.getElementsByClassName("department") as HTMLCollectionOf<HTMLInputElement>;
     let filteredArrayForTable: Employee[] = Array.from(tempArray);
-    let array:string[] = [];
+    let array: string[] = [];
     for (let val of sta) {
         if (val.checked === true) array.push(val.value);
     }
@@ -239,27 +245,6 @@ function applyFilter(tempArray: Employee[]) {
     return tempArray;
 }
 
-function resetFilter() {
-    document.getElementById('deleteButton')!.style.backgroundColor = "#F89191";
-    document.getElementById('resetApplyContainer')!.style.display = 'none';
-    document.getElementById('selectStatus')!.innerHTML = `Status<img src="./Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
-    document.getElementById('selectDepartment')!.innerHTML = `Department<img src="./Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
-    document.getElementById('selectLocation')!.innerHTML = `Location<img src="./Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
-    let sta = document.getElementsByClassName("status") as HTMLCollectionOf<HTMLInputElement>;
-    let loc = document.getElementsByClassName("location") as HTMLCollectionOf<HTMLInputElement>;
-    let dep = document.getElementsByClassName("department") as HTMLCollectionOf<HTMLInputElement>;
-    for (let val of sta) {
-        if (val.checked === true) val.checked = false;
-    }
-    for (let val of loc) {
-        if (val.checked === true) val.checked = false;
-    }
-    for (let val of dep) {
-        if (val.checked === true) val.checked = false;
-    }
-    for (let val in filetersSelectedFor) filetersSelectedFor[val] = false;
-    applyAllFilters();
-}
 function sortTable(byCategory: keyof Employee) {
     let descendingSort = -1, ascendingSort = 1;
     if (sortedElementStatus[byCategory]) {
@@ -276,6 +261,7 @@ function sortTable(byCategory: keyof Employee) {
 }
 
 function selectEmployee(empId: string) {
+    console.log(empId);
     for (let check in deleteElementsArray) {
         if (deleteElementsArray[check].emp_no === empId) {
             deleteElementsArray.splice(parseInt(check), 1);
@@ -299,7 +285,7 @@ function selectEmployee(empId: string) {
     document.getElementById('deleteButton')!.style.backgroundColor = '#F44848';
     if (deletingElementsCount === arrayForSelectedFilters.length) {
         const checkAllEmployees = document.getElementById("checkAllEmployees") as HTMLInputElement;
-    checkAllEmployees.checked = true;
+        checkAllEmployees.checked = true;
         isAllEmployeesSelected = true;
     }
 }
@@ -431,29 +417,11 @@ function displayEllipseOptions(employeeId: string) {
 function deleteEmployeeById(employeeId: string) {
     const index = employData.findIndex((element) => element.emp_no === employeeId);
     if (index !== -1) {
-    employData.splice(index, 1);
-}
+        employData.splice(index, 1);
+    }
 
     showRows(employData);
 }
-
-function searchEmployeeByText() {
-    const val = (document.getElementById("searchEmployeeWithName") as HTMLInputElement).value.toUpperCase();
-    const arrayOnSearch = arrayForSelectedFilters;
-    const lengthOfVal = val.length;
-    const arrayResult = arrayOnSearch.filter(function (ele) {
-        for (let start = 0; start < ele.user.length - lengthOfVal + 1; start++) {
-            if (ele.user.substring(start, start + lengthOfVal).toUpperCase() === val) return true;
-        }
-        return false;
-    });
-    showRows(arrayResult);
-}
-
-
-let isSideBarMinimized: boolean = false;
-
-let contentDisplay: string[] = ['employeeData', 'roles', 'roleDescription', 'addEmployeeForm', 'addRole'];
 
 function showContent(choice: string) {
     for (let show of contentDisplay) {
@@ -463,20 +431,6 @@ function showContent(choice: string) {
         } else {
             document.getElementById(show)!.classList.add('hideThis');
         }
-    }
-}
-
-
-// It minimizes and maximizes side bar
-function minimizeMaximizeSideBar() {
-    if (!isSideBarMinimized) {
-        isSideBarMinimized = true;
-        document.getElementById("hideSideBar")!.style.display = "none";
-        document.getElementById('showSideBar')!.style.display = "block";
-    } else {
-        document.getElementById("hideSideBar")!.style.display = "flex";
-        document.getElementById('showSideBar')!.style.display = "none";
-        isSideBarMinimized = false;
     }
 }
 
@@ -566,59 +520,157 @@ function initialize() {
     showRows(employData);
     setCharacters();
     selectedCharactersStatus();
-    
+    for (let str of sideBarContent) {
+        document.getElementById(str)?.addEventListener('click', function () {
+            showContent(str.substring(0, str.length - 1));
+        });
+    }
+
+    for (let str of inputValidateArray) {
+        document.getElementById(str)?.addEventListener('focusout', function () {
+            sendInputToValidate(str);
+        });
+    }
+    for (let character = 65; character <= 90; character++) {
+        let requiredCharacter = String.fromCharCode(character);
+        let tempChar = 'char_' + requiredCharacter;
+        document.getElementById(tempChar)?.addEventListener('click', function () {
+            applyAllFilters(requiredCharacter);
+        });
+    }
+
+    document.getElementById("filterReset")?.addEventListener('click', function resetFilter() {
+        document.getElementById('deleteButton')!.style.backgroundColor = "#F89191";
+        document.getElementById('resetApplyContainer')!.style.display = 'none';
+        document.getElementById('selectStatus')!.innerHTML = `Status<img src="./src/Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
+        document.getElementById('selectDepartment')!.innerHTML = `Department<img src="/src/Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
+        document.getElementById('selectLocation')!.innerHTML = `Location<img src="/src/Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
+        let sta = document.getElementsByClassName("status") as HTMLCollectionOf<HTMLInputElement>;
+        let loc = document.getElementsByClassName("location") as HTMLCollectionOf<HTMLInputElement>;
+        let dep = document.getElementsByClassName("department") as HTMLCollectionOf<HTMLInputElement>;
+        for (let val of sta) {
+            if (val.checked === true) val.checked = false;
+        }
+        for (let val of loc) {
+            if (val.checked === true) val.checked = false;
+        }
+        for (let val of dep) {
+            if (val.checked === true) val.checked = false;
+        }
+        for (let val in filetersSelectedFor) filetersSelectedFor[val] = false;
+        applyAllFilters();
+    });
+    document.getElementById("searchLogo")?.addEventListener('click', function () {
+        const val = (document.getElementById("searchEmployeeWithName") as HTMLInputElement).value.toUpperCase();
+        const arrayOnSearch = arrayForSelectedFilters;
+        const lengthOfVal = val.length;
+        const arrayResult = arrayOnSearch.filter(function (ele) {
+            for (let start = 0; start < ele.user.length - lengthOfVal + 1; start++) {
+                if (ele.user.substring(start, start + lengthOfVal).toUpperCase() === val) return true;
+            }
+            return false;
+        });
+        showRows(arrayResult);
+    });
+    document.getElementById('excelFile')?.addEventListener('click', function () {
+        // exportDataToexcel();
+    });
+
+    document.getElementById('csvFile')?.addEventListener('click', function () {
+        // exportDataToCSV();
+    });
+    // It minimizes and maximizes side bar
+    document.getElementById("contentMinimize")?.addEventListener('click', function (event) {
+        document.getElementById("hideSideBar")!.style.display = "none";
+        document.getElementById('showSideBar')!.style.display = "block";
+    });
+    document.getElementById("contentMaximize")?.addEventListener('click', function (event) {
+        document.getElementById("hideSideBar")!.style.display = "flex";
+        document.getElementById('showSideBar')!.style.display = "none";
+    })
+    document.getElementById("changeCharFilter")?.addEventListener('click', function () {
+        resetCharFilter();
+    });
     // Event listener for status filter
-    document.getElementById("selectStatus")!.addEventListener('click', function(event){
+    document.getElementById("selectStatus")!.addEventListener('click', function (event) {
         const statusDisplay = document.getElementById("statusDisplay")!;
         statusDisplay.style.display = filetersSelectedFor[0] ? 'none' : 'block';
         filetersSelectedFor[0] = !filetersSelectedFor[0];
         event.stopPropagation();
     });
-    
     // Event listener for location filter
-    document.getElementById("selectLocation")!.addEventListener('click', function(event){
+    document.getElementById("selectLocation")!.addEventListener('click', function (event) {
         const locationDisplay = document.getElementById("locationDisplay")!;
         locationDisplay.style.display = filetersSelectedFor[1] ? 'none' : 'block';
         filetersSelectedFor[1] = !filetersSelectedFor[1];
         event.stopPropagation();
     });
-    
     // Event listener for department filter
-    document.getElementById("selectDepartment")!.addEventListener('click', function(event){
+    document.getElementById("selectDepartment")!.addEventListener('click', function (event) {
         const departmentDisplay = document.getElementById("departmentDisplay")!;
         departmentDisplay.style.display = filetersSelectedFor[2] ? 'none' : 'block';
         filetersSelectedFor[2] = !filetersSelectedFor[2];
         event.stopPropagation();
     });
-    
-    // Event listeners for checkboxes
-    let tempArray = ['active','inActive','hyderabad','banglore','guntur','ProductEngg','QA','uiux'];
-    let countChecked = 0;
-    for(let val of tempArray){
+
+    document.getElementById("filterApply")?.addEventListener('click', function () {
+        applyAllFilters();
+    });
+
+    document.getElementById("deleteButton")?.addEventListener('click', function () {
+        deleteEmployee();
+    });
+
+    for (let ele of employData) {
+        document.getElementById(ele.emp_no + '_check')?.addEventListener('click', function () {
+            selectEmployee(ele.emp_no);
+        });
+        document.getElementById('show' + ele.emp_no)?.addEventListener('click', function () {
+            displayEllipseOptions(ele.emp_no);
+        })
+    }
+    document.getElementById("checkAllEmployees")?.addEventListener('click', function () {
+        selectAllEmployees();
+    });
+
+    let ArrayToSort = ['userSort', 'locSort', 'depSort', 'roleSort', 'emp_noSort', 'statusSort', 'join_dtSort'];
+    for (let ele of ArrayToSort) {
+        let str = ele.substring(0, ele.length - 4)
+        document.getElementById(ele)?.addEventListener('click', function () {
+            // sortTable(str);
+            console.log(str);
+        });
+    }
+
+    document.getElementById('dob')?.addEventListener('click', function () {
+        setDobPlaceholder();
+    })
+    // Event listeners for filter checkboxes
+    for (let val of tempArray) {
         let k = document.getElementById(val) as HTMLInputElement;
-        k.addEventListener('click',function(event){
-            if(k.checked){
+        k.addEventListener('click', function (event) {
+            if (k.checked) {
                 document.getElementById("resetApplyContainer")!.style.display = 'flex';
-                countChecked +=1;
+                countChecked += 1;
             }
             else {
-                countChecked -=1;
-                if(countChecked === 0) document.getElementById("resetApplyContainer")!.style.display = 'none';
+                countChecked -= 1;
+                if (countChecked === 0) document.getElementById("resetApplyContainer")!.style.display = 'none';
             }
             event.stopImmediatePropagation();
         })
     }
-    
+
     // Event listener for export options button
-    document.getElementById("exportOptionsButton")!.addEventListener("click",function(event){
+    document.getElementById("exportOptionsButton")!.addEventListener("click", function (event) {
         const exportData = document.getElementById('exportData')!;
         exportData.style.display = showExportBtn ? 'none' : 'flex';
         showExportBtn = !showExportBtn;
         event.stopPropagation();
     });
-    
+
     // Event listener for body click
-    document.getElementById('wholeBody')!.addEventListener('click',function(event){
+    document.getElementById('wholeBody')!.addEventListener('click', function (event) {
         const statusDisplay = document.getElementById("statusDisplay")!;
         statusDisplay.style.display = 'none';
         filetersSelectedFor[0] = false;
@@ -641,7 +693,7 @@ function initialize() {
             (document.getElementById("updatePic") as HTMLImageElement).src = reader.result as string;
         };
         if (ele instanceof File) {
-        reader.readAsDataURL(ele);
+            reader.readAsDataURL(ele);
         } else {
             console.error("Invalid file selected");
         }
