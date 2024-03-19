@@ -1,4 +1,5 @@
 import './custom.css';
+import * as XLSX from 'xlsx';
 
 
 class Employee {
@@ -34,7 +35,7 @@ class Employee {
 //     const dep: string[] = ['Product Engg.', 'UI/UX', 'QA'];
 //     const role: string[] = ['UX Designer', 'Mobile App Developer', 'Full-Stack Developer'];
 //     const sta: string[] = ['Active', 'In Active'];
-//     const pic: string = "/src/Images/Search-bar/32.png";
+//     const pic: string = "/Images/Search-bar/32.png";
 //     const mail: string = 'Joe.a@tech.com';
 
 //     for (let i = 0; i < 50; i++) {
@@ -88,7 +89,6 @@ const sortedElementStatus: { [key: string]: boolean } = {
     emp_no: true,
     role: true
 };
-
 function showRows(displayArray: Employee[]): void {
     let rowData: string = "";
     for (let ele of displayArray) {
@@ -111,17 +111,53 @@ function showRows(displayArray: Employee[]): void {
         else rowData += `<td><button type="button" class="emp-status-inActive">${ele.status}</button></td>`
         rowData += `<td>${ele.join_dt}</td>
         <td class="ellipse-data">
-            <img src="/src/Images/Table/dots-three-bold.svg" class="ellipse" id='show${ele.emp_no}' alt="ellipse"/>
+            <img src="/Images/Table/dots-three-bold.svg" class="ellipse" id='ellipse${ele.emp_no}' alt="ellipse"/>
             <div class='ellipse-position' id='show${ele.emp_no}'>
-                <button type='button' class='ellipse-button' onclick='viewDetailsOfEmployee("${ele.emp_no}","Edit")' value='Edit'>Edit</button>
-                <button type='button' class='ellipse-button' onclick='viewDetailsOfEmployee("${ele.emp_no}","View")' value='view Details'>View Details</button>
-                <button type='button' class='ellipse-button' onclick='deleteEmployeeById("${ele.emp_no}")' value='Edit'>Delete</button>
+                <button type='button' class='ellipse-button' id='${ele.emp_no}edit' value='Edit'>Edit</button>
+                <button type='button' class='ellipse-button' id='${ele.emp_no}view' value='view Details'>View Details</button>
+                <button type='button' class='ellipse-button' id='${ele.emp_no}delete' value='Edit'>Delete</button>
             </div>
         </td>
         </tr>`;
     }
     document.getElementById('rowData')!.innerHTML = rowData;
+    reloadedData();
 }
+
+function exportDataToexcel(): void {
+    let data = document.getElementById('employeeInformation') as HTMLElement;
+    let clonedTable = data.cloneNode(true) as HTMLElement;
+    let rows = clonedTable.getElementsByTagName('tr');
+    for (let i = 0; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName('td');
+        rows[i].deleteCell(0);
+        rows[i].deleteCell(cells.length - 1);
+    }
+    let excelFile = XLSX.utils.table_to_book(clonedTable, { sheet: "sheet1" });
+    XLSX.writeFile(excelFile, 'ExcelFile.xlsx');
+}
+
+// Export data to CSV
+
+function exportDataToCSV(): void {
+    let data = document.getElementById('employeeInformation') as HTMLElement;
+    let clonedTable = data.cloneNode(true) as HTMLElement;
+    let rows = clonedTable.getElementsByTagName('tr');
+    for (let i = 0; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName('td');
+        rows[i].deleteCell(0);
+        rows[i].deleteCell(cells.length - 1);
+    }
+    let excelFile = XLSX.utils.table_to_book(clonedTable, { sheet: "sheet1" });
+    let csvContent = XLSX.utils.sheet_to_csv(excelFile.Sheets[excelFile.SheetNames[0]]);
+    const encodedUri = encodeURI("data:text/csv;charset=utf-8," + csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "CSVFile.csv");
+    document.body.appendChild(link);
+    link.click();
+}
+
 
 function setCharacters(): void {
     let charData = `<i class="ph ph-funnel char-filter" id="changeCharFilter"></i>`;
@@ -209,7 +245,7 @@ function applyFilter(tempArray: Employee[]) {
         });
         document.getElementById('selectStatus')!.innerHTML = `${array.length} Selected`;
     }
-    else document.getElementById('selectStatus')!.innerHTML = `Status<img src="./Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
+    else document.getElementById('selectStatus')!.innerHTML = `Status<img src="/Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
     array = [];
     for (let val of loc) {
         if (val.checked === true) array.push(val.value);
@@ -223,7 +259,7 @@ function applyFilter(tempArray: Employee[]) {
         });
         document.getElementById('selectLocation')!.innerHTML = `${array.length} Selected`;
     }
-    else document.getElementById('selectLocation')!.innerHTML = `Location<img src="./Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
+    else document.getElementById('selectLocation')!.innerHTML = `Location<img src="/Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
     array = [];
     for (let val of dep) {
         if (val.checked === true) array.push(val.value);
@@ -237,7 +273,7 @@ function applyFilter(tempArray: Employee[]) {
         });
         document.getElementById('selectDepartment')!.innerHTML = `${array.length} Selected`;
     }
-    else document.getElementById('selectDepartment')!.innerHTML = `Department<img src="./Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
+    else document.getElementById('selectDepartment')!.innerHTML = `Department<img src="/Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
     tempArray = Array.from(filteredArrayForTable);
     document.getElementById("statusDisplay")!.style.display = 'none';
     document.getElementById("locationDisplay")!.style.display = 'none';
@@ -336,77 +372,77 @@ function selectAllEmployees() {
 }
 function viewDetailsOfEmployee(employeeId: string, mode: string) {
     const employData = JSON.parse(localStorage.getItem('arr') || "");
-    // employData.forEach(element => {
-    //     if (element.emp_no === employeeId) {
-    //         if (element.status === 'In Active' && mode === 'Edit') {
-    //             alert('You unable to edit Inactive Employee');
-    //             return;
-    //         }
-    //         showContent('addEmployeeForm');
-    //         (document.getElementById('updatePic') as HTMLImageElement).src = element.pic;
-    //         const empNo = document.getElementById('empNo') as HTMLInputElement;
-    //         empNo.value = element.emp_no;
-    //         empNo.disabled = true;
-    //         const name = element.user.split(' ');
-    //         const fname = document.getElementById('fName') as HTMLInputElement;
-    //         fname.value = name[0];
-    //         const lname = document.getElementById('lName') as HTMLInputElement;
-    //         lname.value = name[1];
-    //         const mail = document.getElementById('email') as HTMLInputElement;
-    //         mail.value = element.email;
-    //         const mobile = document.getElementById('mobileNo') as HTMLInputElement;
-    //         mobile.value = element.mobileNo;
-    //         const joinDate = document.getElementById('joinDate') as HTMLInputElement;
-    //         joinDate.value = element.join_dt;
-    //         const location = document.getElementById('loc') as HTMLInputElement;
-    //         location.value = element.loc;
-    //         const jobTitle = document.getElementById('jobTitle') as HTMLInputElement;
-    //         jobTitle.value = element.role;
-    //         const department = document.getElementById('dep') as HTMLInputElement;
-    //         department.value = element.dep;
-    //         const cancel = document.getElementById('cancelDataSubmit');
-    //         const addEmpBtn = document.getElementById('formSubmit');
-    //         if (mode === 'View') {
-    //             fname.disabled = true;
-    //             lname.disabled = true;
-    //             mail.disabled = true;
-    //             mobile.disabled = true;
-    //             joinDate.disabled = true;
-    //             location.disabled = true;
-    //             jobTitle.disabled = true;
-    //             department.disabled = true;
-    //             addEmpBtn!.style.display = 'none';
-    //         }
-    //         cancel!.addEventListener('click', function (event) {
-    //             event.preventDefault();
-    //             (document.getElementById('addEmployeeForm') as HTMLFormElement).reset();
-    //             (document.getElementById('updatePic') as HTMLImageElement).src = "./Images/Table/download.jpg";
-    //             empNo.disabled = false;
-    //             fname.disabled = false;
-    //             lname.disabled = false;
-    //             mail.disabled = false;
-    //             mobile.disabled = false;
-    //             joinDate.disabled = false;
-    //             location.disabled = false;
-    //             jobTitle.disabled = false;
-    //             department.disabled = false;
-    //             if (mode === 'View') addEmpBtn!.style.display = 'block';
-    //             else addEmpBtn!.innerHTML = 'Add Employee';
-    //             setDefaultJoinDate();
-    //             showContent('employeeData');
-    //         });
-    //         if (mode === 'Edit') addEmpBtn!.innerHTML = 'Update';
-    //         return;
-    //     }
-    // });
+    for(let element of employData) {
+        if (element.emp_no === employeeId) {
+            if (element.status === 'In Active' && mode === 'Edit') {
+                alert('You unable to edit Inactive Employee');
+                return;
+            }
+            showContent('addEmployeeForm');
+            (document.getElementById('updatePic') as HTMLImageElement).src = element.pic;
+            const empNo = document.getElementById('empNo') as HTMLInputElement;
+            empNo.value = element.emp_no;
+            empNo.disabled = true;
+            const name = element.user.split(' ');
+            const fname = document.getElementById('fName') as HTMLInputElement;
+            fname.value = name[0];
+            const lname = document.getElementById('lName') as HTMLInputElement;
+            lname.value = name[1];
+            const mail = document.getElementById('email') as HTMLInputElement;
+            mail.value = element.email;
+            const mobile = document.getElementById('mobileNo') as HTMLInputElement;
+            mobile.value = element.mobileNo;
+            const joinDate = document.getElementById('joinDate') as HTMLInputElement;
+            joinDate.value = element.join_dt;
+            const location = document.getElementById('loc') as HTMLInputElement;
+            location.value = element.loc;
+            const jobTitle = document.getElementById('jobTitle') as HTMLInputElement;
+            jobTitle.value = element.role;
+            const department = document.getElementById('dep') as HTMLInputElement;
+            department.value = element.dep;
+            const cancel = document.getElementById('cancelDataSubmit');
+            const addEmpBtn = document.getElementById('formSubmit');
+            if (mode === 'View') {
+                fname.disabled = true;
+                lname.disabled = true;
+                mail.disabled = true;
+                mobile.disabled = true;
+                joinDate.disabled = true;
+                location.disabled = true;
+                jobTitle.disabled = true;
+                department.disabled = true;
+                addEmpBtn!.style.display = 'none';
+            }
+            cancel!.addEventListener('click', function (event) {
+                event.preventDefault();
+                (document.getElementById('addEmployeeForm') as HTMLFormElement).reset();
+                (document.getElementById('updatePic') as HTMLImageElement).src = "./Images/Table/download.jpg";
+                empNo.disabled = false;
+                fname.disabled = false;
+                lname.disabled = false;
+                mail.disabled = false;
+                mobile.disabled = false;
+                joinDate.disabled = false;
+                location.disabled = false;
+                jobTitle.disabled = false;
+                department.disabled = false;
+                if (mode === 'View') addEmpBtn!.style.display = 'block';
+                else addEmpBtn!.innerHTML = 'Add Employee';
+                setDefaultJoinDate();
+                showContent('employeeData');
+            });
+            if (mode === 'Edit') addEmpBtn!.innerHTML = 'Update';
+            return;
+        }
+    };
 }
 
 function displayEllipseOptions(employeeId: string) {
     const ellipse = document.getElementById(employeeId);
     if (!ellipse) return;
-    if (ellipse.style.display === "none" || ellipse.style.display === "") {
-        for (const ele in employData) {
-            document.getElementById(`show${employData[ele].emp_no}`)!.style.display = "none";
+    if (ellipse!.style.display === "none" || ellipse.style.display === "") {
+        for (const ele of arrayForSelectedFilters) {
+            document.getElementById('show'+ele.emp_no)!.style.display = "none";
         }
         ellipse.style.display = 'flex';
     } else {
@@ -415,12 +451,13 @@ function displayEllipseOptions(employeeId: string) {
 }
 
 function deleteEmployeeById(employeeId: string) {
-    const index = employData.findIndex((element) => element.emp_no === employeeId);
-    if (index !== -1) {
-        employData.splice(index, 1);
+    const index1 = employData.findIndex((element) => element.emp_no === employeeId);
+    const index2 = arrayForSelectedFilters.findIndex((element) => element.emp_no === employeeId);
+    if (index1 !== -1 && index2 !== -1) {
+        employData.splice(index1, 1);
+        arrayForSelectedFilters.splice(index2,1);
     }
-
-    showRows(employData);
+    showRows(arrayForSelectedFilters);
 }
 
 function showContent(choice: string) {
@@ -452,7 +489,7 @@ function setDefaultJoinDate() {
 }
 function checkForRequiredField(errorAt: string): void {
     let error = document.getElementById(errorAt)!;
-    error.innerHTML = `<img src="../Images/Table/warning-diamond-fill.svg"> This field is required`;
+    error.innerHTML = `<img src="/Images/Table/warning-diamond-fill.svg"> This field is required`;
     error.classList.add('error-message');
     return;
 }
@@ -515,11 +552,33 @@ function setDobPlaceholder() {
     let changedDate = (document.getElementById('changeDob') as HTMLInputElement);
     changedDate.value = ele;
 }
+function reloadedData(){
+    for (let ele of employData) {
+        document.getElementById(ele.emp_no + '_check')?.addEventListener('click', function () {
+            selectEmployee(ele.emp_no);
+        });
+        document.getElementById('ellipse' + ele.emp_no)?.addEventListener('click', function (event) {
+            displayEllipseOptions('show'+ele.emp_no);
+            event.stopPropagation();
+        });
+        document.getElementById(ele.emp_no+'edit')?.addEventListener('click',function(){
+            viewDetailsOfEmployee(ele.emp_no,'Edit')
+        });
+        document.getElementById(ele.emp_no+'view')?.addEventListener('click',function(){
+            viewDetailsOfEmployee(ele.emp_no,'View')
+        });
+        document.getElementById(ele.emp_no+'delete')?.addEventListener('click',function(){
+            deleteEmployeeById(ele.emp_no);
+        })
+    }
+}
 
 function initialize() {
     showRows(employData);
     setCharacters();
     selectedCharactersStatus();
+    setDefaultJoinDate();
+    showContent('employeeData');
     for (let str of sideBarContent) {
         document.getElementById(str)?.addEventListener('click', function () {
             showContent(str.substring(0, str.length - 1));
@@ -527,7 +586,8 @@ function initialize() {
     }
 
     for (let str of inputValidateArray) {
-        document.getElementById(str)?.addEventListener('focusout', function () {
+        (document.getElementById(str) as HTMLInputElement).addEventListener('focusin', () => {
+            console.log('ok');
             sendInputToValidate(str);
         });
     }
@@ -539,12 +599,12 @@ function initialize() {
         });
     }
 
-    document.getElementById("filterReset")?.addEventListener('click', function resetFilter() {
+    document.getElementById("filterReset")?.addEventListener('click', ()=> {
         document.getElementById('deleteButton')!.style.backgroundColor = "#F89191";
         document.getElementById('resetApplyContainer')!.style.display = 'none';
-        document.getElementById('selectStatus')!.innerHTML = `Status<img src="./src/Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
-        document.getElementById('selectDepartment')!.innerHTML = `Department<img src="/src/Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
-        document.getElementById('selectLocation')!.innerHTML = `Location<img src="/src/Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
+        document.getElementById('selectStatus')!.innerHTML = `Status<img src="./Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
+        document.getElementById('selectDepartment')!.innerHTML = `Department<img src="/Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
+        document.getElementById('selectLocation')!.innerHTML = `Location<img src="/Images/Table/caret-down-bold.svg" class="caret-down-filter">`;
         let sta = document.getElementsByClassName("status") as HTMLCollectionOf<HTMLInputElement>;
         let loc = document.getElementsByClassName("location") as HTMLCollectionOf<HTMLInputElement>;
         let dep = document.getElementsByClassName("department") as HTMLCollectionOf<HTMLInputElement>;
@@ -560,7 +620,7 @@ function initialize() {
         for (let val in filetersSelectedFor) filetersSelectedFor[val] = false;
         applyAllFilters();
     });
-    document.getElementById("searchLogo")?.addEventListener('click', function () {
+    document.getElementById("searchLogo")?.addEventListener('click', ()=> {
         const val = (document.getElementById("searchEmployeeWithName") as HTMLInputElement).value.toUpperCase();
         const arrayOnSearch = arrayForSelectedFilters;
         const lengthOfVal = val.length;
@@ -572,23 +632,23 @@ function initialize() {
         });
         showRows(arrayResult);
     });
-    document.getElementById('excelFile')?.addEventListener('click', function () {
-        // exportDataToexcel();
+    document.getElementById('excelFile')?.addEventListener('click', () => {
+        exportDataToexcel();
     });
 
-    document.getElementById('csvFile')?.addEventListener('click', function () {
-        // exportDataToCSV();
+    document.getElementById('csvFile')?.addEventListener('click', ()=> {
+        exportDataToCSV();
     });
     // It minimizes and maximizes side bar
-    document.getElementById("contentMinimize")?.addEventListener('click', function (event) {
+    document.getElementById("contentMinimize")?.addEventListener('click', ()=> {
         document.getElementById("hideSideBar")!.style.display = "none";
         document.getElementById('showSideBar')!.style.display = "block";
     });
-    document.getElementById("contentMaximize")?.addEventListener('click', function (event) {
+    document.getElementById("contentMaximize")?.addEventListener('click',  ()=> {
         document.getElementById("hideSideBar")!.style.display = "flex";
         document.getElementById('showSideBar')!.style.display = "none";
     })
-    document.getElementById("changeCharFilter")?.addEventListener('click', function () {
+    document.getElementById("changeCharFilter")?.addEventListener('click', ()=> {
         resetCharFilter();
     });
     // Event listener for status filter
@@ -621,14 +681,6 @@ function initialize() {
         deleteEmployee();
     });
 
-    for (let ele of employData) {
-        document.getElementById(ele.emp_no + '_check')?.addEventListener('click', function () {
-            selectEmployee(ele.emp_no);
-        });
-        document.getElementById('show' + ele.emp_no)?.addEventListener('click', function () {
-            displayEllipseOptions(ele.emp_no);
-        })
-    }
     document.getElementById("checkAllEmployees")?.addEventListener('click', function () {
         selectAllEmployees();
     });
@@ -683,6 +735,9 @@ function initialize() {
         const exportData = document.getElementById('exportData')!;
         exportData.style.display = 'none';
         showExportBtn = false;
+        for (const ele of employData) {
+            document.getElementById('show'+ele.emp_no)!.style.display = "none";
+        }
         event.stopImmediatePropagation();
     });
     let updatePIcEvent = document.getElementById('employPic')!;
@@ -774,10 +829,7 @@ function initialize() {
         if (event.key === 'Enter') {
             event.preventDefault();
         }
-    });
-    setDefaultJoinDate();
-    showContent('employeeData');
+    });   
 }
-
 // Calling initialize function
 initialize();
