@@ -13,7 +13,6 @@ class Employee {
     status: string;
     join_dt: string;
     mobileNo: string;
-
     constructor(pic: string, user: string, loc: string, dep: string, role: string, email: string, emp_no: string, status: string, join_dt: string, mobileNo: string) {
         this.pic = pic;
         this.user = user;
@@ -58,11 +57,11 @@ let filteredCharStatus: { [key: string]: boolean } = {};
 let selectedCharCount: number = 0;
 let arrayForSelectedFilters: Employee[] = Array.from(employData);
 let charArrayForTable: Employee[] = Array.from(employData);
-let deleteElementsArray: Employee[] = [];
-let deletingElementsCount: number = 0;
+let deletedElementsArray: Employee[] = [];
+let deletedElementsCount: number = 0;
 let isAllEmployeesSelected: boolean = false;
 let isCharFiltersReseted: boolean = true;
-let filetersSelectedFor: boolean[] = [false, false, false];
+let filtersSelectedFor: boolean[] = [false, false, false];
 let showExportBtn: boolean = false;
 interface ValidationRule {
     [key: string]: [string, string, RegExp, string];
@@ -70,12 +69,12 @@ interface ValidationRule {
 let tempArray = ['active', 'inActive', 'hyderabad', 'banglore', 'guntur', 'ProductEngg', 'QA', 'uiux'];
 let countChecked = 0;
 let contentDisplay: string[] = ['employeeData', 'roles', 'roleDescription', 'addEmployeeForm', 'addRole'];
-let inputValidateArray: string[] = ['employId', 'firstName', 'lastName', 'email', 'mobileNo', 'joinDate']
+let inputValidateArray: string[] = ['empNo', 'fName', 'lName', 'email', 'mobileNo', 'joinDate']
 let sideBarContent: string[] = ['roles1', 'roles2', 'employeeData1', 'employeeData2', 'roleDescription1', 'roleDescription2', 'employeeData3', 'addEmployeeForm1'];
 let validationSource: ValidationRule = {
-    employId: ['empNo', 'errorEmpNo', /^TZ[0-9]{6}$/, "Emp No must be in this type 'TZ000000' ."],
-    firstName: ['fName', 'errorFirstName', /^[a-zA-z]{2,9}$/, ' Name must be 2 to 9 alphabets .'],
-    lastName: ['lName', 'errorLastName', /^[a-zA-z]{2,9}$/, ' Name must be 2 to 9 alphabets .'],
+    empNo: ['empNo', 'errorEmpNo', /^TZ[0-9]{6}$/, "Emp No must be in this type 'TZ000000' ."],
+    fName: ['fName', 'errorFirstName', /^[a-zA-z]{2,9}$/, ' Name must be 2 to 9 alphabets .'],
+    lName: ['lName', 'errorLastName', /^[a-zA-z]{2,9}$/, ' Name must be 2 to 9 alphabets .'],
     email: ['email', 'errorEmail', /^[\w.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, 'Invalid Email Format .'],
     mobileNo: ['mobileNo', 'errorMobileNo', /^[1-9]{1}[0-9]{9}$/, 'Enter valid number .'],
     joinDate: ['joinDate', 'errorJoinDate', /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/[2-9]{1}[0-9]{3}$/, 'Enter date correctly .']
@@ -124,7 +123,7 @@ function showRows(displayArray: Employee[]): void {
     reloadedData();
 }
 
-function exportDataToexcel(): void {
+function exportDataToExcel(): void {
     let data = document.getElementById('employeeInformation') as HTMLElement;
     let clonedTable = data.cloneNode(true) as HTMLElement;
     let rows = clonedTable.getElementsByTagName('tr');
@@ -169,7 +168,7 @@ function setCharacters(): void {
     document.getElementById('chars')!.innerHTML = charData;
 }
 
-function applyAllFilters(char: string = ""): void {
+function applyFiltersCollection(char: string = ""): void {
     let arrayForFilters = Array.from(employData);
     if ((selectedCharCount > 0 || char !== "") && arrayForFilters.length > 0) arrayForFilters = selectEmployeeByChar(char, arrayForFilters);
     if (arrayForFilters.length > 0) arrayForFilters = applyFilter(arrayForFilters);
@@ -220,7 +219,7 @@ function resetCharFilter() {
             document.getElementById('char_' + st)!.style.color = '#6A6F74';
         }
         selectedCharCount = 0;
-        applyAllFilters();
+        applyFiltersCollection();
     }
     document.getElementById("statusDisplay")!.style.display = 'none';
     document.getElementById("locationDisplay")!.style.display = 'none';
@@ -298,28 +297,28 @@ function sortTable(byCategory: keyof Employee) {
 
 function selectEmployee(empId: string) {
     console.log(empId);
-    for (let check in deleteElementsArray) {
-        if (deleteElementsArray[check].emp_no === empId) {
-            deleteElementsArray.splice(parseInt(check), 1);
+    for (let check in deletedElementsArray) {
+        if (deletedElementsArray[check].emp_no === empId) {
+            deletedElementsArray.splice(parseInt(check), 1);
             const checkAllEmployees = document.getElementById("checkAllEmployees") as HTMLInputElement;
             checkAllEmployees.checked = false;
             document.getElementById(empId)!.style.backgroundColor = "white";
             isAllEmployeesSelected = false;
-            deletingElementsCount -= 1;
-            if (deletingElementsCount === 0) document.getElementById('deleteButton')!.style.backgroundColor = '#F89191';
+            deletedElementsCount -= 1;
+            if (deletedElementsCount === 0) document.getElementById('deleteButton')!.style.backgroundColor = '#F89191';
             return;
         }
     }
     document.getElementById(empId)!.style.backgroundColor = "#FFF4F4";
     for (let check in arrayForSelectedFilters) {
         if (arrayForSelectedFilters[check].emp_no === empId) {
-            deleteElementsArray.push(arrayForSelectedFilters[check]);
+            deletedElementsArray.push(arrayForSelectedFilters[check]);
             break;
         }
     }
-    deletingElementsCount += 1;
+    deletedElementsCount += 1;
     document.getElementById('deleteButton')!.style.backgroundColor = '#F44848';
-    if (deletingElementsCount === arrayForSelectedFilters.length) {
+    if (deletedElementsCount === arrayForSelectedFilters.length) {
         const checkAllEmployees = document.getElementById("checkAllEmployees") as HTMLInputElement;
         checkAllEmployees.checked = true;
         isAllEmployeesSelected = true;
@@ -327,24 +326,24 @@ function selectEmployee(empId: string) {
 }
 
 function deleteEmployee() {
-    if (deleteElementsArray.length > 0) {
-        for (let check in deleteElementsArray) {
+    if (deletedElementsArray.length > 0) {
+        for (let check in deletedElementsArray) {
             for (let find in employData) {
-                if (deleteElementsArray[check].emp_no === employData[find].emp_no) {
+                if (deletedElementsArray[check].emp_no === employData[find].emp_no) {
                     employData.splice(parseInt(find), 1);
                     break;
                 }
             }
             for (let find in arrayForSelectedFilters) {
-                if (deleteElementsArray[check].emp_no === arrayForSelectedFilters[find].emp_no) {
+                if (deletedElementsArray[check].emp_no === arrayForSelectedFilters[find].emp_no) {
                     arrayForSelectedFilters.splice(parseInt(find), 1);
                     break;
                 }
             }
         }
     }
-    deleteElementsArray = [];
-    deletingElementsCount = 0;
+    deletedElementsArray = [];
+    deletedElementsCount = 0;
     showRows(arrayForSelectedFilters);
     document.getElementById('deleteButton')!.style.backgroundColor = '#F89191';
     const checkAllEmployees = document.getElementById("checkAllEmployees") as HTMLInputElement;
@@ -357,17 +356,17 @@ function selectAllEmployees() {
     if (!isAllEmployeesSelected) {
         for (let check of checks) check.checked = true;
         isAllEmployeesSelected = true;
-        deleteElementsArray = Array.from(arrayForSelectedFilters);
+        deletedElementsArray = Array.from(arrayForSelectedFilters);
         for (let ele in arrayForSelectedFilters) document.getElementById(arrayForSelectedFilters[ele].emp_no)!.style.backgroundColor = "#FFF4F4";
     }
     else {
         for (let check of checks) check.checked = false;
         isAllEmployeesSelected = false;
-        deleteElementsArray = [];
+        deletedElementsArray = [];
         for (let ele in arrayForSelectedFilters) document.getElementById(arrayForSelectedFilters[ele].emp_no)!.style.backgroundColor = "white";
     }
-    deletingElementsCount = deleteElementsArray.length;
-    if (deletingElementsCount) document.getElementById('deleteButton')!.style.backgroundColor = '#F44848';
+    deletedElementsCount = deletedElementsArray.length;
+    if (deletedElementsCount) document.getElementById('deleteButton')!.style.backgroundColor = '#F44848';
     else document.getElementById('deleteButton')!.style.backgroundColor = '#F89191';
 }
 function viewDetailsOfEmployee(employeeId: string, mode: string) {
@@ -416,7 +415,7 @@ function viewDetailsOfEmployee(employeeId: string, mode: string) {
             cancel!.addEventListener('click', function (event) {
                 event.preventDefault();
                 (document.getElementById('addEmployeeForm') as HTMLFormElement).reset();
-                (document.getElementById('updatePic') as HTMLImageElement).src = "./Images/Table/download.jpg";
+                (document.getElementById('updatePic') as HTMLImageElement).src = "/Images/Table/download.jpg";
                 empNo.disabled = false;
                 fname.disabled = false;
                 lname.disabled = false;
@@ -494,17 +493,12 @@ function checkForRequiredField(errorAt: string): void {
     return;
 }
 
-// It sends the validation source to validateInput function
-function sendInputToValidate(inputId: string): void {
-    let tempArray = validationSource[inputId];
-    validateInput(tempArray[0], tempArray[1], tempArray[2], tempArray[3]);
-}
 
 // It validates the input given by the user
 function validateInput(inputId: string, inputerrorId: string, pattern: RegExp, errorMessage: string): void {
     let ele = document.getElementById(inputId) as HTMLInputElement;
-    ele.addEventListener('blur', function (event) {
-        event.preventDefault();
+    // ele.addEventListener('blur', function (event) {
+    //     event.preventDefault();
         let val = ele.value;
         let error = document.getElementById(inputerrorId)!;
         if (val === "") {
@@ -517,7 +511,7 @@ function validateInput(inputId: string, inputerrorId: string, pattern: RegExp, e
             }
         }
         error.classList.add('error-message');
-    });
+    // });
 }
 
 // Adds the Employee information to main Data 
@@ -579,6 +573,7 @@ function initialize() {
     selectedCharactersStatus();
     setDefaultJoinDate();
     showContent('employeeData');
+    sortTable('user');
     for (let str of sideBarContent) {
         document.getElementById(str)?.addEventListener('click', function () {
             showContent(str.substring(0, str.length - 1));
@@ -586,16 +581,16 @@ function initialize() {
     }
 
     for (let str of inputValidateArray) {
-        (document.getElementById(str) as HTMLInputElement).addEventListener('focusin', () => {
-            console.log('ok');
-            sendInputToValidate(str);
+        (document.getElementById(str) as HTMLInputElement)?.addEventListener('blur', () => {
+            let tempArray = validationSource[str];
+            validateInput(tempArray[0], tempArray[1], tempArray[2], tempArray[3]);
         });
     }
     for (let character = 65; character <= 90; character++) {
         let requiredCharacter = String.fromCharCode(character);
         let tempChar = 'char_' + requiredCharacter;
         document.getElementById(tempChar)?.addEventListener('click', function () {
-            applyAllFilters(requiredCharacter);
+            applyFiltersCollection(requiredCharacter);
         });
     }
 
@@ -617,8 +612,8 @@ function initialize() {
         for (let val of dep) {
             if (val.checked === true) val.checked = false;
         }
-        for (let val in filetersSelectedFor) filetersSelectedFor[val] = false;
-        applyAllFilters();
+        for (let val in filtersSelectedFor) filtersSelectedFor[val] = false;
+        applyFiltersCollection();
     });
     document.getElementById("searchLogo")?.addEventListener('click', ()=> {
         const val = (document.getElementById("searchEmployeeWithName") as HTMLInputElement).value.toUpperCase();
@@ -633,7 +628,7 @@ function initialize() {
         showRows(arrayResult);
     });
     document.getElementById('excelFile')?.addEventListener('click', () => {
-        exportDataToexcel();
+        exportDataToExcel();
     });
 
     document.getElementById('csvFile')?.addEventListener('click', ()=> {
@@ -654,47 +649,45 @@ function initialize() {
     // Event listener for status filter
     document.getElementById("selectStatus")!.addEventListener('click', function (event) {
         const statusDisplay = document.getElementById("statusDisplay")!;
-        statusDisplay.style.display = filetersSelectedFor[0] ? 'none' : 'block';
-        filetersSelectedFor[0] = !filetersSelectedFor[0];
+        statusDisplay.style.display = filtersSelectedFor[0] ? 'none' : 'block';
+        filtersSelectedFor[0] = !filtersSelectedFor[0];
         event.stopPropagation();
     });
     // Event listener for location filter
     document.getElementById("selectLocation")!.addEventListener('click', function (event) {
         const locationDisplay = document.getElementById("locationDisplay")!;
-        locationDisplay.style.display = filetersSelectedFor[1] ? 'none' : 'block';
-        filetersSelectedFor[1] = !filetersSelectedFor[1];
+        locationDisplay.style.display = filtersSelectedFor[1] ? 'none' : 'block';
+        filtersSelectedFor[1] = !filtersSelectedFor[1];
         event.stopPropagation();
     });
     // Event listener for department filter
     document.getElementById("selectDepartment")!.addEventListener('click', function (event) {
         const departmentDisplay = document.getElementById("departmentDisplay")!;
-        departmentDisplay.style.display = filetersSelectedFor[2] ? 'none' : 'block';
-        filetersSelectedFor[2] = !filetersSelectedFor[2];
+        departmentDisplay.style.display = filtersSelectedFor[2] ? 'none' : 'block';
+        filtersSelectedFor[2] = !filtersSelectedFor[2];
         event.stopPropagation();
     });
 
-    document.getElementById("filterApply")?.addEventListener('click', function () {
-        applyAllFilters();
+    document.getElementById("filterApply")?.addEventListener('click', ()=> {
+        applyFiltersCollection();
     });
 
-    document.getElementById("deleteButton")?.addEventListener('click', function () {
+    document.getElementById("deleteButton")?.addEventListener('click',  ()=> {
         deleteEmployee();
     });
 
-    document.getElementById("checkAllEmployees")?.addEventListener('click', function () {
+    document.getElementById("checkAllEmployees")?.addEventListener('click', ()=> {
         selectAllEmployees();
     });
 
     let ArrayToSort = ['userSort', 'locSort', 'depSort', 'roleSort', 'emp_noSort', 'statusSort', 'join_dtSort'];
     for (let ele of ArrayToSort) {
-        let str = ele.substring(0, ele.length - 4)
-        document.getElementById(ele)?.addEventListener('click', function () {
-            // sortTable(str);
-            console.log(str);
+        document.getElementById(ele)?.addEventListener('click', ()=> {
+            sortTable((ele.substring(0,ele.length-4) as keyof Employee));
         });
     }
 
-    document.getElementById('dob')?.addEventListener('click', function () {
+    document.getElementById('dob')?.addEventListener('click',  ()=> {
         setDobPlaceholder();
     })
     // Event listeners for filter checkboxes
@@ -725,23 +718,23 @@ function initialize() {
     document.getElementById('wholeBody')!.addEventListener('click', function (event) {
         const statusDisplay = document.getElementById("statusDisplay")!;
         statusDisplay.style.display = 'none';
-        filetersSelectedFor[0] = false;
+        filtersSelectedFor[0] = false;
         const locationDisplay = document.getElementById("locationDisplay")!;
         locationDisplay.style.display = 'none';
-        filetersSelectedFor[1] = false;
+        filtersSelectedFor[1] = false;
         const departmentDisplay = document.getElementById("departmentDisplay")!;
         departmentDisplay.style.display = 'none';
-        filetersSelectedFor[2] = false;
+        filtersSelectedFor[2] = false;
         const exportData = document.getElementById('exportData')!;
         exportData.style.display = 'none';
         showExportBtn = false;
-        for (const ele of employData) {
+        for (const ele of arrayForSelectedFilters) {
             document.getElementById('show'+ele.emp_no)!.style.display = "none";
         }
         event.stopImmediatePropagation();
     });
     let updatePIcEvent = document.getElementById('employPic')!;
-    document.getElementById('employPic')!.addEventListener('change', function (event) {
+    document.getElementById('employPic')!.addEventListener('change', ()=> {
         let ele = (updatePIcEvent as HTMLInputElement)?.files?.[0];
         let reader = new FileReader();
         reader.onload = function () {
@@ -813,7 +806,7 @@ function initialize() {
             showRows(employData);
             setDefaultJoinDate();
             showContent('employeeData');
-            (document.getElementById('updatePic') as HTMLImageElement).src = "./Images/Table/download.jpg";
+            (document.getElementById('updatePic') as HTMLImageElement).src = "/Images/Table/download.jpg";
         }
     });
 
