@@ -1,13 +1,13 @@
-﻿using Menu;
+﻿using MenuManagement;
 
-namespace Entry
+namespace EmployeeDirectory
 {
-    class Entry
+    class EmployeeDirectory
     {
         public static void Main(string[] args)
         {
-            Start Start = new Start();
-            Start.StartMainMenu();
+            Menus show = new();
+            show.ShowMainMenu();
         }
     }
 }

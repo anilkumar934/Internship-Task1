@@ -16,7 +16,7 @@
 //     const role = ['full-stack', 's/w developer', 'QA'];
 //     const sta = ['Active', 'In Active'];
 
-//     for (i = 0; i < 20; i++) {
+//     for (i = 0; i < 13; i++) {
 //         const user_rand = Math.floor(Math.random() * user.length);
 //         const loc_rand = Math.floor(Math.random() * loc.length);
 //         const dep_rand = Math.floor(Math.random() * dep.length);
@@ -29,8 +29,7 @@
 //     localStorage.setItem('arr',JSON.stringify(arr));
 //     alert('Data is added');
 // }
-
-
+// fun();
 
 
 // 

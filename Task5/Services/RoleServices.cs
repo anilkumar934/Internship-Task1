@@ -2,28 +2,32 @@ using Entity;
 using Constants;
 using Inputs;
 using DataBase;
+using Utility;
+using ConsoleTables;
 namespace RoleManagement
 {
     public class RoleService
     {
-        Input HandleData = new Input();
         public void AddNewRole()
         {
-            string RoleName = HandleData.GetValue("RoleName","Required",RegularExpressions.NameRegex,"Name");
-            string Department = HandleData.GetValue("Department","Required",RegularExpressions.NameRegex,"department");
-            string Description = HandleData.GetValue("Description","Optional",RegularExpressions.NameRegex,"Description");
-            string Location = HandleData.GetValue("Location","Required",RegularExpressions.NameRegex,"Location");
-            Role NewRole = new Role(RoleName,Department,Description,Location);
-            DataStore.RoleData.Add(NewRole.RoleName,NewRole);
-        }
-
-        public void DisplayAllRoles(Dictionary<string,Role>RoleInfo)
-        {
-            foreach (Role item in RoleInfo.Values)
+            Role newRole = new Role()
             {
-                Console.WriteLine($"{item.RoleName}    {item.Department}   {item.Description}   {item.Location}");
-            }   
+                RoleName = InputServices.GetString(RoleValidationDetails.roleName),
+                Department = InputServices.GetString(RoleValidationDetails.department),
+                Description = InputServices.GetString(RoleValidationDetails.description),
+                Location = InputServices.GetString(RoleValidationDetails.location)
+            };
+            DataStore.roleData.Add(newRole.RoleName,newRole);
         }
 
+        public void DisplayAllRoles(Dictionary<string,Role>roleInfo)
+        {
+            ConsoleTable table = OutputUtility.GenerateTableForRole();
+            foreach (Role item in roleInfo.Values)
+            {
+                table.AddRow(item.RoleName,item.Department,item.Description,item.Location);
+            }   
+            Console.WriteLine(table);
+        }
     }
 }

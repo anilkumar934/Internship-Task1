@@ -450,6 +450,7 @@ progress[value] {
     position: relative;
     left: 475px;
     bottom: 30px;
+    z-index: 1;
 }
 
 .subscribe-info {
@@ -513,7 +514,7 @@ progress[value] {
     position: relative;
     opacity: 0.2;
     z-index: 0;
-    left: 485px;
+    left: 528px;
     bottom: 330px;
     rotate: 270deg;
 }
