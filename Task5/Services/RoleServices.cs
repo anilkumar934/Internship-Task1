@@ -25,9 +25,14 @@ namespace RoleManagement
             ConsoleTable table = OutputUtility.GenerateTableForRole();
             foreach (Role item in roleInfo.Values)
             {
-                table.AddRow(item.RoleName,item.Department,item.Description,item.Location);
+                AddRoleRow(item,table);
             }   
             Console.WriteLine(table);
+        }
+
+        private void AddRoleRow(Role item,ConsoleTable table)
+        {
+            table.AddRow(item.RoleName,item.Department,item.Description,item.Location);
         }
     }
 }

@@ -1,18 +1,12 @@
 namespace Constants
 {
-    enum MenuOptionsCount
-    {
-        MainMenuCount = 3,
-        EmployeeManagerCount = 6,
-        RoleManagerCount = 4,
-        EditEmployeeMenuCount = 12,
-    }
 
     enum MainMenu
     {
         EmployeeManagement = 1,
         RoleManagement,
-        Exit
+        Exit,
+        count = 3
     }
 
     enum EmployeeMenu
@@ -22,13 +16,33 @@ namespace Constants
         DisplayEmployee,
         EditEmployee,
         DeleteEmployee,
-        GoBack
+        GoBack,
+        count = 6
     }
 
     enum RoleMenu
     {
         AddRow = 1,
         DisplayAllRoles,
-        GoBack
+        GoBack,
+        count = 3
     }    
+
+
+    enum EditEmployeeMenu
+    {
+        FirstName = 1,
+        LastName,
+        DateOfBirth,
+        Email,
+        MobileNumber,
+        JoinDate,
+        Location,
+        JobTitle,
+        Department,
+        Manager,
+        Project,
+        GoBack,
+        count = 12
+    }
 }

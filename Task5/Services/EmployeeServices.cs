@@ -18,6 +18,7 @@ namespace EmployeeManagement
             AddEmployeeToDataStore(newEmployee);
             OutputUtility.Delay();
             Console.WriteLine(DisplayOptions.dataAddSuccessMsg);
+            OutputUtility.Delay();
         }
 
         public void DisplayEmployeeTable(Dictionary<string,Employee> employeeInfo)
@@ -25,7 +26,7 @@ namespace EmployeeManagement
             ConsoleTable table = OutputUtility.GenerateTableForEmployee();
             foreach (Employee person in employeeInfo.Values)
             {
-                table.AddRow(person.EmployeeId, person.FirstName + " " + person.LastName, person.DateOfBirth,person.Email,person.MobileNumber,person.JoinDate,person.Location,person.JobTitle, person.Department,  person.Manager, person.Project);
+                AddEmployeeRow(person,table);   
             }
             OutputUtility.Delay();
             Console.WriteLine(table);
@@ -40,7 +41,7 @@ namespace EmployeeManagement
             }
             Employee person = DataStore.employeeData[id!];
             ConsoleTable table = OutputUtility.GenerateTableForEmployee();
-            table.AddRow(person.EmployeeId, person.FirstName + " " + person.LastName, person.DateOfBirth,person.Email,person.MobileNumber,person.JoinDate,person.Location,person.JobTitle, person.Department,  person.Manager, person.Project);
+            AddEmployeeRow(person,table);
             OutputUtility.Delay();
             Console.WriteLine(table);
         }
@@ -58,42 +59,43 @@ namespace EmployeeManagement
             while (true)
             {
                 Console.Write(DisplayOptions.editEmployeeOptions + DisplayOptions.choiceMessage);
-                switch (OutputUtility.GetChoice(Convert.ToInt32(MenuOptionsCount.EditEmployeeMenuCount)))
+                EditEmployeeMenu option = (EditEmployeeMenu)OutputUtility.GetChoice(Convert.ToInt32(EditEmployeeMenu.count));
+                switch (option)
                 {
-                    case 1:
+                    case EditEmployeeMenu.FirstName:
                         EditEmployeeSpecificField(employeeToEdit, EmployeeValidationDetails.firstName);
                         break;
-                    case 2:
+                    case EditEmployeeMenu.LastName:
                         EditEmployeeSpecificField(employeeToEdit, EmployeeValidationDetails.lastName);
                         break;
-                    case 3:
+                    case EditEmployeeMenu.DateOfBirth:
                         EditEmployeeSpecificField(employeeToEdit, EmployeeValidationDetails.dateOfBirth);
                         break;
-                    case 4:
+                    case EditEmployeeMenu.Email:
                         EditEmployeeSpecificField(employeeToEdit, EmployeeValidationDetails.email);
                         break;
-                    case 5:
+                    case EditEmployeeMenu.MobileNumber:
                         EditEmployeeSpecificField(employeeToEdit, EmployeeValidationDetails.mobileNumber);
                         break;
-                    case 6:
+                    case EditEmployeeMenu.JoinDate:
                         EditEmployeeSpecificField(employeeToEdit, EmployeeValidationDetails.joinDate);
                         break;
-                    case 7:
+                    case EditEmployeeMenu.Location:
                         EditEmployeeSpecificField(employeeToEdit, EmployeeValidationDetails.location);
                         break;
-                    case 8:
+                    case EditEmployeeMenu.JobTitle:
                         EditEmployeeSpecificField(employeeToEdit, EmployeeValidationDetails.jobTitle);
                         break;
-                    case 9:
+                    case EditEmployeeMenu.Department:
                         EditEmployeeSpecificField(employeeToEdit, EmployeeValidationDetails.department);
                         break;
-                    case 10:
+                    case EditEmployeeMenu.Manager:
                         EditEmployeeSpecificField(employeeToEdit, EmployeeValidationDetails.manager);
                         break;
-                    case 11:
+                    case EditEmployeeMenu.Project:
                         EditEmployeeSpecificField(employeeToEdit,EmployeeValidationDetails.Project);
                         break;
-                    case 12:
+                    case EditEmployeeMenu.GoBack:
                         Menus newMenu = new();
                         newMenu.ShowEmployeeMenu();
                         break;
@@ -124,7 +126,7 @@ namespace EmployeeManagement
                 LastName = InputServices.GetString(EmployeeValidationDetails.lastName),
                 DateOfBirth = InputServices.GetDate(EmployeeValidationDetails.dateOfBirth),
                 Email = InputServices.GetString(EmployeeValidationDetails.email),
-                MobileNumber = InputServices.GetNumber(EmployeeValidationDetails.mobileNumber),
+                MobileNumber = InputServices.GetString(EmployeeValidationDetails.mobileNumber),
                 JoinDate = InputServices.GetDate(EmployeeValidationDetails.joinDate),
                 Location = InputServices.GetString(EmployeeValidationDetails.location),
                 JobTitle = InputServices.GetString(EmployeeValidationDetails.jobTitle),
@@ -152,21 +154,19 @@ namespace EmployeeManagement
                     if (property.GetValue(emp)!.GetType() == typeof(string))
                     {
                         property.SetValue(emp, InputServices.GetString(EmployeeValidationDetails));
-                        break;
-                    }
-                    else if (property.GetValue(emp)!.GetType() == typeof(long))
-                    {
-                        property.SetValue(emp, InputServices.GetNumber(EmployeeValidationDetails));
-                        break;
                     }
                     else
                     {
                         property.SetValue(emp, InputServices.GetDate(EmployeeValidationDetails));
-                        break;
                     }
+                    return;
                 }
             }
             DisplayEmployee(emp.EmployeeId!);
+        }
+        private void AddEmployeeRow(Employee person,ConsoleTable table)
+        {
+            table.AddRow(person.EmployeeId, person.FirstName + " " + person.LastName, person.DateOfBirth,person.Email,person.MobileNumber,person.JoinDate,person.Location,person.JobTitle, person.Department,  person.Manager, person.Project);
         }
 
     }

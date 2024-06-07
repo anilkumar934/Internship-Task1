@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+    "\\AppDbContext",
     "\\bin",
     "\\Constant",
     "\\DataBase",
@@ -9,6 +10,6 @@
     "\\Services",
     "\\Utility"
   ],
-  "SelectedNode": "\\Services\\InputServices.cs",
+  "SelectedNode": "\\Services\\RoleServices.cs",
   "PreviewInSolutionExplorer": false
 }

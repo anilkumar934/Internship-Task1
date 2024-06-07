@@ -14,7 +14,7 @@ namespace MenuManagement
         public void ShowMainMenu()
         {
             Console.Write("\nMain Menu" + DisplayOptions.lineBreak + DisplayOptions.mainMenuOptions + DisplayOptions.choiceMessage);
-            MainMenu choice = (MainMenu)OutputUtility.GetChoice(Convert.ToInt32(MenuOptionsCount.MainMenuCount));
+            MainMenu choice = (MainMenu)OutputUtility.GetChoice(Convert.ToInt32(MainMenu.count));
             switch (choice)
             {
                 case MainMenu.EmployeeManagement:
@@ -35,7 +35,7 @@ namespace MenuManagement
         public void ShowEmployeeMenu()
         {
             Console.Write("\nEmployee Management Menu" + DisplayOptions.lineBreak + DisplayOptions.employeeMenuOptions + DisplayOptions.choiceMessage);
-            EmployeeMenu choice = (EmployeeMenu)OutputUtility.GetChoice(Convert.ToInt32(MenuOptionsCount.EmployeeManagerCount));
+            EmployeeMenu choice = (EmployeeMenu)OutputUtility.GetChoice(Convert.ToInt32(EmployeeMenu.count));
             switch (choice)
             {
                 case EmployeeMenu.AddEmployee:
@@ -65,7 +65,7 @@ namespace MenuManagement
         private void ShowRoleMenu()
         {
             Console.Write("\nRole Management Menu" + DisplayOptions.lineBreak + DisplayOptions.roleMenuOptions + DisplayOptions.choiceMessage);
-            RoleMenu choice = (RoleMenu)OutputUtility.GetChoice(Convert.ToInt32(MenuOptionsCount.RoleManagerCount));
+            RoleMenu choice = (RoleMenu)OutputUtility.GetChoice(Convert.ToInt32(RoleMenu.count));
             switch (choice)
             {
                 case RoleMenu.AddRow:

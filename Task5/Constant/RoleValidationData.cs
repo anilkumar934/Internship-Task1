@@ -5,13 +5,13 @@ namespace Constants
         public static ValidatingData roleName = new(){
             InputValue = "RoleName",
             IsRequired = DisplayOptions.requiredMsg,
-            Regex = RegularExpressions.name,
+            Regex = RegularExpressions.Name,
             InputFormat = "RoleName"
         };
         public static ValidatingData department = new(){
             InputValue = "Department",
             IsRequired = DisplayOptions.requiredMsg,
-            Regex = RegularExpressions.name,
+            Regex = RegularExpressions.Name,
             InputFormat = "Department"
         };
         public static ValidatingData description = new(){
@@ -22,7 +22,7 @@ namespace Constants
         public static ValidatingData location = new(){
             InputValue = "Location",
             IsRequired = DisplayOptions.requiredMsg,
-            Regex = RegularExpressions.name,
+            Regex = RegularExpressions.Name,
             InputFormat = "Location"
         };
     }

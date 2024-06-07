@@ -54,30 +54,9 @@ namespace Inputs
             return DateOnly.FromDateTime(parsedDate);
         }
 
-        public static long GetNumber(ValidatingData EmployeeDetails)
-        {
-            if(EmployeeDetails.IsRequired == DisplayOptions.requiredMsg) Console.Write($"Enter {EmployeeDetails.InputValue} (*) (Ex: {EmployeeDetails.Regex}) : ");
-            else Console.Write($"Enter {EmployeeDetails.InputValue} (Ex: {EmployeeDetails.Regex}) : ");
-            string? number = Console.ReadLine();
-            if(number == "" || number!.Trim() == "") 
-            {
-                if(EmployeeDetails.IsRequired == DisplayOptions.requiredMsg)
-                {
-                    Console.WriteLine(DisplayOptions.inputNotEmptyMsg);
-                    return GetNumber(EmployeeDetails);
-                }
-                else return 0;
-            }
-            if(EmployeeDetails.Regex != "" && !Regex.IsMatch(number.Trim(),EmployeeDetails.Regex))
-            {
-                Console.WriteLine(DisplayOptions.notValidMsg + EmployeeDetails.InputValue);
-                return GetNumber(EmployeeDetails);
-            }
-            return Convert.ToInt64(number);
-        }
-
         public static string ValidateId()
         {
+
             Console.Write("Enter Employee Id : ");
             string? id = Console.ReadLine();
             if(id == "" || id!.Trim() == "") 
@@ -85,7 +64,7 @@ namespace Inputs
                 Console.WriteLine(DisplayOptions.inputNotEmptyMsg);
                 return ValidateId();
             }
-            else if(!Regex.IsMatch(id!,RegularExpressions.employeeId))
+            else if(!Regex.IsMatch(id!,RegularExpressions.EmployeeId))
             {
                 id.Trim();
                 Console.WriteLine(DisplayOptions.notValidMsg);
@@ -102,4 +81,3 @@ namespace Inputs
 
     }
 }
-

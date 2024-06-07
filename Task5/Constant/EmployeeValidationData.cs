@@ -16,49 +16,49 @@ namespace Constants
         public static ValidatingData employeeId = new(){
             InputValue = "EmployeeId",
             IsRequired = DisplayOptions.requiredMsg,
-            Regex =  RegularExpressions.employeeId,
+            Regex =  RegularExpressions.EmployeeId,
             InputFormat =  "TZ0000"
         };
         public static ValidatingData firstName = new()
         {
             InputValue = "FirstName",
             IsRequired = DisplayOptions.requiredMsg,
-            Regex = RegularExpressions.name,
+            Regex = RegularExpressions.Name,
             InputFormat = "1-9 Alphabets"
         };
         public static ValidatingData lastName = new()
         {
             InputValue = "LastName",
             IsRequired = DisplayOptions.requiredMsg,
-            Regex = RegularExpressions.name,
+            Regex = RegularExpressions.Name,
             InputFormat = "1-9 Alphabets"
         };
         public static ValidatingData dateOfBirth = new()
         {
             InputValue = "DateOfBirth",
             IsRequired = DisplayOptions.optionalMsg,
-            Regex = RegularExpressions.date,
+            Regex = RegularExpressions.Date,
             InputFormat = "dd-MM-yyyy"
         };
         public static ValidatingData email = new()
         {
             InputValue = "Email",
             IsRequired = DisplayOptions.requiredMsg,
-            Regex = RegularExpressions.email,
+            Regex = RegularExpressions.Email,
             InputFormat = "anil@tech.com"
         };
         public static ValidatingData mobileNumber = new()
         {
             InputValue = "MobileNumber",
             IsRequired = DisplayOptions.optionalMsg,
-            Regex = RegularExpressions.mobileNumber,
+            Regex = RegularExpressions.MobileNumber,
             InputFormat = "0000000000"
         };
         public static ValidatingData joinDate = new()
         {
             InputValue = "JoinDate",
             IsRequired = DisplayOptions.requiredMsg,
-            Regex = RegularExpressions.date,
+            Regex = RegularExpressions.Date,
             InputFormat = "dd-MM-yyyy"
         };
         public static ValidatingData location = new() { 

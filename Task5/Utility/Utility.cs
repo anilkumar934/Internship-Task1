@@ -16,7 +16,7 @@ namespace Utility
         {
             string? choice = Console.ReadLine();
             
-            if(choice != "" && choice!.Trim() != "" && Regex.IsMatch(choice,RegularExpressions.integer)){
+            if(choice != "" && choice!.Trim() != "" && Regex.IsMatch(choice,RegularExpressions.Integer)){
                 int number = Convert.ToInt32(choice);
                 Delay();
                 if(number <= menuCount && number >= 1) return number;
