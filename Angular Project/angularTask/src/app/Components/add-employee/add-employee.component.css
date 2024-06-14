@@ -1,0 +1,220 @@
+.employee-pic-upload {
+    display: flex;
+    height: 100px;
+    align-content: flex-start;
+}
+
+.success-message {
+    display: none;
+    width: 170px;
+    height: 20px;
+    background-color: rgb(81, 179, 148);
+    text-align: center;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 3px;
+}
+
+.upload-pic-label {
+    background-color: #F44848;
+    border: none;
+    padding: 8px 15px;
+    font-weight: lighter;
+    font-size: 12px;
+    cursor: pointer;
+    color: white;
+    border-radius: 3px;
+    position: relative;
+    bottom: 35px;
+}
+
+.personal-employee-info {
+    font-size: 15px;
+}
+
+.upload-pic {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    margin-right: 25px;
+}
+
+.inp-field-division {
+    display: flex;
+    gap: 0px;
+
+}
+.display-horizont{
+    display: flex;
+    flex-direction: column;
+}
+
+.label-text {
+    font-size: 12px;
+    color: #5C626F;
+    margin-bottom: 10px;
+    line-height: 0;
+    font-weight: lighter;
+
+}
+
+.input-required-icon::before {
+    content: "*";
+    color: #F44848;
+    font-size: 15px;
+    padding-left: 3px;
+}
+
+.date-input {
+    width: 20px;
+    border: none;
+    position: relative;
+    right: 260px;
+    z-index: 1;
+    opacity: 0;
+}
+
+.calender-icon {
+    position: relative;
+    height: 20px;
+    top: 5px;
+    right: 285px;
+    z-index: 0;
+    color: #9EA2A7;
+}
+
+.date-input:focus,
+.dummy-text:focus {
+    outline: none;
+}
+
+.input-text-field {
+    margin-top: 5px;
+    width: 210px;
+    height: 26px;
+    margin-right: 12px;
+    border-style: solid;
+    border-color: #ECEDF0;
+    border-radius: 3px;
+    padding-left: 5px;
+}
+
+.dummy-text {
+    margin-top: 5px;
+    width: 210px;
+    height: 26px;
+    margin-right: 12px;
+    border-style: solid;
+    border-color: #ECEDF0;
+    border-radius: 3px;
+    padding-left: 35px;
+}
+
+.input-joinDate {
+    margin-top: 5px;
+    width: 350px;
+    height: 26px;
+    margin-right: 12px;
+    border-style: solid;
+    border-color: #ECEDF0;
+    border-radius: 3px;
+    padding-left: 5px;
+}
+
+.input-text-field:focus {
+    outline-color: #348DFF;
+}
+
+.error-message {
+    display: block;
+    color: #F44848;
+    font-size: 12px;
+    gap: 2px;
+    line-height: 0;
+    padding-top: 4px;
+}
+
+.error-message>img {
+    height: 10px;
+}
+
+.handle-form-data {
+    height: 520px;
+    scrollbar-width: none;
+    overflow: scroll;
+}
+
+.input-select {
+    width: 360px;
+    height: 33px;
+    margin: 6px 0px;
+    background-color: #F4F5F7;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 5px;
+    font-size: 12px;
+    appearance: none;
+}
+
+.caret-down {
+    height: 8px;
+    color: #4F5F78;
+    position: relative;
+    right: 30px;
+    font-weight: bolder;
+}
+
+.place-content-at-right {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    margin: 20px 10px;
+}
+
+.cncl-add-employee-btn {
+    background-color: #FBEBEB;
+    color: #F44848;
+    border-radius: 5px;
+    padding: 8px 45px;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.add-employee-btn {
+    background-color: #F44848;
+    color: rgb(238, 231, 231);
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.close-view-btn{
+    background-color: #F44848;
+    color: rgb(238, 231, 231);
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    display: none;
+}
+
+
+/* Unable to put this field in class */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.manager-proj-input-text {
+    color: #5C626F;
+}
+
+input.ng-invalid.ng-touched{
+    border:red 2px solid;
+}

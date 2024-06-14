@@ -1,1 +1,42 @@
-<p>add-role works!</p>
+<form id="addRole" class="form-roles">
+    <p>Create New Role</p>
+    <table>
+        <tr class="title-text">
+            <td>Role Name<span class="input-required-icon"></span></td>
+            <td>Department<span class="input-required-icon"></span></td>
+        </tr>
+        <tr>
+            <td><input type="text" class="role-text" placeholder="New Role"></td>
+            <td><select class="dep-select">
+                    <option selected hidden>Search</option>
+                    @for(department of departments;track department)
+                    {
+                        <option>{{ department.departmentName }}</option>
+                    }
+                </select></td>
+        </tr>
+        <tr class="title-text">
+            <td>Description</td>
+        </tr>
+        <tr>
+            <td colspan="2"><textarea type="text" class="role-descr" placeholder="Text"></textarea></td>
+        </tr>
+    </table>
+    <p class="title-text">Location<span class="input-required-icon"></span></p>
+    <select class="role-loc">
+        <option selected hidden>Search</option>
+        <@for(location of locations;track location)
+        {
+            <option>{{ location.locationName }}</option>
+        }
+    </select>
+    <!-- <p class="title-text">Assign employees</p>
+    <select class="role-assign-employ">
+        <option selected hidden>Search for an employee</option>
+        <option ></option>
+    </select> -->
+    <div class="cncl-sub-btn">
+        <button class="cncl-btn">Cancel</button>
+        <button class="sub-btn">Add Role</button>
+    </div>
+</form>

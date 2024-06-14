@@ -3,16 +3,16 @@ import * as XLSX from 'xlsx';
 
 
 class Employee {
-    pic: string;
-    user: string;
-    loc: string;
-    dep: string;
-    role: string;
-    email: string;
-    emp_no: string;
-    status: string;
-    join_dt: string;
-    mobileNo: string;
+        pic: string;
+        user: string;
+        loc: string;
+        dep: string;
+        role: string;
+        email: string;
+        emp_no: string;
+        status: string;
+        join_dt: string;
+        mobileNo: string;
     constructor(pic: string, user: string, loc: string, dep: string, role: string, email: string, emp_no: string, status: string, join_dt: string, mobileNo: string) {
         this.pic = pic;
         this.user = user;

@@ -1,0 +1,84 @@
+.search-profile {
+    height: 45px;
+    width: 970px;
+    box-shadow: 0px 0px 3px #a6aaad;
+    border-radius: 6px;
+    align-self: center;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    z-index: 0;
+}
+
+.search-box {
+    display: flex;
+    padding-right: 10px;
+}
+
+.search-logo {
+    padding: 1px 8px 1px 15px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.search-text {
+    border: none;
+}
+
+.search-text:focus {
+    outline: none;
+}
+
+.user-acts {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-dot {
+    position: relative;
+    font-size: 40px;
+    color: #28C76F;
+    position: relative;
+    left: 180px;
+    top: 15px;
+    z-index: 1;
+    border: 1px;
+    padding: 1px;
+}
+
+.user-acts-logo {
+    height: 25px;
+    /* cursor: pointer; */
+    border-radius: 50px;
+}
+
+.admin-control {
+    display: flex;
+    padding: 5px 10px;
+    align-items: center;
+    gap: 7px;
+    /* cursor: pointer; */
+}
+
+.admin-logo {
+    height: 30px;
+    padding: 1px 0px 1px 0px;
+    border-radius: 50px;
+}
+
+.admin-name {
+    font-size: 8px;
+    line-height: 0.4;
+}
+
+.admin-status {
+    font-size: 10px;
+    line-height: 0;
+    font-weight: 600;
+}
+
+.admin-caret-down {
+    position: relative;
+    top: 4px;
+}

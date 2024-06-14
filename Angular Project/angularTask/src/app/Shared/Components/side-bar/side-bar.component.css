@@ -1,0 +1,235 @@
+
+.side-bar {
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    height: 90vh;
+    box-shadow: 0.1px 0px 1px rgb(239, 238, 238);
+    justify-content: space-between;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    padding-right: 50px;
+    padding-bottom: 10px;
+}
+
+.tezo-handle-container {
+    margin-left: 3.8%;
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 32.7%;
+    height: 7.4%;
+    margin-bottom: 10px;
+}
+
+header {
+    flex-grow: 1;
+}
+
+.tezo-logo {
+    height: 25px;
+}
+
+.show-side-bar {
+    padding-top: 20px;
+    width: 60px;
+    align-items: center;
+    display: none;
+    gap: 30px;
+    position: relative;
+    /* box-shadow: 0.1px 0px 1px rgb(239, 238, 238); */
+}
+
+.tezo-handle-minimize {
+    display: flex;
+    height: 28px;
+}
+
+.adjust-handle {
+    position: relative;
+    right: 60px;
+    height: 25px;
+    cursor: pointer;
+    rotate: 180deg;
+}
+
+.adjust-sidebar-icons {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.hidden-side-bar{
+    img {
+        /* height: 20px; */
+        cursor: pointer;
+    }
+}
+
+.adjust-sidebar-icons :hover{
+    .dash-emp-image {
+        display: none;
+    }
+
+    .dash-emp-image-hover {
+        display: block;
+    }
+    }
+
+.handle-logo {
+    height: 28px;
+    position: relative;
+    cursor: pointer;
+}
+
+.dash-emp-role-manage {
+    padding-top: 8px;
+    color: #CCD1D5;
+    font-size: 11px;
+    margin-left: 12px;
+}
+
+.dash-emp-manage {
+    width: 180px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    display: flex;
+    color: #7C8085;
+    font-size: 13px;
+    padding: 0px 10px;
+    margin-top: 3px;
+    padding-right: 8px;
+    margin-right: 15px;
+    cursor: pointer;
+    gap: 10px;
+    text-decoration: none;
+}
+
+
+.dash-emp-manage:hover {
+    background-color: #FDE9E9;
+    color: #F44848;
+    border-radius: 5px;
+
+    .dash-emp-image {
+        display: none;
+    }
+
+    .dash-emp-image-hover {
+        display: block;
+    }
+}
+
+.dash-emp-image-hover {
+    display: none;
+}
+
+.role-acc-rights {
+    width: 180px;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #7C8085;
+    font-size: 13px;
+    padding: 0px 10px;
+    margin-top: 3px;
+    padding-right: 8px;
+    margin-right: 15px;
+    cursor: pointer;
+    display: flex;
+    text-decoration: none;
+}
+
+.role-acc-rights>div>a {
+    text-decoration: none;
+    color: #7C8085;
+}
+
+.role-acc-rights:hover {
+    background-color: #FDE9E9;
+    border-radius: 5px;
+    color: #F44848;
+
+    div>a {
+        color: #F44848;
+    }
+
+    .role-acc-rights-img {
+        display: none;
+    }
+
+    .role-acc-rights-img-hover {
+        display: block;
+    }
+}
+
+.role-acc-rights-img-hover {
+    display: none;
+}
+
+.role-acc-rights>div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    max-width: max-content;
+}
+
+.role-acc-rights>div>img {
+    height: 18px;
+}
+
+.ActiveRoute{
+    background-color: #F44848;
+}
+
+.update-control {
+    height: 115px;
+    background-color: #FEF6F6;
+    font-size: 12px;
+    width: 180px;
+    margin-top: 20px;
+    padding-left: 20px;
+    border-radius: 5px;
+    padding-top: 10px;
+    position: sticky;
+}
+
+.new-update {
+    color: #F55B5B;
+}
+
+.allow-update {
+    color: #8b8888;
+}
+
+.update-dismiss {
+    background-color: #FDE6E6;
+    border: none;
+    color: #F55B5B;
+    padding: 7px 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: 11px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.update-accept {
+    background-color: #F44848;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    margin-left: 8px;
+    font-size: 11px;
+    cursor: pointer;
+    font-weight: 550;
+}

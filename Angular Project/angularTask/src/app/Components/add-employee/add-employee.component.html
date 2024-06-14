@@ -1,2 +1,132 @@
-<p>add-employee works!</p>
-<img src="C:\Users\anil.a\Documents\GitHub\Internship-Tasks\Angular Project\angularTask\src\Assets\Images\Search-bar\32.png"/>
+<form class="handle-form-data" [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+    <h3>Add Employee</h3>
+    <div>
+        <div class="employee-pic-upload">
+            <div>
+                <img src="../../../../assets/Images/Table/download.jpg" class="upload-pic" alt="Employee-pic" />
+                <input type="file" accept="image/*" hidden >
+                <label for="employPic" class="upload-pic-label">Upload Profile Picture</label>
+            </div>
+        </div>
+        <div>
+            <h4 class="personal-employee-info">Personal Information</h4>
+            <div class="inp-field-division">
+                <div class="display-horizont">
+                    <h6 class="label-text">Emp No<span class="input-required-icon"></span></h6>
+                    <input class="input-text-field" type="text" placeholder="Ex : TZ000000" formControlName="employeeId"/>
+                    <small *ngIf="loginForm.get('employeeId').invalid && loginForm.get('employeeId').touched" class="error-message">
+                        <img src="../../../../assets/Images/Table/warning-diamond-fill.svg"> This field is Invalid
+                    </small>
+                </div>
+            </div>
+            <div class="inp-field-division">
+                <div>
+                    <h6 class="label-text">First Name<span class="input-required-icon"></span></h6>
+                    <input class="input-text-field" type="text" placeholder="Text"  formControlName="firstName" />
+                    <small *ngIf="loginForm.get('firstName').invalid && loginForm.get('firstName').touched" class="error-message">
+                        <img src="../../../../assets/Images/Table/warning-diamond-fill.svg"> This field is Invalid
+                    </small>
+                </div>
+                <div>
+                    <h6 class="label-text">Last Name<span class="input-required-icon"></span></h6>
+                    <input class="input-text-field" type="text" placeholder="Text" formControlName="lastName" />
+                    <small *ngIf="loginForm.get('lastName').invalid && loginForm.get('lastName').touched" class="error-message">
+                        <img src="../../../../assets/Images/Table/warning-diamond-fill.svg"> This field is Invalid
+                    </small>
+                </div>
+                <div>
+                    <h6 class="label-text">Date oF Birth</h6>
+                    <input class="input-text-field" type="date" placeholder="Select" min="1990-01-01" max="2004-12-31" formControlName="dateOfBirth"/>
+                </div>
+            </div>
+            <div class="inp-field-division">
+                <div>
+                    <h6 class="label-text">Email Id<span class="input-required-icon"></span></h6>
+                    <input class="input-text-field" type="email" placeholder="Joe.i@technovert.com" formControlName="email" />
+                    <small *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched" class="error-message">
+                        <img src="../../../../assets/Images/Table/warning-diamond-fill.svg"> This field is Invalid
+                    </small>
+                </div>
+                <div>
+                    <h6 class="label-text">Mobile Number<span class="input-required-icon"></span></h6>
+                    <input class="input-text-field no-spin-buttons" type="text" 
+                        placeholder="0000000000"  formControlName="mobileNumber" />
+                        <small *ngIf="loginForm.get('mobileNumber').invalid && loginForm.get('mobileNumber').touched" class="error-message">
+                            <img src="../../../../assets/Images/Table/warning-diamond-fill.svg"> This field is Invalid
+                        </small>
+                </div>
+            </div>
+            <h4 class="personal-employee-info">Employment Information</h4>
+            <div class="inp-field-division">
+                <div>
+                    <h6 class="label-text">Joining Date<span class="input-required-icon"></span></h6>
+                    <input class="input-joinDate"  type="date" formControlName="joinDate"/>
+                    <small *ngIf="loginForm.get('joinDate').invalid && loginForm.get('joinDate').touched" class="error-message">
+                        <img src="../../../../assets/Images/Table/warning-diamond-fill.svg"> This field is Invalid
+                    </small>
+                </div>
+                <div>
+                    <h6 class="label-text">Location</h6>
+                    <select class="input-select"  formControlName="location" >
+                        <option selected hidden>Search</option>
+                        @for(location of locations;track location)
+                        {
+                            <option>{{ location.locationName }}</option>
+                        }
+                    </select>
+                    <img src="../../../../assets/Images/Table/caret-down-bold.svg" class='caret-down' alt="caret-down" />
+                </div>
+            </div>
+            <div class="inp-field-division">
+                <div>
+                    <h6 class="label-text">Department</h6>
+                    <select class="input-select"  formControlName="department" >
+                        <option selected hidden>Search</option>
+                        @for(department of departments;track department)
+                        {
+                            <option>{{ department.departmentName }}</option>
+                        }
+                    </select>
+                    <img src="../../../../assets/Images/Table/caret-down-bold.svg" class='caret-down' alt="caret-down" />
+                </div>
+                <div>
+                    <h6 class="label-text">Role</h6>
+                    <select class="input-select"  formControlName="role" >
+                        <option selected hidden>Search</option>
+                        @for(role of roles;track role)
+                        {
+                            <option>{{ role.roleName }}</option>
+                        }
+                    </select>
+                    <img src="../../../../assets/Images/Table/caret-down-bold.svg" class='caret-down' alt="caret-down" />
+                </div>
+            </div>
+            <div class="inp-field-division">
+                <div>
+                    <h6 class="label-text">Assign Manager</h6>
+                    <select class="input-select manager-proj-input-text"  formControlName="manager" >
+                        <option selected hidden>Search</option>
+                        <option>UI/UX</option>
+                        <option>Product Engg.</option>
+                        <option>QA</option>
+                    </select>
+                    <img src="../../../../assets/Images/Table/caret-down-bold.svg" class='caret-down' alt="caret-down" />
+                </div>
+                <div>
+                    <h6 class="label-text">Assign Project</h6>
+                    <select class="input-select manager-proj-input-text"  formControlName="project" >
+                        <option selected hidden>Search</option>
+                        <option>UI/UX</option>
+                        <option>Product Engg.</option>
+                        <option>QA</option>
+                    </select>
+                    <img src="../../../../assets/Images/Table/caret-down-bold.svg" class='caret-down' alt="caret-down" />
+                </div>
+            </div>
+            <div class="place-content-at-right">
+                <button class="cncl-add-employee-btn">Cancel</button>
+                <input type="submit" value="Add Employee" class="add-employee-btn" [disabled]="loginForm.invalid"/>
+            </div>
+        </div>
+    </div>
+</form>

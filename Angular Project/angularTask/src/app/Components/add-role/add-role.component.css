@@ -1,0 +1,73 @@
+
+.title-text{
+    font-size: 12px;
+    color: #6C717D;
+    font-weight: 500;
+}
+.role-text{
+    width: 200px;
+    height: 20px;
+    font-size: 12px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+.role-text:focus{
+    outline-color: #378FFF;
+}
+.dep-select{
+    height: 28px;
+    width: 210px;
+    background-color: #F4F5F7;
+    border-radius: 3px;
+    border: none;
+    margin-bottom: 20px;
+}
+.role-descr{
+    height: 140px;
+    width: 400px;
+}
+.role-loc{
+    height: 28px;
+    width: 280px;
+    background-color: #F4F5F7;
+    border-radius: 3px;
+    border: none;
+    margin-bottom: 20px;
+}
+.input-required-icon::before {
+    content: "*";
+    color: #F44848;
+    font-size: 15px;
+    padding-left: 3px;
+}
+.role-assign-employ{
+    height: 30px;
+    width: 280px;
+    color: #AFB7C3;
+    font-size: 11px;
+}
+.cncl-sub-btn{
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    margin: 20px 10px;
+}
+.cncl-btn{
+    background-color: #FBEBEB;
+    color: #F44848;
+    border-radius: 5px;
+    padding: 5px 35px;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+}
+.sub-btn{
+    background-color: #F44848;
+    color: rgb(238, 231, 231);
+    padding: 5px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+}

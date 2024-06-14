@@ -1,1 +1,169 @@
-<p>employee-details works!</p>
+<div class="overflow-data" id="employeeData">
+    <div class="add-employ-info">
+        <div class="employ-data">
+            <div id="employeeData3">Employees</div>
+            <p>Find all of your company's employee accounts and their associated roles</p>
+        </div>
+        <div class="addEmployee-export-container">
+            <div class="adjust-export-container">
+                <button class="export-btn" id="exportOptionsButton">
+                    <img src="../../../../assets/Images/Table/Masked Icon.png" class="export-logo" alt="marked-icon" />
+                    <p>EXPORT</p>
+                </button>
+                <div class="hide-export-options" id="exportData">
+                    <button id="excelFile">Excel</button>
+                    <button id="csvFile">CSV</button>
+                </div>
+            </div>
+            <a class="add-employ-btn" id="addEmployeeForm1" routerLink="/Add-employee">
+                <span class="plus-logo">
+                    <i class="ph-bold ph-plus"></i>
+                </span>
+                ADD EMPLOYEE
+            </a>
+        </div>
+    </div>
+    <div class="employ-list" id="chars">
+        <img src="../../../assets/Images/Icons/funnel-bold.svg" class="char-filter" />
+            @for(char of characters;track char){
+                <p class="char-filter" (click)="selectEmployeeWithChar(char)">{{ char }}</p>
+            }
+    </div>
+    <div class="filter">
+        <div class="filter-search">
+            <p>Filter</p>
+            <i class="ph ph-funnel-simple filter-icon"></i>
+            <div class="show-hidden-filters">
+                <button class="filter-status" id="selectStatus">Status<img src="../../../../assets/Images/Table/caret-down-bold.svg" class="caret-down-filter"></button>
+                <div class="adjust-filters" id="statusDisplay" onclick="event.stopPropagation()">
+                    <input type="checkbox" id="active" value="Active" class="status">
+                    <label for="active">Active</label><br/>
+                    <input type="checkbox" id="inActive" value="In Active" class="status">
+                    <label for="inActive">In Active</label>
+                </div>
+            </div>
+            <div class="show-hidden-filters">
+                <button class="filter-loc" id="selectLocation">Location<img src="../../../../assets/Images/Table/caret-down-bold.svg" class="caret-down-filter"></button>
+                <div class="adjust-filters" id="locationDisplay" onclick="event.stopPropagation()">
+                    <input type="checkbox" id="hyderabad" value="Hyderabad" class="location">
+                    <label for="hyderabad">Hyderabad</label><br/>
+                    <input type="checkbox" id="banglore" value="Banglore" class="location">
+                    <label for="banglore">Banglore</label><br/>
+                    <input type="checkbox" id="guntur" value="Guntur" class="location">
+                    <label for="guntur">Guntur</label>
+                </div>
+            </div>
+            <div class="show-hidden-filters">
+                <button class="filter-dep" id="selectDepartment">Department<img src="../../../../assets/Images/Table/caret-down-bold.svg" class="caret-down-filter"></button>
+                <div class="adjust-filters" id="departmentDisplay" onclick="event.stopPropagation()">
+                    <input type="checkbox" id="ProductEngg" value="Product Engg." class="department">
+                    <label for="ProductEngg">Product Engg.</label><br/>
+                    <input type="checkbox" id="QA" value="QA" class="department">
+                    <label for="QA">QA</label><br/>
+                    <input type="checkbox" id="uiux" value="UI/UX" class="department">
+                    <label for="uiux">UI/UX</label>
+                </div>
+            </div>
+        </div>
+        <div id="resetApplyContainer" >
+            <button id="filterReset" class="filter-reset">Reset</button>
+            <button id="filterApply" class="filter-apply">Apply</button>
+        </div>
+    </div>
+    <div class="emp-delete">
+        <div>
+            <div class="delete">
+                <img src="../../../../assets/Images/Table/arrow-turn left -down.png" class="del-tbl-add-img"
+                    alt="delete-logo" />
+                <button id="deleteButton" class="del-btn">Delete</button>
+            </div>
+        </div>
+        <div><img src="../../../../assets/Images/Table/table-add.png" class="del-tbl-add-img" alt="add-table"></div>
+    </div>
+    <table class="table" id="employeeInformation" cellspacing="0">
+        <thead>
+            <tr class="table-head">
+                <td><input type="checkbox" id="checkAllEmployees"></td>
+                <td>
+                    <div id="userSort" class="table-th">
+                        <p>USER</p>
+                        <img src="../../../../assets/Images/Table/caret-up-down-bold.svg" alt="up-down-icon" />
+                    </div>
+                </td>
+                <td>
+                    <div id="locSort" class="table-th">
+                        <p>LOCATION</p>
+                        <img src="../../../../assets/Images/Table/caret-up-down-bold.svg" alt="up-down-icon" />
+                    </div>
+                </td>
+                <td>
+                    <div id="depSort" class="table-th">
+                        <p>DEPARTMENT</p>
+                        <img src="../../../../assets/Images/Table/caret-up-down-bold.svg" alt="up-down-icon" />
+                    </div>
+                </td>
+                <td>
+                    <div id="roleSort" class="table-th">
+                        <p>ROLE</p>
+                        <img src="../../../../assets/Images/Table/caret-up-down-bold.svg" alt="up-down-icon" />
+                    </div>
+                </td>
+                <td>
+                    <div id="emp_noSort" class="table-th">
+                        <p>EMP NO</p>
+                        <img src="../../../../assets/Images/Table/caret-up-down-bold.svg" alt="up-down-icon" />
+                    </div>
+                </td>
+                <td>
+                    <div id="statusSort" class="table-th">
+                        <p>STATUS</p>
+                        <img src="../../../../assets/Images/Table/caret-up-down-bold.svg" alt="up-down-icon" />
+                    </div>
+                </td>
+                <td>
+                    <div id="join_dtSort" class="table-th">
+                        <p>JOIN DT</p>
+                        <img src="../../../../assets/Images/Table/caret-up-down-bold.svg" alt="up-down-icon" />
+                    </div>
+                </td>
+                <td><img src="../../../../assets/Images/Table/dots-three-bold.svg" class="ellipse" alt="ellipse"/></td>
+            </tr>
+        </thead>
+        <tbody>
+            @for(employee of employeesData;track employee)
+            {
+            <tr class="table-row">
+                <td><input type="checkbox" class="employ-checkbox" name="all_check"></td>
+              <td>
+                <div class="emp-profile">
+                  <div><img src="../../../../assets/Images/Search-bar/bx-search.png" class="admin-logo"></div>
+                  <div>
+                    <p class="emp-name">{{ employee.firstName }}</p>
+                    <p class="emp-mailid">{{ employee.email }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>{{ employee.location }}</td>
+              <td>{{ employee.department }}</td>
+              <td>{{ employee.jobTitle }}</td>
+              <td>{{ employee.employeeId }}</td>
+              <td>
+                <!-- <button type="button" [ngClass]="{'emp-status': employee.status === 'Active', 'emp-status-inActive': employee.status !== 'Active'}">
+                  {{ employee.status }}
+                </button> -->
+                <button type="button">Active</button>
+              </td>
+              <td>{{ employee.joinDate }}</td>
+              <td class="ellipse-data">
+                <img src="../../../assets/Images/Table/dots-three-bold.svg" class="ellipse" [attr.id]="'ellipse' + employee.employeeId" alt="ellipse"/>
+                <div class='ellipse-position' [attr.id]="'show' + employee.employeeId">
+                  <button type='button' class='ellipse-button' [attr.id]="employee.employeeId + 'edit'" value='Edit'>Edit</button>
+                  <button type='button' class='ellipse-button' [attr.id]="employee.employeeId + 'view'" value='view Details'>View Details</button>
+                  <button type='button' class='ellipse-button' [attr.id]="employee.employeeId + 'delete'" value='Edit'>Delete</button>
+                </div>
+              </td>
+            </tr>
+            }
+          </tbody>
+    </table>
+</div>
