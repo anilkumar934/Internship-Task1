@@ -7,6 +7,7 @@ import { LocationService } from '../../Services/location.service';
 import { RoleService } from '../../Services/role.service';
 import { EmployeeService } from '../../Services/employee.service';
 import { Employee } from '../../Models/employee';
+import { ProjectService } from '../../Services/project.service';
 
 
 @Component({
@@ -22,18 +23,23 @@ export class AddEmployeeComponent {
   departments:any[]=[];
   roles:any[]=[];
   loginForm:FormGroup;
+  projects:any[]=[];
+  employeesData:Employee[]=[];
 
 
   ngOnInit(): void {
    this.InitializeFormData(); 
   }
 
-  constructor(private _departemnetService:DepartmentService,private _locationService:LocationService,private _roleService:RoleService,private _employeeService:EmployeeService){
+  constructor(private _departemnetService:DepartmentService,private _locationService:LocationService,private _roleService:RoleService,private _employeeService:EmployeeService,private _projectService:ProjectService){
     this.fetchDepartments();
     this.fetchLocations();
     this.fetchRoles();
+    this.fetchProject();
+    this.fetchAllEmployees();
   }
 
+ 
   onFormSubmit()
   {
     let newEmployee:Employee={
@@ -86,6 +92,19 @@ export class AddEmployeeComponent {
     this._employeeService.addEmployee(employee).subscribe();
   }
 
+  fetchProject()
+  {
+    this._projectService.getAllProjects().subscribe((data)=>{
+      this.projects = data as any[];
+    })
+  }
+
+  fetchAllEmployees()
+  {
+    this._employeeService.getAllEmployees().subscribe((data)=>{
+      this.employeesData = data as any[];
+    })
+  }
 
   InitializeFormData()
   {
@@ -93,7 +112,7 @@ export class AddEmployeeComponent {
       employeeId:new FormControl('',
           [Validators.required,
           Validators.minLength(8),
-          Validators.pattern('^TZ[0-9]{6}$')
+          Validators.pattern('^TZ[0-9]{6}$'),
         ]
       ),
       firstName:new FormControl('',

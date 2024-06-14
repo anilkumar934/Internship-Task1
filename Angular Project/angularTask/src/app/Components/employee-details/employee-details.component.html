@@ -24,9 +24,9 @@
         </div>
     </div>
     <div class="employ-list" id="chars">
-        <img src="../../../assets/Images/Icons/funnel-bold.svg" class="char-filter" />
-            @for(char of characters;track char){
-                <p class="char-filter" (click)="selectEmployeeWithChar(char)">{{ char }}</p>
+        <img src="../../../assets/Images/Icons/funnel-bold.svg" class="char-filter" (click)="resetCharFilter()"/>
+            @for( ch of characters;track ch){
+                <p class="char-filter" (click)="setAlphabetTo(ch)">{{ ch }}</p>
             }
     </div>
     <div class="filter">
@@ -35,7 +35,7 @@
             <i class="ph ph-funnel-simple filter-icon"></i>
             <div class="show-hidden-filters">
                 <button class="filter-status" id="selectStatus">Status<img src="../../../../assets/Images/Table/caret-down-bold.svg" class="caret-down-filter"></button>
-                <div class="adjust-filters" id="statusDisplay" onclick="event.stopPropagation()">
+                <div [class]="'adjust-filters'">
                     <input type="checkbox" id="active" value="Active" class="status">
                     <label for="active">Active</label><br/>
                     <input type="checkbox" id="inActive" value="In Active" class="status">
@@ -45,29 +45,28 @@
             <div class="show-hidden-filters">
                 <button class="filter-loc" id="selectLocation">Location<img src="../../../../assets/Images/Table/caret-down-bold.svg" class="caret-down-filter"></button>
                 <div class="adjust-filters" id="locationDisplay" onclick="event.stopPropagation()">
-                    <input type="checkbox" id="hyderabad" value="Hyderabad" class="location">
-                    <label for="hyderabad">Hyderabad</label><br/>
-                    <input type="checkbox" id="banglore" value="Banglore" class="location">
-                    <label for="banglore">Banglore</label><br/>
-                    <input type="checkbox" id="guntur" value="Guntur" class="location">
-                    <label for="guntur">Guntur</label>
+                    
+                    @for(location of locations;track location)
+                    {
+                        <input type="checkbox" [id]="location.locationName" #location (change)="OnChangeLocation(location)" class="location"/>
+                        <label [for]="'location.locationName'">{{location.locationName}}</label><br/>
+                    }
                 </div>
             </div>
             <div class="show-hidden-filters">
                 <button class="filter-dep" id="selectDepartment">Department<img src="../../../../assets/Images/Table/caret-down-bold.svg" class="caret-down-filter"></button>
-                <div class="adjust-filters" id="departmentDisplay" onclick="event.stopPropagation()">
-                    <input type="checkbox" id="ProductEngg" value="Product Engg." class="department">
-                    <label for="ProductEngg">Product Engg.</label><br/>
-                    <input type="checkbox" id="QA" value="QA" class="department">
-                    <label for="QA">QA</label><br/>
-                    <input type="checkbox" id="uiux" value="UI/UX" class="department">
-                    <label for="uiux">UI/UX</label>
+                <div class="adjust-filters" [ngClass]="{'active-class': isActive}" (click)="toggleClass()">
+                    @for(department of departments;track department)
+                    {
+                        <input type="checkbox" #department (change)="OnChangeDepartment(department)" class="department">
+                        <label >{{department.departmentName}}</label><br/>
+                    }
                 </div>
             </div>
         </div>
         <div id="resetApplyContainer" >
-            <button id="filterReset" class="filter-reset">Reset</button>
-            <button id="filterApply" class="filter-apply">Apply</button>
+            <button id="filterReset" (click)="resetFilters()" class="filter-reset">Reset</button>
+            <button id="filterApply" (click)="selectEmployeeWithFilters(filters)" class="filter-apply">Apply</button>
         </div>
     </div>
     <div class="emp-delete">

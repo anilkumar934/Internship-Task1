@@ -4,7 +4,7 @@
         <div class="employee-pic-upload">
             <div>
                 <img src="../../../../assets/Images/Table/download.jpg" class="upload-pic" alt="Employee-pic" />
-                <input type="file" accept="image/*" hidden >
+                <input type="file" id="employPic" accept="image/*" hidden >
                 <label for="employPic" class="upload-pic-label">Upload Profile Picture</label>
             </div>
         </div>
@@ -106,9 +106,10 @@
                     <h6 class="label-text">Assign Manager</h6>
                     <select class="input-select manager-proj-input-text"  formControlName="manager" >
                         <option selected hidden>Search</option>
-                        <option>UI/UX</option>
-                        <option>Product Engg.</option>
-                        <option>QA</option>
+                        @for(employee of employeesData;track employee)
+                        {
+                            <option> {{employee.firstName}} </option>
+                        }
                     </select>
                     <img src="../../../../assets/Images/Table/caret-down-bold.svg" class='caret-down' alt="caret-down" />
                 </div>
@@ -116,9 +117,10 @@
                     <h6 class="label-text">Assign Project</h6>
                     <select class="input-select manager-proj-input-text"  formControlName="project" >
                         <option selected hidden>Search</option>
-                        <option>UI/UX</option>
-                        <option>Product Engg.</option>
-                        <option>QA</option>
+                        @for(project of projects;track project)
+                        {
+                            <option>{{ project.name }}</option>
+                        }
                     </select>
                     <img src="../../../../assets/Images/Table/caret-down-bold.svg" class='caret-down' alt="caret-down" />
                 </div>
