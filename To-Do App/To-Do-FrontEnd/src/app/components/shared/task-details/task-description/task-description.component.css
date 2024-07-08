@@ -1,0 +1,50 @@
+.description-container{
+    position: absolute;
+    right: 8%;
+    line-height: 2%;
+    padding: 2%;
+    box-shadow: 1px 1px 10px rgb(206, 197, 160);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    z-index: 1;
+    margin-bottom: 19%;
+}
+
+.arrange-images{
+    display: flex;
+    justify-content: space-between;
+    img{
+        cursor: pointer;
+    }
+}
+
+.options{
+    margin-right: 10%;
+    display: flex;
+    gap: 50%;
+}
+.inactive{
+    background-color: #EDB049;
+}
+
+.addTaskComp{
+    position: absolute;
+    height: 40%;
+    top: 1%;
+    width: 80%;
+}
+
+@media screen and (max-width:500px) {
+    h2{
+        font-size: 15px;
+    }
+    h4{
+        font-size: 12px;
+    }
+    h6{
+        font-size: 8px;
+    }
+    img{
+        height: 15px;
+    }
+}

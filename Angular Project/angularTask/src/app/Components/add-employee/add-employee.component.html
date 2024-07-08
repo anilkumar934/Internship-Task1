@@ -126,7 +126,7 @@
                 </div>
             </div>
             <div class="place-content-at-right">
-                <button class="cncl-add-employee-btn">Cancel</button>
+                <button class="cncl-add-employee-btn" (click)="resetForm()">Cancel</button>
                 <input type="submit" value="Add Employee" class="add-employee-btn" [disabled]="loginForm.invalid"/>
             </div>
         </div>

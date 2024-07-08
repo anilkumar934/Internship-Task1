@@ -1,0 +1,54 @@
+
+.app-container{
+    display: flex;
+    /* overflow: hidden; */
+    z-index: 1;
+}
+
+.side-bar-container{
+    width: 20%;
+}
+
+.side-bar-options{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    z-index: 0;
+    /* overflow: scroll; */
+    scrollbar-width: none;
+}
+
+.navigate-comp{
+    display: none;
+}
+
+
+@media screen and (max-width:500px)
+{
+    .side-bar-container{
+        width: 0%;
+    }
+    .navigate-comp{
+        display: block;
+    }
+}
+
+@media screen and (max-width:900px) and (min-width:500px)
+{
+    .side-bar-container{
+        width: 0%;
+    }
+    .navigate-comp{
+        display: block;
+    }
+}
+
+@media screen and (min-width:1400)
+{
+    .side-bar-container{
+        width: 0%;
+    }
+    .navigate-comp{
+        display: block;
+    }
+}

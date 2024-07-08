@@ -1,0 +1,74 @@
+.parent{
+    display: none;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    border: 10px;
+    width: 82%;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #EDB046;
+    padding: 0% 4%;
+    margin: 5%;
+    text-transform: capitalize;
+    img{
+
+        height: 20px;
+    }
+}
+
+.select-view{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.child{
+    position: absolute;
+    display: none;
+    top: 80%;
+    right: 0%;
+    padding:1% 4%;
+    width: 92%;
+    border-radius: 10px;
+    border-top-left-radius: 0%;
+    border-top-right-radius: 0%;
+    box-shadow: 1px 1px 10px rgb(170, 168, 171);
+    background-color: rgb(249, 250, 251);
+    z-index: 1;
+}
+
+.showLabels{
+    .parent{
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+    .child{
+        display: block;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .parent{
+        display: flex;
+        height: 40px;
+        p{
+            font-size: 10px;
+            font-weight: 500;
+        }
+        img{
+            height: 10px;
+        }
+    }
+}
+
+@media screen and (max-width:900px) and (min-width:500px) {
+    .parent{
+        display: flex;
+        height: 60px;
+    }
+    p{
+        font-size: 15px;
+        font-weight: 500;
+    }
+}

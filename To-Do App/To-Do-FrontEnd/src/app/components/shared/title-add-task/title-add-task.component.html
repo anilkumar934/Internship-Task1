@@ -1,0 +1,14 @@
+<div class="top-container">
+    <div>
+        <h2>To-Do App</h2>
+    </div>
+    <div class="add-task" (click)="addTask = true">
+            <p>Add Task</p>
+            <img src="../../../../assets/images/plus-circle-fill.svg" />
+    </div>
+    <div class="addTaskComp" [ngStyle]="{'display':addTask?'block':'none'}">
+        <div>
+            <app-add-task (hideAddTask)="addTask = false"></app-add-task>
+        </div>
+    </div>
+</div>

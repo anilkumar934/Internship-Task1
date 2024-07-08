@@ -1,0 +1,46 @@
+.date-header{
+    margin: 2% 1%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 8%;
+}
+
+.task-status{
+    text-transform: capitalize;
+    padding: 2% 0%;
+    display: none;
+}
+
+.delete-date{
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+}
+
+.delete{
+    cursor: pointer;
+    color: #BA5112;
+}
+
+@media screen and (max-width:500px) {
+    h3{
+        font-size: 11px;
+    }
+    h5{
+        font-size: 6px;
+    }
+    .task-status{
+        display: none;
+    }
+}
+
+@media screen and (max-width:900px) and (min-width:500px){
+    h3{
+        font-size: 16px;
+    }
+    h5{
+        font-size: 13px;
+    }
+}

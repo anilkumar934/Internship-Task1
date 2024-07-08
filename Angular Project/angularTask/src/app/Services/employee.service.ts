@@ -23,4 +23,9 @@ export class EmployeeService {
   {
     return this.http.post("https://localhost:7271/api/Employee/filters/",{...filters});
   }
+
+  getEmployeesByRole(role:string)
+  {
+    return this.http.post("https://localhost:7271/api/Employee/Role/",role);
+  }
 }

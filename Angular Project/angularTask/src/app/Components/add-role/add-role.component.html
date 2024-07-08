@@ -1,19 +1,44 @@
-<form id="addRole" class="form-roles">
+<form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()" class="form-roles">
     <p>Create New Role</p>
     <table>
         <tr class="title-text">
+            <td>Role Id<span class="input-required-icon"></span></td>
             <td>Role Name<span class="input-required-icon"></span></td>
-            <td>Department<span class="input-required-icon"></span></td>
+            <td>Department Id<span class="input-required-icon"></span></td>
         </tr>
         <tr>
-            <td><input type="text" class="role-text" placeholder="New Role"></td>
-            <td><select class="dep-select">
+            <td><input type="text" class="role-text" placeholder="Role Id" formControlName="roleId">
+                
+            </td>
+            <td><input type="text" class="role-text" placeholder="New Role" formControlName="roleName">
+                
+            </td>
+            <td><select class="dep-select" formControlName="departmentId">
                     <option selected hidden>Search</option>
                     @for(department of departments;track department)
                     {
-                        <option>{{ department.departmentName }}</option>
+                        <option>{{ department.departmentId }}</option>
                     }
-                </select></td>
+                </select>
+                
+            </td>
+        </tr>
+        <tr class="gap-btw-containers">
+            <td>
+                <small *ngIf="loginForm.get('roleId').invalid && loginForm.get('roleId').touched" class="error-message">
+                    <img src="../../../../assets/Images/Table/warning-diamond-fill.svg"> This field is Invalid
+                </small>
+            </td>
+            <td>
+                <small *ngIf="loginForm.get('roleName').invalid && loginForm.get('roleName').touched" class="error-message">
+                    <img src="../../../../assets/Images/Table/warning-diamond-fill.svg"> This field is Invalid
+                </small>
+            </td>
+            <td>
+                <small *ngIf="loginForm.get('departmentId').invalid && loginForm.get('departmentId').touched" class="error-message">
+                    <img src="../../../../assets/Images/Table/warning-diamond-fill.svg"> This field is Invalid
+                </small>
+            </td>
         </tr>
         <tr class="title-text">
             <td>Description</td>
@@ -23,18 +48,18 @@
         </tr>
     </table>
     <p class="title-text">Location<span class="input-required-icon"></span></p>
-    <select class="role-loc">
+    <select class="role-loc" formControlName="locationName">
         <option selected hidden>Search</option>
-        <@for(location of locations;track location)
+        @for(location of locations;track location)
         {
             <option>{{ location.locationName }}</option>
         }
     </select>
-    <!-- <p class="title-text">Assign employees</p>
+    <p class="title-text">Assign employees</p>
     <select class="role-assign-employ">
         <option selected hidden>Search for an employee</option>
         <option ></option>
-    </select> -->
+    </select>
     <div class="cncl-sub-btn">
         <button class="cncl-btn">Cancel</button>
         <button class="sub-btn">Add Role</button>

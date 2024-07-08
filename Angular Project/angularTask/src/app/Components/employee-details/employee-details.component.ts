@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,ElementRef,OnInit, viewChild } from '@angular/core';
 import { RouterLink} from '@angular/router';
 import { EmployeeService } from '../../Services/employee.service';
 import {CommonModule} from '@angular/common'
@@ -6,7 +6,9 @@ import { Employee } from '../../Models/employee';
 import { Filter } from '../../Models/filters';
 import { DepartmentService } from '../../Services/department.service';
 import { LocationService } from '../../Services/location.service';
-import { FormsModule,  NgModel,  ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import * as xlsx from 'xlsx';
+import { ViewChild } from '@angular/core';
 
 
 
@@ -26,6 +28,10 @@ export class EmployeeDetailsComponent {
   characters: string[]=[];
   filters:Filter;
   isActive:boolean = false;
+  isLocation:boolean = false;
+  isDepartment:boolean = false;
+  ellipseStatus = false;
+  @ViewChild('employeeInformation') employeeInformation:ElementRef;
   
   constructor(private _employeeService:EmployeeService,private _departmentService:DepartmentService,private _locationService:LocationService)
   {
@@ -36,6 +42,21 @@ export class EmployeeDetailsComponent {
     this.filters = new Filter();
   }
 
+  toggleActive()
+  {
+    this.isActive = !this.isActive;
+  }
+
+  toggleDepartment()
+  {
+    this.isDepartment = !this.isDepartment;
+  }
+
+  toggleLocation()
+  {
+    this.isLocation = !this.isLocation;
+  }
+
   fetchAllEmployee()
   {
     this._employeeService.getAllEmployees().subscribe((data)=>{
@@ -43,8 +64,29 @@ export class EmployeeDetailsComponent {
     });
   }
 
+  exportDataToExcel() {
+    let data = this.employeeInformation.nativeElement as HTMLElement;
+    let clonedTable = data.cloneNode(true) as HTMLElement;
+    
+    let rows = clonedTable.getElementsByTagName('tr');
+    for (let i = 0; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName('td');
+        if (cells.length > 1) {
+            rows[i].deleteCell(0);
+            rows[i].deleteCell(cells.length - 1);
+        }
+    }
+    
+    let excelFile = xlsx.utils.table_to_book(clonedTable, { sheet: 'sheet1' });
+    xlsx.writeFile(excelFile, 'ExcelFile.xlsx');
+  }
+
+  onClickOfEllipse(status:boolean)
+  {
+    console.log(status)
+  }
+
   OnChangeLocation(loc : any){
-    // console.log(loc)
     let locs:string[] = this.filters.locations
     for(let location of locs)
     {
@@ -57,7 +99,6 @@ export class EmployeeDetailsComponent {
     }
     locs.push(loc.locationName)
     this.filters.locations = locs
-    // console.log(this.filters.locations);
   }
 
   OnChangeDepartment(dep:any)
@@ -121,7 +162,5 @@ export class EmployeeDetailsComponent {
     this.filters.locations = [];
     this.selectEmployeeWithFilters(this.filters);
   }
-  toggleClass(){
-    this.isActive = !this.isActive;
-  }
+  
 }

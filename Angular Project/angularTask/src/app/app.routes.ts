@@ -3,19 +3,20 @@ import { AddEmployeeComponent } from './Components/add-employee/add-employee.com
 import { RoleDetailsComponent } from './Components/role-details/role-details.component';
 import { EmployeeDetailsComponent } from './Components/employee-details/employee-details.component';
 import { AddRoleComponent } from './Components/add-role/add-role.component';
+import { RolesComponent } from './Components/roles/roles.component';
 
 export const routes: Routes = [
-    {
-        path: '',
-        component:AddEmployeeComponent,
-    },
+    // {
+    //     path: '',
+    //     component:AddEmployeeComponent,
+    // },
     {
         path:'Add-employee',
         component:AddEmployeeComponent,
 
     },
     {
-        path:'Role',
+        path:'Role-details',
         component:RoleDetailsComponent,
     },
     {
@@ -25,6 +26,10 @@ export const routes: Routes = [
     {
         path:'Add-role',
         component:AddRoleComponent
+    },
+    {
+        path:'Roles',
+        component:RolesComponent
     }
     // {
     //     path:'**',//wild card route mathces all routes

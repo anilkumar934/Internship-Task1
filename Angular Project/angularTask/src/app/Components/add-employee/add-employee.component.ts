@@ -31,17 +31,22 @@ export class AddEmployeeComponent {
    this.InitializeFormData(); 
   }
 
-  constructor(private _departemnetService:DepartmentService,private _locationService:LocationService,private _roleService:RoleService,private _employeeService:EmployeeService,private _projectService:ProjectService){
-    this.fetchDepartments();
-    this.fetchLocations();
-    this.fetchRoles();
-    this.fetchProject();
-    this.fetchAllEmployees();
+  constructor(private _departemnetService:DepartmentService,
+    private _locationService:LocationService,
+    private _roleService:RoleService,
+    private _employeeService:EmployeeService,
+    private _projectService:ProjectService){
+      this.fetchDepartments();
+      this.fetchLocations();
+      this.fetchRoles();
+      this.fetchProject();
+      this.fetchAllEmployees();
   }
 
  
   onFormSubmit()
   {
+    if(this.loginForm.invalid){return;}
     let newEmployee:Employee={
       employeeId:this.loginForm.get('employeeId').value,
       firstName:this.loginForm.get('firstName').value,
@@ -56,8 +61,7 @@ export class AddEmployeeComponent {
       manager:this.loginForm.get('manager').value,
       project:this.loginForm.get('project').value
     }
-    
-    this.loginForm.reset();
+    this.resetForm();
     this.createEmployee(newEmployee);
   }
 
@@ -140,5 +144,13 @@ export class AddEmployeeComponent {
       manager:new FormControl(''),
       project:new FormControl('')
     });
+  }
+
+  resetForm()
+  {
+    this.loginForm.reset();
+    this.loginForm.patchValue({
+      location:'search'
+    })
   }
 }

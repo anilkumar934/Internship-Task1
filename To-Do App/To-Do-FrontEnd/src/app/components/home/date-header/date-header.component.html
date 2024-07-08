@@ -1,0 +1,12 @@
+<div class="date-header">
+    <div>
+        <h3>Today's <span [ngClass]="routeOption == 'Dashboard' ? 'task-status':''">{{routeOption}}</span> Tasks</h3>
+    </div>
+    <div class="delete-date">
+        <h5 class="delete"  [ngStyle]="{ 'display': routeOption == 'Dashboard' ? 'block' : 'none' }"
+            (click)="deleteAllTasks()">
+            Delete All
+          </h5>
+        <h5 class="date">{{curDate | date : "EEEE , dd MMMM yyyy"}}</h5>
+    </div>
+</div>

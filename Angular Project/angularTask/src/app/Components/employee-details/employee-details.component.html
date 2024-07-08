@@ -6,7 +6,7 @@
         </div>
         <div class="addEmployee-export-container">
             <div class="adjust-export-container">
-                <button class="export-btn" id="exportOptionsButton">
+                <button class="export-btn" id="exportOptionsButton" (click)="exportDataToExcel()">
                     <img src="../../../../assets/Images/Table/Masked Icon.png" class="export-logo" alt="marked-icon" />
                     <p>EXPORT</p>
                 </button>
@@ -17,7 +17,7 @@
             </div>
             <a class="add-employ-btn" id="addEmployeeForm1" routerLink="/Add-employee">
                 <span class="plus-logo">
-                    <i class="ph-bold ph-plus"></i>
+                    <img src="../../../assets/Images/Icons/plus-bold.svg">
                 </span>
                 ADD EMPLOYEE
             </a>
@@ -34,8 +34,8 @@
             <p>Filter</p>
             <i class="ph ph-funnel-simple filter-icon"></i>
             <div class="show-hidden-filters">
-                <button class="filter-status" id="selectStatus">Status<img src="../../../../assets/Images/Table/caret-down-bold.svg" class="caret-down-filter"></button>
-                <div [class]="'adjust-filters'">
+                <button class="filter-status" (click)="toggleActive()">Status<img src="../../../../assets/Images/Table/caret-down-bold.svg" class="caret-down-filter"></button>
+                <div [ngClass]="{'active-class': isActive}" class="adjust-filters">
                     <input type="checkbox" id="active" value="Active" class="status">
                     <label for="active">Active</label><br/>
                     <input type="checkbox" id="inActive" value="In Active" class="status">
@@ -43,8 +43,8 @@
                 </div>
             </div>
             <div class="show-hidden-filters">
-                <button class="filter-loc" id="selectLocation">Location<img src="../../../../assets/Images/Table/caret-down-bold.svg" class="caret-down-filter"></button>
-                <div class="adjust-filters" id="locationDisplay" onclick="event.stopPropagation()">
+                <button class="filter-loc" (click)="toggleLocation()">Location<img src="../../../../assets/Images/Table/caret-down-bold.svg" class="caret-down-filter"></button>
+                <div class="adjust-filters" [ngClass]="{'active-class': isLocation}">
                     
                     @for(location of locations;track location)
                     {
@@ -53,9 +53,9 @@
                     }
                 </div>
             </div>
-            <div class="show-hidden-filters">
+            <div class="show-hidden-filters" (click)="toggleDepartment()">
                 <button class="filter-dep" id="selectDepartment">Department<img src="../../../../assets/Images/Table/caret-down-bold.svg" class="caret-down-filter"></button>
-                <div class="adjust-filters" [ngClass]="{'active-class': isActive}" (click)="toggleClass()">
+                <div class="adjust-filters" [ngClass]="{'active-class': isDepartment}" >
                     @for(department of departments;track department)
                     {
                         <input type="checkbox" #department (change)="OnChangeDepartment(department)" class="department">
@@ -79,7 +79,7 @@
         </div>
         <div><img src="../../../../assets/Images/Table/table-add.png" class="del-tbl-add-img" alt="add-table"></div>
     </div>
-    <table class="table" id="employeeInformation" cellspacing="0">
+    <table class="table" #employeeInformation cellspacing="0">
         <thead>
             <tr class="table-head">
                 <td><input type="checkbox" id="checkAllEmployees"></td>
@@ -131,9 +131,9 @@
         <tbody>
             @for(employee of employeesData;track employee)
             {
-            <tr class="table-row">
+            <tr class="table-row" #{{ employee.employeeId }}>
                 <td><input type="checkbox" class="employ-checkbox" name="all_check"></td>
-              <td>
+              <td >
                 <div class="emp-profile">
                   <div><img src="../../../../assets/Images/Search-bar/bx-search.png" class="admin-logo"></div>
                   <div>
@@ -147,18 +147,15 @@
               <td>{{ employee.jobTitle }}</td>
               <td>{{ employee.employeeId }}</td>
               <td>
-                <!-- <button type="button" [ngClass]="{'emp-status': employee.status === 'Active', 'emp-status-inActive': employee.status !== 'Active'}">
-                  {{ employee.status }}
-                </button> -->
                 <button type="button">Active</button>
               </td>
               <td>{{ employee.joinDate }}</td>
               <td class="ellipse-data">
                 <img src="../../../assets/Images/Table/dots-three-bold.svg" class="ellipse" [attr.id]="'ellipse' + employee.employeeId" alt="ellipse"/>
-                <div class='ellipse-position' [attr.id]="'show' + employee.employeeId">
-                  <button type='button' class='ellipse-button' [attr.id]="employee.employeeId + 'edit'" value='Edit'>Edit</button>
-                  <button type='button' class='ellipse-button' [attr.id]="employee.employeeId + 'view'" value='view Details'>View Details</button>
-                  <button type='button' class='ellipse-button' [attr.id]="employee.employeeId + 'delete'" value='Edit'>Delete</button>
+                <div class='ellipse-position' #ellipseButton (click)="onClickOfEllipse(employee.employeeId)">
+                  <button type='button' class='ellipse-button' value='Edit'>Edit</button>
+                  <button type='button' class='ellipse-button' value='view Details'>View Details</button>
+                  <button type='button' class='ellipse-button' value='Edit'>Delete</button>
                 </div>
               </td>
             </tr>

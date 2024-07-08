@@ -1,0 +1,17 @@
+<div class="modal">
+    <div class="hero-comp">
+        <app-hero></app-hero>
+    </div>
+    <div class="status-mini">
+        <app-task-status></app-task-status>
+    </div>
+    <app-date-header></app-date-header>
+    <div class="task-status-container">
+        <div class="task-manage">
+            <app-task-details [type]="routeOption" [showDetails]="false"></app-task-details>
+        </div>
+        <div class="status-manage">
+            <app-task-status></app-task-status>
+        </div>
+    </div>
+</div>

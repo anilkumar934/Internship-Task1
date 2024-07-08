@@ -1,0 +1,26 @@
+
+<form class="task-container" [formGroup]="addTaskForm" (ngSubmit)="onFormSubmit()">
+    <div class="border-adjust">
+        <div>
+            <input type="text" placeholder="Add Title" class="task-title" formControlName="taskName"><br/>
+            <span class="error-message" *ngIf="addTaskForm.get('taskName')?.invalid && addTaskForm.get('taskName')?.touched">
+                input should greater than 3 characters and start with alphabet/number</span>
+        </div>
+        <div>
+            <textarea 
+                placeholder="Add Description" 
+                class="task-title" formControlName="taskDescription"
+                rows="6">
+            </textarea>
+            <span class="error-message" *ngIf="addTaskForm.get('taskDescription')?.invalid && addTaskForm.get('taskDescription')?.touched">
+                input should greater than 3 characters and start with alphabet/number</span>
+        </div>
+        <div class="submit-control">
+            <button class="cancel-btn" (click)="hideAddTaskWindow()">Cancel</button>
+            <button type="submit" class="save">
+               @if(isForEdit) {Update}
+               @else{Save}
+            </button>
+        </div>
+    </div>
+</form>

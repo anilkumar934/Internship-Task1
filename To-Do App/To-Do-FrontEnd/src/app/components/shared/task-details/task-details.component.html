@@ -1,0 +1,12 @@
+<div class="today-task">
+    @for(task of tasks;track task)
+    {
+        @if(task.status == type || type == 'Dashboard'){
+        <div class="task" [ngClass]="{'inactive':task.status == 'Completed'}" (click)="showDetails && (taskId = task.id)" [ngStyle]="{'cursor':type != 'Dashboard'?'pointer':''}">
+            <img [src]="task.status == 'Completed' ? '../../../assets/images/check-square-fill.svg' : '../../../assets/images/check-square.svg'" alt="status icon">
+            <p>{{ task.name}}</p>
+        </div>
+        <span *ngIf="taskId == task.id" appCommon (clickOutside)="taskId=0"><app-task-description [taskInfo]="task" [active]="type" (loadTasks)="fetchAllTasks()" ></app-task-description></span>
+        }
+    }
+</div>

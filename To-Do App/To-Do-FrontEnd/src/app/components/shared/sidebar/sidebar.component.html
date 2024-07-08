@@ -1,0 +1,8 @@
+<div class="side-bar">
+    <app-title-add-task></app-title-add-task>
+    <div *ngFor = "let item of SideBarOptions">
+        <div class="sidebar-option" [routerLink]="item.routeLink"  routerLinkActive="on-route" >
+            {{ item.option }}
+    </div>
+    </div>
+</div>

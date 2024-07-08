@@ -1,0 +1,71 @@
+<div id="roles" class="roles">
+    <div class="role-manage">
+        <div class="role-data">
+            <div >Employees</div>
+            <p>Find all of your company's employee accounts and their associated roles</p>
+        </div>
+        <div>
+            <div type="button" class="add-role-btn" routerLink="/Add-role">
+                <img src="../../../assets/Images/Icons/plus-bold.svg" class="plus-logo"/>
+                ADD ROLE
+            </div>
+        </div>
+    </div>
+    <div class="filter">
+        <div class="filter-search">
+            <p>Filter</p>
+            <i class="ph ph-funnel-simple filter-icon"></i>
+            <select class="filter-dep" id="selectDepartment">
+                <option value="none" selected hidden>Department</option>
+                <option>product engg.</option>
+                <option>IT</option>
+                <option>UIUX</option>
+                <option>sales</option>
+            </select>
+            <select class="filter-loc" id="selectLocation">
+                <option value="none" selected hidden>Location</option>
+                <option>madh</option>
+                <option>hyd</option>
+                <option>high_tech</option>
+                <option>kammam</option>
+            </select>
+        </div>
+        <div>
+            <button type="button" class="filter-reset">Reset</button>
+            <button type="button" class="filter-apply">Apply</button>
+        </div>
+    </div>
+    <div class="role-emp">
+        @for(role of roles;track role)
+        {
+            <div class="role-details">
+                <div class="role-edit">
+                    <p>{{role.roleName}}</p>
+                    <img src="../../../assets/Images/Side-bar/edit.svg" alt="Edit button" />
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="../../../assets/Images/Table/team_svgrepo.com.svg" alt="Department-logo" />
+                        <p>Department</p>
+                    </div>
+                    <p>{{role.departmentId}}</p>
+                </div>
+                <div class="role-dep">
+                    <div class="role-align">
+                        <img src="../../../assets/Images/Side-bar/location-pin-alt-1_svgrepo.com.svg" alt="location-logo" />
+                        <p>Location</p>
+                    </div>
+                    <p>Hyderabad</p>
+                </div>
+                <div class="role-dep">
+                    <p>Total Employees</p>
+                    <img src="../../../assets/Images/Table/total-employees.jpg" alt="total-emolyes" class="tot-emp-image" />
+                </div>
+                <a class="all-emp" routerLink="/Role-details" >
+                    <p href="./Employee/Employee.html">View all Employees</p>
+                    <img src="../../../assets/Images/Side-bar/Vector.svg" alt="vector-logo" />
+                </a>
+            </div>
+        }
+    </div>
+</div>

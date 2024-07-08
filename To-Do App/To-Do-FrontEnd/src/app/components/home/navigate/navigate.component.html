@@ -1,0 +1,15 @@
+<div class="parent" [ngClass]="{'showLabels':showItems}" (click)="toggleItems()" appCommon (clickOutside)="showItems=false">
+    <div class="select-view">
+        <p>{{selecteditem}}</p>
+        <img src="../../../../assets/images/caret-down-bold.svg">
+    </div>
+    <div class="child">
+        @for(item of SideBarOptions;track item)
+        {
+            @if(item.option != selecteditem)
+            {
+                <p [routerLink]="item.routeLink">{{item.option}}</p>
+            }
+        }
+    </div>
+</div>

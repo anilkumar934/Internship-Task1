@@ -1,0 +1,35 @@
+.side-bar{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: 100%;
+    width: 100%;
+}
+
+
+.sidebar-option{
+    
+    cursor: pointer;
+    text-align: center;
+    padding: 5% 10%;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.on-route{
+    background-color: #EDB046;
+}
+
+
+@media screen and (max-width: 900px) {
+    .side-bar {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .sidebar-option {
+        font-size: 15px;
+    }
+}

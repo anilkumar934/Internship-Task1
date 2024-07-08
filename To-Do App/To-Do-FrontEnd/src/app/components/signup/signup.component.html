@@ -1,0 +1,43 @@
+<div class="page-background">
+    <div class="common" [formGroup]="registrationForm" [class]="signIn? 'sign-in':'signup'" >
+        <div class="adjust-header">
+            <h1>To-Do App</h1>
+            <h6>Start organizing your life day by day</h6>
+        </div>
+        <div>
+            <input type="text" placeholder="Username" formControlName="userName"><br/>
+            <span class="error-message">
+                @if(registrationForm.get('userName')?.invalid && registrationForm.get('userName')?.touched){
+                    Field is Required with atleast 3 characters
+                }
+            </span>
+        </div>
+        <div>
+            <input type="password" placeholder="Password" formControlName="password"><br/>
+            <span class="error-message">
+                @if(registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched){
+                    Field is Required with atleast 3 characters
+                }
+            </span>
+        </div>
+        <div>
+            <button type="submit" (click)="onFormSubmit()">
+                @if(signIn) {Sign In}
+                @else {Sign Up}
+            </button>
+        </div>
+        <div>
+            <p>
+                @if(signIn)
+                {
+                    Don't have an account? Create
+                        
+                } 
+                @else{
+                    Already have an account? Sign in 
+                }
+                <a (click)="onChangeToLogin()">here</a>
+            </p>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+
+<div class="description-container" [ngStyle]="getStyles()">
+    <div>
+        <h2>{{ taskInfo.name }}</h2>
+        <h6>{{ durationOfTask() }}</h6>
+    </div>
+    <div>
+        <h4>Description</h4>
+        <h6>
+
+            {{ taskInfo.description }}
+        </h6>
+    </div>
+    <div class="arrange-images">
+        <div>
+            <img [src]="active != 'Active' ? '../../../assets/images/check-square-fill.svg' : '../../../assets/images/check-square.svg'"
+                (click)="changeStatus()">
+        </div>
+        <div class="options">
+            <img [src]="active == 'Active' ? '../../../../assets/images/edit.svg':''" (click)="addTask = true">
+            <img [src]="active == 'Active' ? '../../../../assets/images/delete.svg':'../../../../assets/delete-complete.svg'"
+                (click)="deleteTask(taskInfo)">
+        </div>
+    </div>
+    <div class="addTaskComp" [ngStyle]="{'display':addTask?'block':'none'}">
+        <div>
+            <app-add-task (hideAddTask)="addTask = false" [existTask]="taskInfo" [isForEdit]="editTask"></app-add-task>
+        </div>
+    </div>
+</div>

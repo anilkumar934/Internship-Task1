@@ -3,12 +3,12 @@
     font-size: 12px;
     color: #6C717D;
     font-weight: 500;
+    margin-top: 20px;
 }
 .role-text{
     width: 200px;
     height: 20px;
     font-size: 12px;
-    margin-bottom: 20px;
     margin-right: 10px;
 }
 .role-text:focus{
@@ -20,7 +20,7 @@
     background-color: #F4F5F7;
     border-radius: 3px;
     border: none;
-    margin-bottom: 20px;
+    
 }
 .role-descr{
     height: 140px;
@@ -70,4 +70,26 @@
     font-size: 11px;
     font-weight: 500;
     cursor: pointer;
+}
+
+input.ng-invalid.ng-touched{
+    border:red 2px solid;
+}
+
+.error-message {
+    display: block;
+    color: #F44848;
+    font-size: 12px;
+    gap: 2px;
+    line-height: 0;
+    padding-top: 4px;
+    
+}
+
+.error-message>img {
+    height: 10px;
+}
+
+.gap-btw-containers{
+    padding: 10px;
 }
