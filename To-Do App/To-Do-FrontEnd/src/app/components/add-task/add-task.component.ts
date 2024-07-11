@@ -45,14 +45,15 @@ export class AddTaskComponent implements OnInit{
       taskName:new FormControl('',
         [
           Validators.required,
-          Validators.minLength(3),
-          Validators.pattern(/^[0-9a-zA-Z]/)
+          Validators.minLength(1),
+          Validators.maxLength(50),
+          Validators.pattern(/^(?! ).*/)
         ]),
         taskDescription:new FormControl('',
         [
           Validators.required,
-          Validators.minLength(3),
-          Validators.pattern(/^[0-9a-zA-Z]/)
+          Validators.minLength(1),
+          Validators.maxLength(250),
         ]
         )
       });
@@ -102,6 +103,7 @@ export class AddTaskComponent implements OnInit{
   }
 
   hideAddTaskWindow(){
+    if(!this.isForEdit) this.addTaskForm.reset();
     this.hideAddTask.emit();
   }
 }

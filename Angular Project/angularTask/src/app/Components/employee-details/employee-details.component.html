@@ -131,7 +131,7 @@
         <tbody>
             @for(employee of employeesData;track employee)
             {
-            <tr class="table-row" #{{ employee.employeeId }}>
+            <tr class="table-row">
                 <td><input type="checkbox" class="employ-checkbox" name="all_check"></td>
               <td >
                 <div class="emp-profile">
@@ -152,7 +152,7 @@
               <td>{{ employee.joinDate }}</td>
               <td class="ellipse-data">
                 <img src="../../../assets/Images/Table/dots-three-bold.svg" class="ellipse" [attr.id]="'ellipse' + employee.employeeId" alt="ellipse"/>
-                <div class='ellipse-position' #ellipseButton (click)="onClickOfEllipse(employee.employeeId)">
+                <div class='ellipse-position'>
                   <button type='button' class='ellipse-button' value='Edit'>Edit</button>
                   <button type='button' class='ellipse-button' value='view Details'>View Details</button>
                   <button type='button' class='ellipse-button' value='Edit'>Delete</button>

@@ -8,7 +8,7 @@
             <input type="text" placeholder="Username" formControlName="userName"><br/>
             <span class="error-message">
                 @if(registrationForm.get('userName')?.invalid && registrationForm.get('userName')?.touched){
-                    Field is Required with atleast 3 characters
+                    Field is Required with (3-20) characters
                 }
             </span>
         </div>
@@ -16,7 +16,7 @@
             <input type="password" placeholder="Password" formControlName="password"><br/>
             <span class="error-message">
                 @if(registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched){
-                    Field is Required with atleast 3 characters
+                    Field is Required with atleast characters
                 }
             </span>
         </div>

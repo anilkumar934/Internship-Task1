@@ -4,10 +4,10 @@ using Services.Interfaces;
 
 namespace Services
 {
-    public class Tasks : ITask
+    public class TaskService : ITaskService
     {
         private readonly IAppRepository<UserTask> _repository;
-        public Tasks(IAppRepository<UserTask> repository)
+        public TaskService(IAppRepository<UserTask> repository)
         {
             _repository = repository;
         }

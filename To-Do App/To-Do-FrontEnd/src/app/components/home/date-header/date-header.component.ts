@@ -31,6 +31,8 @@ export class DateHeaderComponent implements OnInit{
 
   deleteAllTasks(){
     var tasks:Task[] = [];
+    let result = confirm("Are you Sure to delete all tasks");
+    if(!result) return;
     this._taskService.getAllTasks(this.routeOption).subscribe((data)=>{
       tasks = data as Task[];
       for(let task of tasks)
@@ -44,4 +46,5 @@ export class DateHeaderComponent implements OnInit{
     })
     this._taskService.callFunction();
   }
+
 }

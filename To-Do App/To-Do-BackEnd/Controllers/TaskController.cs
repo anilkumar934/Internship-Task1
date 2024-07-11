@@ -14,9 +14,9 @@ namespace To_Do_List.Controllers
 
     public class TaskController : ControllerBase
     {
-        private readonly ITask _task;
+        private readonly ITaskService _task;
         private readonly IMapper _mapper;
-        public TaskController(ITask _taskService, IMapper mapper)
+        public TaskController(ITaskService _taskService, IMapper mapper)
         {
             _task = _taskService;
             _mapper = mapper;

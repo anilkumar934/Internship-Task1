@@ -4541,11 +4541,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\anil.a\\Desktop\\EmployeeDirectory-webApi\\EmployeeDirectory-webApi.csproj",
+      "projectUniqueName": "C:\\Users\\anil.a\\Documents\\GitHub\\Internship-Tasks\\Angular Project\\EmployeeDirectory-webApi\\EmployeeDirectory-webApi.csproj",
       "projectName": "EmployeeDirectory-webApi",
-      "projectPath": "C:\\Users\\anil.a\\Desktop\\EmployeeDirectory-webApi\\EmployeeDirectory-webApi.csproj",
+      "projectPath": "C:\\Users\\anil.a\\Documents\\GitHub\\Internship-Tasks\\Angular Project\\EmployeeDirectory-webApi\\EmployeeDirectory-webApi.csproj",
       "packagesPath": "C:\\Users\\anil.a\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\anil.a\\Desktop\\EmployeeDirectory-webApi\\obj\\",
+      "outputPath": "C:\\Users\\anil.a\\Documents\\GitHub\\Internship-Tasks\\Angular Project\\EmployeeDirectory-webApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\anil.a\\AppData\\Roaming\\NuGet\\NuGet.Config",

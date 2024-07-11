@@ -10,7 +10,7 @@
     border-radius: 5px;
     margin-bottom: 2%;
     align-items: center;
-    box-shadow: 2px 1px 4px rgba(98, 96, 89, 0.237);
+    box-shadow: 2px 2px 4px rgba(147, 146, 142, 0.237);
     img{
         padding: 2%;
         height: 40%;
@@ -43,6 +43,10 @@
     margin-right: 10%;
     display: flex;
     gap: 50%;
+}
+.empty-task{
+    text-align: center;
+    font-weight: 600;
 }
 
 @media screen and (max-width:500px) {

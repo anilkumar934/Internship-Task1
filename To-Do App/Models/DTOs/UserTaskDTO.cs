@@ -5,10 +5,10 @@ namespace Models.DTOs
     public class UserTaskDTO
     {
         [Required]
-        [StringLength(20)]
+        [StringLength(50)]
         public string Name { get; set; }
         [Required]
-        [StringLength(150)]
+        [StringLength(250)]
         public string Description { get; set; }
         public string Status { get; set; } = "Active";
 

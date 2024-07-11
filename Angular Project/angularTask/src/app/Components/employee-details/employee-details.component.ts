@@ -19,7 +19,7 @@ import { ViewChild } from '@angular/core';
   templateUrl: './employee-details.component.html',
   styleUrl: './employee-details.component.css'
 })
-export class EmployeeDetailsComponent {
+export class EmployeeDetailsComponent implements OnInit{
 
   locations:any[]=[];
   departments:any[]=[];
@@ -35,6 +35,9 @@ export class EmployeeDetailsComponent {
   
   constructor(private _employeeService:EmployeeService,private _departmentService:DepartmentService,private _locationService:LocationService)
   {
+  }
+  
+  ngOnInit(): void {
     this.initializeCharacters();
     this.fetchAllEmployee();
     this.fetchDepartments();
@@ -81,10 +84,7 @@ export class EmployeeDetailsComponent {
     xlsx.writeFile(excelFile, 'ExcelFile.xlsx');
   }
 
-  onClickOfEllipse(status:boolean)
-  {
-    console.log(status)
-  }
+
 
   OnChangeLocation(loc : any){
     let locs:string[] = this.filters.locations

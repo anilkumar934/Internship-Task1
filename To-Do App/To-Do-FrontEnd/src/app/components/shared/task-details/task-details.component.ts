@@ -1,4 +1,4 @@
-import { Component,EventEmitter,Input, OnInit,Output } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { NgClass, NgIf,NgStyle } from '@angular/common';
 import { Task } from '../../../models/Task';
 import { TaskService } from '../../../services/task.service';
@@ -18,6 +18,8 @@ export class TaskDetailsComponent implements OnInit{
   tasks:Task[];
   @Input() type:string;
   @Input() showDetails:boolean;
+  countOfActive:number;
+  countOfCompleted:number;
   
   constructor(private _taskService:TaskService)
   {
@@ -25,6 +27,8 @@ export class TaskDetailsComponent implements OnInit{
     this.tasks = [];
     this.taskId = 0;
     this.showDetails = false;
+    this.countOfActive = 0;
+    this.countOfCompleted = 0;
   }
 
   ngOnInit():void{
@@ -37,6 +41,13 @@ export class TaskDetailsComponent implements OnInit{
   {
     this._taskService.getAllTasks(this.type).subscribe((data) =>{
       this.tasks = data
+      this.countOfActive = 0;
+      this.countOfCompleted = 0;
+      for(let task of this.tasks)
+      {
+        if(task.status == "Active") this.countOfActive += 1;
+        else this.countOfCompleted += 1;
+      }
       this._taskService.emitData(this.tasks);
     })
   }

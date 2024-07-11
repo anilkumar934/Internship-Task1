@@ -42,13 +42,14 @@ export class TaskDescriptionComponent {
       this._toastr.info("Task is shifted to Active");
       this.taskInfo.status = 'Active';
     }
-    this._taskService.updateTask(this.taskInfo.id,this.taskInfo).subscribe();
+    this._taskService.updateTask(this.taskInfo.id,this.taskInfo).subscribe(()=>{this._taskService.callFunction()});
   }
 
   deleteTask(taskInfo:Task){
-    console.log(taskInfo)
+    let result = confirm("Are you Sure to delete this task");
+    if(!result) return;
     this._taskService.deleteTask(taskInfo.id).subscribe(()=>{
-      this._taskService.callFunction()
+      this._taskService.callFunction();
       this._toastr.info("A Task is Deleted");
     });
   }
@@ -57,27 +58,26 @@ export class TaskDescriptionComponent {
   durationOfTask()
   {
     let currentDate = new Date();
-    let addedDatetime = new Date(this.taskInfo.addedDate)
+    let addedDatetime = new Date(this.taskInfo.addedDate);
     let timeGap = (currentDate.getTime() - addedDatetime.getTime())/1000;
-    console.log(timeGap, "  ",currentDate , "  ",addedDatetime)
     if(timeGap < 60)
     {
-      return `Added ${timeGap} seconds ago`
+      return `Added ${timeGap} seconds ago`;
     }
     else if(timeGap < 3600)
     {
-      return `Added ${Math.floor(timeGap/60)} minutes ago`
+      return `Added ${Math.floor(timeGap/60)} minutes ago`;
     }
     else if(timeGap < 86400)
     {
-      return `Added ${Math.floor(timeGap/3600)} hours ago`
+      return `Added ${Math.floor(timeGap/3600)} hours ago`;
     }
     else if(timeGap < 31536000)
     {
-      return `Added ${Math.floor(timeGap/86400)} days ago`
+      return `Added ${Math.floor(timeGap/86400)} days ago`;
     }
     else{
-      return `Added ${Math.floor(timeGap/31536000)} years ago`
+      return `Added ${Math.floor(timeGap/31536000)} years ago`;
     }
   }
 

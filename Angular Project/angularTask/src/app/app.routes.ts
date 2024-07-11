@@ -6,10 +6,11 @@ import { AddRoleComponent } from './Components/add-role/add-role.component';
 import { RolesComponent } from './Components/roles/roles.component';
 
 export const routes: Routes = [
-    // {
-    //     path: '',
-    //     component:AddEmployeeComponent,
-    // },
+    {
+        path: '',
+        redirectTo:'Employee-details',
+        pathMatch:'full',
+    },
     {
         path:'Add-employee',
         component:AddEmployeeComponent,

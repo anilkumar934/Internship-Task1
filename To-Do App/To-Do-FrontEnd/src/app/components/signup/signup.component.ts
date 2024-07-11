@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit{
           (data:any) => {
             if(data != null && data.token != null )
             {
-              this._toaster.success("Welcome User");
+              this._toaster.success("Welcome "+user.userName);
               localStorage.setItem('token',data.token);
               this.router.navigate(['dashboard'])
               this.registrationForm.reset()

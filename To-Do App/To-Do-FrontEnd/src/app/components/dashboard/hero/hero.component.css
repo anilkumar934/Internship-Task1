@@ -1,7 +1,7 @@
 .message-container{
     display: flex;
-    box-shadow: 1px 1px 15px rgb(178, 176, 172);
-    border-radius: 5px;
+    box-shadow: 0px 10px 25px rgb(236, 233, 228);
+    border-radius: 10px;
     width: 100%;
     z-index: 0;
     position: relative;
@@ -39,10 +39,9 @@
     }
     .hero-img{
         right: -1%;
-        top: -1%;
-    }
-    img{
-        height: 110px;
+        img{
+            height: 100px;
+        }
     }
 }
 
@@ -58,9 +57,9 @@
     .hero-img{
         top: -15%;
         right: 0%;
-    }
-    img{
-        height: 150px;
+        img{
+            height: 130px;
+        }
     }
 }
 
@@ -72,8 +71,8 @@
     h6{
         font-size: 17px;
         margin: 0%;
-    }
-    img{
-        height: 240px;
+        img{
+            height: 240px;
+        }
     }
 }

@@ -1,8 +1,10 @@
-﻿namespace Services.Interfaces
+﻿using Repositories.Models;
+
+namespace Services.Interfaces
 {
     public interface IUserService
     {
-        void AddUser(UserService user);
-        IEnumerable<UserService> GetUsers();
+        void AddUser(User user);
+        IEnumerable<User> GetUsers();
     }
 }

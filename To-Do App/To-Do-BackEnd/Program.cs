@@ -21,7 +21,7 @@ namespace To_Do_List
             options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbConnection")));
       builder.Services.AddAutoMapper(typeof(Program));
       builder.Services.AddScoped(typeof(IAppRepository<>), typeof(AppRepository<>));
-      builder.Services.AddScoped<ITask,Tasks>();
+      builder.Services.AddScoped<ITaskService,TaskService>();
       builder.Services.AddScoped<IUserService,UserService>();
       builder.Services.AddCors(options =>
       {

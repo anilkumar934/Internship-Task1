@@ -2,7 +2,7 @@
 
 namespace Services.Interfaces
 {
-    public interface ITask
+    public interface ITaskService
     {
         void Add(UserTask task);
         void Delete(UserTask task);
